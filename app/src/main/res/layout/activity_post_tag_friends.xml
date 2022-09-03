@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PostTagFriendsActivity">
+
+    <RelativeLayout
+        android:id="@+id/top_search"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@id/top_nav">
+
+        <ImageView
+
+            android:id="@+id/id_back_arrow"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            app:srcCompat="@drawable/common_friends"
+            app:tint="@color/company_search_light_dark" />
+
+        <RelativeLayout
+            android:id="@+id/rrrr"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40dp"
+            android:layout_toLeftOf="@id/id_card_search">
+
+
+            <EditText
+                android:id="@+id/editTextSearch"
+
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/search_textbox_round"
+                android:hint="@string/item_12"
+                android:imeOptions="actionSearch"
+                android:includeFontPadding="true"
+                android:inputType="text"
+                android:paddingLeft="5dp"
+                android:textColor="@color/black"
+                android:textColorHighlight="#00BCD4"
+                android:textColorHint="#C46D6D6D"
+                android:textColorLink="#00BCD4"
+                android:textSize="12dp" />
+
+
+            <ImageView
+                android:id="@+id/id_action_search2"
+                android:layout_width="30dp"
+
+                android:layout_height="30dp"
+
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="12dp"
+                app:srcCompat="@drawable/ic_search_black_24dp"
+                app:tint="@color/company_search_light_dark" />
+        </RelativeLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/id_card_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            app:cardCornerRadius="5dp">
+
+            <Button
+                android:id="@+id/id_add_friend_button"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:background="@color/company_search_light_dark"
+                android:padding="1dp"
+                android:text="Search"
+
+                android:textColor="@color/white"
+                android:textSize="9dp" />
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/top_nav"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FFFFFF"
+        >
+
+
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_block_40"
+            app:tint="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/backBtn"
+            android:fontFamily="sans-serif"
+            android:text="Tag Friends"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:indeterminateDrawable="@drawable/progrress_bar_circle_custom"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="13dp"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/top_search"
+        android:scrollbars="none" />
+</RelativeLayout>

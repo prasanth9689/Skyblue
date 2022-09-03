@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/top_main" xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".forget_password.ForgetPasActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/top_nav"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FFFFFF">
+
+        <ImageView
+            android:id="@+id/backBtn_forget_pass"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_block_40"
+            app:tint="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/backBtn_forget_pass"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/back"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/enter_phone_number"
+            android:textColor="@color/company_search_light_dark"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/ccp"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/edit_text_border_color_light_blue"
+            app:ccpDialog_keyboardAutoPopup="false"
+            app:ccp_autoDetectCountry="true"
+            android:fontFamily="@font/open_sans"
+            app:ccp_showFlag="false" />
+
+        <EditText
+            android:id="@+id/editTextCarrierNumber"
+            style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="false"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/ccp"
+            android:background="@drawable/edit_text_border_color_light_blue"
+            android:fontFamily="@font/open_sans"
+            android:hint="@string/phone_number"
+            android:inputType="phone"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/buttonContinue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextCarrierNumber"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorMessageBackground"
+            android:fontFamily="@font/open_sans"
+            android:text="Continue"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/check_user_expectation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:layout_alignParentBottom="false"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="100dp"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Phone number"
+            android:textSize="18sp"
+            android:visibility="invisible"
+            tools:visibility="invisible" />
+
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="345dp"
+        android:layout_height="121dp"
+        android:background="@color/shadow_1"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        tools:visibility="invisible">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:gravity="center_vertical">
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="16dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:text="Country"
+                    android:textStyle="bold"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:text="Phone code"
+                    android:textStyle="bold"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:text="Name Code"
+                    android:textStyle="bold"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="3">
+
+                <TextView
+                    android:id="@+id/textView_countryName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:text="_________"
+                    android:textColor="@android:color/black"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/textView_countryCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:text="_________"
+                    android:textColor="@android:color/black"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/textView_countryNameCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:text="_________"
+                    android:textColor="@android:color/black"
+                    android:visibility="invisible" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/id_get_number_with_plus"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/id_get_number_only"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/mobileStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="300dp"
+        android:hint="Mobile Status"
+        android:visibility="invisible"
+        tools:visibility="invisible" />
+
+
+</RelativeLayout>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#BBDEFB"
+    tools:context=".StoragePermissionActivity">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/download_unlimited_videos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:text="Download unlimited videos"
+            android:textColor="#162673"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:text="Share instantly"
+            android:textColor="#162673"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/download_unlimited_videos"
+            />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/image_rel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/img_folder_paper" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/image_rel"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="To manage files. Please allow Skyblue app"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="to allow files. Save videos &amp; Share"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:layout_below="@id/text1"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true">
+
+
+        <Button
+            android:id="@+id/id_allow_button"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:background="@drawable/color_bg_blue"
+            android:padding="5dp"
+            android:text="ALLOW"
+            android:textColor="@color/white">
+
+        </Button>
+
+    </RelativeLayout>
+
+</RelativeLayout>

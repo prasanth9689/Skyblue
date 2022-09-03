@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="1dp"
+    card_view:cardCornerRadius="0dp"
+    card_view:cardElevation="10dp"
+    android:layout_height="wrap_content"
+    card_view:cardBackgroundColor="@color/white"
+    >
+
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+
+            android:layout_below="@id/id_rel_thumbnail"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="3dp">
+
+            <RelativeLayout
+                android:id="@+id/like_round_box"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="0dp"
+                android:background="@drawable/like_box_round">
+
+                <TextView
+                    android:id="@+id/id_load_likes_main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="false"
+                    android:layout_marginLeft="19dp"
+                    android:layout_marginTop="7dp"
+                    android:bufferType="normal"
+                    android:textColor="#000000" />
+
+                <CheckBox
+                    android:id="@+id/id_like_checkbox"
+                    android:layout_width="24dp"
+                    android:layout_height="27dp"
+                    android:layout_alignParentRight="false"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/like_icon"
+                    android:button="@null"
+                    android:focusable="true"
+                    android:stateListAnimator="@animator/scale" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_toRightOf="@id/id_like_checkbox"
+                    android:fontFamily="@font/open_sans_condensed_bold"
+                    android:text="@string/likes"
+                    android:textColor="@color/black"
+                    android:textSize="10dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/comment_round_box"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+
+                android:layout_marginLeft="5dp"
+
+                android:layout_toRightOf="@id/like_round_box"
+                android:background="@drawable/like_box_round">
+
+
+                <TextView
+                    android:id="@+id/id_load_total_comments_main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="false"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginTop="7dp"
+                    android:bufferType="normal"
+                    android:textColor="#000000" />
+
+                <CheckBox
+                    android:id="@+id/id_ic_cmd"
+                    android:layout_width="24dp"
+                    android:layout_height="27dp"
+
+                    android:layout_alignParentRight="false"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/ic_comment_outline"
+                    android:button="@null"
+                    android:backgroundTint="@color/black"
+                    android:focusable="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_toRightOf="@id/id_ic_cmd"
+                    android:fontFamily="@font/open_sans_condensed_bold"
+                    android:text="@string/comments"
+                    android:textColor="@color/black"
+                    android:textSize="10dp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <!--            <RelativeLayout-->
+            <!--                android:id="@+id/download2_round_box"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="match_parent"-->
+            <!--                android:layout_alignParentEnd="true"-->
+            <!--                android:layout_marginRight="5dp"-->
+            <!--                android:background="@drawable/like_box_round">-->
+
+            <!--                <ImageView-->
+            <!--                    android:id="@+id/id_download_btn"-->
+            <!--                    android:layout_width="24dp"-->
+            <!--                    android:layout_height="27dp"-->
+            <!--                    android:layout_alignParentRight="false"-->
+            <!--                    android:layout_marginLeft="5dp"-->
+            <!--                    android:layout_marginTop="5dp"-->
+            <!--                    android:layout_marginBottom="5dp"-->
+            <!--                    android:background="@drawable/home_file_download_black_35dp"-->
+            <!--                    android:button="@null"-->
+            <!--                    android:focusable="true" />-->
+
+            <!--                <TextView-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginLeft="5dp"-->
+            <!--                    android:layout_marginTop="11dp"-->
+            <!--                    android:layout_marginRight="5dp"-->
+            <!--                    android:layout_toRightOf="@id/id_download_btn"-->
+            <!--                    android:fontFamily="@font/open_sans_condensed_bold"-->
+            <!--                    android:text="Download"-->
+            <!--                    android:textColor="@color/black"-->
+            <!--                    android:textSize="10dp"-->
+            <!--                    android:textStyle="bold" />-->
+            <!--            </RelativeLayout>-->
+
+            <ImageView
+                android:id="@+id/ic_share"
+                android:layout_width="24dp"
+                android:layout_height="27dp"
+
+
+                android:layout_alignParentRight="false"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="9.5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toLeftOf="@id/download_round_box"
+                android:background="@drawable/home_reply_black_35dp"
+                android:focusable="true"
+                android:scaleX="-1"
+                android:stateListAnimator="@animator/scale"
+                android:visibility="invisible" />
+
+            <RelativeLayout
+                android:id="@+id/download_round_box"
+                android:layout_width="50dp"
+                android:layout_height="35dp"
+
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/like_box_round"
+                android:visibility="invisible">
+
+
+                <CheckBox
+                    android:id="@+id/id_ic_download"
+                    android:layout_width="24dp"
+                    android:layout_height="27dp"
+
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/home_file_download_black_35dp"
+                    android:button="@null"
+                    android:focusable="true"
+
+                    android:stateListAnimator="@animator/scale"
+                    android:visibility="invisible" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/id_rel_extra_btn"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+
+                android:layout_toRightOf="@id/comment_round_box" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/top_container">
+
+            <ImageView
+                android:id="@+id/id_user_rounded_thumbnail"
+                android:layout_width="47dp"
+                android:layout_height="49dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="2dp"
+                android:src="@drawable/placeholder_person" />
+
+            <TextView
+                android:id="@+id/id_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginBottom="-10dp"
+                android:fontFamily="@font/open_sans"
+                android:hint="user name"
+                android:padding="5dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#000000"
+                android:textColorHint="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/time_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/id_user_name"
+                android:layout_marginLeft="0dp"
+                android:layout_marginBottom="-10dp"
+                android:layout_toRightOf="@id/id_user_rounded_thumbnail"
+                android:hint="time"
+                android:textColorHint="@color/black"
+                android:padding="5dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#636363"
+                android:textSize="10sp" />
+
+            <com.vanniktech.emoji.EmojiTextView
+                android:id="@+id/id_image_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/time_date"
+                android:layout_marginLeft="50dp"
+                android:padding="5dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/id_rel_thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:layout_below="@id/top_container">
+
+
+            <ImageView
+                android:id="@+id/id_thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/id_play_icon"
+                android:layout_width="78dp"
+                android:layout_height="80dp"
+
+                android:layout_centerInParent="true"
+                android:background="@drawable/play_35dp" />
+        </RelativeLayout>
+
+
+
+        <ImageView
+            android:id="@+id/side_three_dots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            card_view:srcCompat="@drawable/vert_black_35dp" />
+
+
+        <TextView
+            android:id="@+id/id_status"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/id_rel_thumbnail"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentBottom="false"
+            android:layout_marginEnd="72dp"
+            android:layout_marginRight="72dp"
+            android:layout_marginBottom="-47dp"
+            android:padding="5dp"
+            android:text="status"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:visibility="invisible"
+            tools:visibility="invisible" />
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

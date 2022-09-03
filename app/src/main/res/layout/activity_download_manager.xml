@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/top_nav"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="false">
+
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+
+
+            android:layout_centerInParent="false"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="5dp"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_block_40"
+            app:tint="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="1dp"
+            android:layout_toRightOf="@id/back"
+            android:text="Download manager"
+            android:textColor="@color/black"
+            android:textSize="17dp" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/top_nav">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Download size (KB):"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/id_download_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#00B307"
+            android:text="0"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Total bytes (long):"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/id_total_bytes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="0"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Bytes downloaded (long):"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/id_bytes_downloaded"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="0"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Download Progress (int):"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/id_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="0"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"/>
+
+        <Button
+            android:id="@+id/id_download"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ANDROID FAST NETWORKING"
+            android:layout_centerInParent="true"
+            />
+
+        <Button
+            android:id="@+id/id_async_download"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Async Task"
+            android:layout_centerInParent="true"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="http://imobiless.com/web/uvideo/videos/CL944tFJdMNsdwnJzE0zSj6GT.MP4"/>
+
+
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/id_download_notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DOWNLOAD WITH Notification manager"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        />
+</RelativeLayout>

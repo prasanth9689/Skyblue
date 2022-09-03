@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PostPictureActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/main_activity_root_view"
+        android:layout_width="match_parent"
+        android:layout_height="131dp"
+        android:layout_below="@id/top_nav"
+        android:layout_alignParentBottom="false"
+        android:layout_marginLeft="5dp"
+
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/rel_text_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_toLeftOf="@id/rel_text_send_btn"
+            >
+
+            <ImageView
+                android:id="@+id/emoji"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+
+                android:layout_marginLeft="3dp"
+                app:srcCompat="@drawable/post_mood_black_35dp" />
+
+            <ImageView
+                android:id="@+id/emoji_keyboard"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+
+                android:layout_marginLeft="3dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/post_keyboard_black_35dp"
+                tools:visibility="invisible" />
+
+
+            <com.vanniktech.emoji.EmojiEditText
+                android:id="@+id/message_text_box"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_weight="2"
+                android:background="@null"
+                android:ems="10"
+                android:gravity="top"
+                android:hint="Write a something"
+                android:imeOptions="actionSend"
+                android:inputType="textCapSentences|textMultiLine"
+                android:paddingHorizontal="10dp"
+                android:text="" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel_text_send_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/top_nav"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="false">
+
+
+        <ImageView
+            android:id="@+id/id_back"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_block_40"
+            app:tint="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/id_back"
+            android:text="Post"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="8dp">
+            <Button
+                android:id="@+id/button_post_now"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+
+                android:background="#000000"
+                android:padding="10dp"
+                android:text="Post Now"
+                android:textColor="#FFFFFF"
+                />
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/rel_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/main_activity_root_view"
+        android:layout_marginBottom="65dp">
+
+
+
+        <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:visibility="visible"
+            tools:visibility="visible" />
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/player_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:visibility="visible"
+            app:controller_layout_id="@layout/custom_exo_playback_control_video_player"
+            tools:visibility="visible" />
+
+    </RelativeLayout>
+
+
+    <EditText
+        android:id="@+id/uriPath"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
+        android:text="file:///storage/emulated/0/Download/raul-najera-TAqspfWom04-unsplash.jpg"
+        android:visibility="invisible" />
+
+
+
+
+
+
+
+
+
+
+
+
+</RelativeLayout>

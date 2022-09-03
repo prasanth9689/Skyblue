@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".LoginActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="English"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_marginLeft="5dp"
+            android:text="|"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Langage"
+            android:textColor="@color/shadow_1"
+            android:textStyle="bold"
+            android:layout_marginLeft="5dp"/>
+
+    </LinearLayout>
+
+<RelativeLayout
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <TextView
+        android:id="@+id/firebase_token2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="10dp"
+        android:hint="firebase token"
+        android:textColor="#AA0000"
+        android:textColorHint="#A50000"
+        android:visibility="invisible"
+        tools:visibility="invisible" />
+
+
+
+    <EditText
+        android:id="@+id/etMobile"
+        style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="40dp"
+        android:background="@drawable/edit_text_border_color_light_blue"
+        android:ems="10"
+        android:fontFamily="@font/open_sans"
+        android:hint="@string/phone_number"
+        android:inputType="phone"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        tools:layout_editor_absoluteX="98dp"
+        tools:layout_editor_absoluteY="123dp" />
+
+    <EditText
+        android:id="@+id/etPassword"
+        style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etMobile"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edit_text_border_color_light_blue"
+        android:ems="10"
+        android:hint="@string/password"
+        android:fontFamily="@font/open_sans"
+        android:inputType="textPassword"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        tools:layout_editor_absoluteX="98dp"
+        tools:layout_editor_absoluteY="178dp" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/id_btLogin_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etPassword"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_centerHorizontal="true"
+        app:cardCornerRadius="5dp">
+        <Button
+            android:id="@+id/btLogin"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/etPassword"
+            android:background="@color/colorPrimaryBlue"
+            android:inputType="textVisiblePassword"
+            android:password="false"
+            android:text="@string/log_in"
+            android:fontFamily="@font/open_sans"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="161dp"
+            tools:layout_editor_absoluteY="234dp" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/id_forget_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id_btLogin_card"
+
+        android:layout_alignParentTop="false"
+        android:layout_centerHorizontal="false"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/open_sans"
+        android:text="@string/Forgot_your_password_text"
+        android:textColor="@android:color/secondary_text_dark"
+        android:textSize="14sp"
+        tools:layout_editor_absoluteX="115dp"
+        tools:layout_editor_absoluteY="50dp" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id_forget_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="15dp"
+        app:cardCornerRadius="5dp">
+        <Button
+            android:id="@+id/btnCreateAc"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:fontFamily="@font/open_sans"
+            android:background="#039709"
+            android:text="@string/create_account"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="133dp"
+            tools:layout_editor_absoluteY="300dp" />
+    </androidx.cardview.widget.CardView>
+
+
+<!--    <TextView-->
+<!--        android:id="@+id/id_forget_text"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/id_btLogin_card"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_toRightOf="@id/text_view_forgot"-->
+<!--        android:fontFamily="@font/open_sans"-->
+<!--        android:text="@string/forget_password"-->
+<!--        android:textColor="@color/dark_blue" />-->
+
+</RelativeLayout>
+</RelativeLayout>

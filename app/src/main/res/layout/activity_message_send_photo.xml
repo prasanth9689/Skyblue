@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/id_relative_layout_top_one"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:focusable="true"
+android:focusableInTouchMode="true"
+android:paddingLeft="5dp"
+android:paddingTop="10dp"
+android:paddingRight="5dp"
+android:paddingBottom="10dp">
+<RelativeLayout
+    android:id="@+id/top_nav"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_alignParentBottom="false">
+
+
+    <ImageView
+        android:id="@+id/id_crop_icon"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_centerInParent="true"
+        android:layout_marginRight="10dp"
+
+        android:layout_toLeftOf="@id/id_button_select"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/crop_dark_blue_35dp"
+        tools:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/id_back_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:layout_centerInParent="false"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        app:srcCompat="@drawable/arrow_back_dark_blue_35dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/id_back_arrow"
+        android:text="Send photo"
+        android:textColor="#070E39"
+        android:textSize="19dp"
+        android:textStyle="bold" />
+
+
+    <ImageView
+        android:id="@+id/id_button_select"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:layout_marginRight="10dp"
+        android:baselineAlignBottom="false"
+
+        app:srcCompat="@drawable/add_a_photo_dark_blue_35dp" />
+
+
+</RelativeLayout>
+<TextView
+    android:id="@+id/id_text_view_user_id"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
+
+<EditText
+    android:id="@+id/id_about_image_edit_text"
+    android:layout_width="match_parent"
+    android:layout_height="33dp"
+    android:layout_alignParentBottom="true"
+    android:layout_toLeftOf="@id/id_button_upload"
+    android:background="@drawable/edit_text_border_color_white"
+    android:hint="write something...."
+    android:inputType="textMultiLine"
+    android:paddingLeft="5dp"
+    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+    android:visibility="invisible" />
+
+<ImageView
+    android:id="@+id/id_add_image_center"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:layout_centerInParent="true"
+    android:visibility="invisible"
+    app:srcCompat="@drawable/add_a_photo_dark_blue_35dp"
+    tools:visibility="invisible" />
+
+
+<Button
+    android:id="@+id/id_crop_button"
+    android:layout_width="wrap_content"
+    android:layout_height="33dp"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:background="#070E39"
+    android:text="Crop Now"
+    android:textColor="#FFFF"
+    android:visibility="invisible"
+    tools:visibility="invisible" />
+<com.theartofdev.edmodo.cropper.CropImageView
+    android:id="@+id/id_selected_image_view"
+    android:layout_width="fill_parent"
+    android:layout_height="230dp"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentBottom="true"
+    android:layout_marginTop="52dp"
+    android:layout_marginBottom="37dp" />
+
+<ImageView
+    android:id="@+id/id_selected_image_view_primary"
+    android:layout_width="match_parent"
+    android:layout_height="230dp"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentBottom="true"
+    android:layout_marginTop="52dp"
+    android:layout_marginBottom="37dp" />
+
+
+<ImageView
+    android:id="@+id/id_button_upload"
+    android:layout_width="36dp"
+    android:layout_height="36dp"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentBottom="true"
+    android:layout_marginRight="5dp"
+    android:visibility="invisible"
+    app:srcCompat="@drawable/send_dark_blue_35dp"
+    tools:visibility="invisible" />
+
+
+</RelativeLayout>

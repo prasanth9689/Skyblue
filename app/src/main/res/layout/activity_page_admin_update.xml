@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".channel.PageAdminUpdateActivity">
+
+    <RelativeLayout
+        android:id="@+id/top_nav"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+
+        <Button
+            android:id="@+id/id_save_button"
+            android:layout_width="60dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/common_border_black_radius"
+            android:text="Save"
+            android:textColor="@color/black" />
+
+        <ImageView
+            android:id="@+id/id_back"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            app:srcCompat="@drawable/common_arrow_back"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            app:tint="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/id_back"
+            android:text="Update page"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@id/top_nav">
+
+
+
+        <TextView
+            android:id="@+id/text_enter_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Enter name"/>
+        <com.vanniktech.emoji.EmojiEditText
+            android:id="@+id/id_name_text"
+            style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/common_border_light_black_radius"
+            android:ems="10"
+            android:hint="Name"
+            android:imeOptions="normal"
+            android:inputType="text"
+            android:singleLine="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            tools:layout_editor_absoluteX="98dp"
+            tools:layout_editor_absoluteY="123dp" />
+
+        <TextView
+            android:id="@+id/text_enter_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Enter description"
+           />
+
+        <EditText
+            android:id="@+id/id_description"
+            style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/common_border_light_black_radius"
+            android:ems="10"
+            android:hint="Description"
+            android:imeOptions="normal"
+            android:inputType="text"
+            android:singleLine="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            tools:layout_editor_absoluteX="98dp"
+            tools:layout_editor_absoluteY="123dp" />
+
+        <TextView
+            android:id="@+id/text_select"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Select"/>
+
+        <EditText
+            android:id="@+id/id_spinner"
+            style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/common_bg_light_gray"
+            android:ems="10"
+
+            android:imeOptions="normal"
+
+            android:singleLine="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            tools:layout_editor_absoluteX="98dp"
+            tools:layout_editor_absoluteY="123dp"/>
+
+        <TextView
+            android:id="@+id/text_enter_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Enter phone"/>
+
+        <EditText
+            android:id="@+id/id_phone"
+            style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/common_border_light_black_radius"
+            android:ems="10"
+            android:hint="Phone"
+            android:imeOptions="normal"
+            android:inputType="phone"
+            android:singleLine="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            tools:layout_editor_absoluteX="98dp"
+            tools:layout_editor_absoluteY="123dp" />
+
+        <TextView
+            android:id="@+id/text_website"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Enter website address"
+           />
+
+        <EditText
+            android:id="@+id/id_website"
+            style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/common_border_light_black_radius"
+            android:ems="10"
+            android:hint="https://"
+            android:imeOptions="normal"
+            android:inputType="text"
+            android:singleLine="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            tools:layout_editor_absoluteX="98dp"
+            tools:layout_editor_absoluteY="123dp" />
+
+
+        <TextView
+            android:id="@+id/text_enter_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Enter address"/>
+
+        <EditText
+            android:id="@+id/id_addrss"
+            style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/common_border_light_black_radius"
+            android:ems="10"
+            android:hint="Address"
+            android:imeOptions="normal"
+            android:inputType="textPostalAddress"
+            android:singleLine="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            tools:layout_editor_absoluteX="98dp"
+            tools:layout_editor_absoluteY="123dp" />
+
+
+        <TextView
+            android:id="@+id/text_enter_pincode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+
+            android:text="Enter pin code"/>
+
+        <EditText
+            android:id="@+id/id_pincode"
+            style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/common_border_light_black_radius"
+            android:ems="10"
+            android:hint="Pin code"
+            android:imeOptions="normal"
+            android:inputType="phone"
+            android:singleLine="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            tools:layout_editor_absoluteX="98dp"
+            tools:layout_editor_absoluteY="123dp" />
+
+        <TextView
+            android:id="@+id/text_enter_city_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+
+            android:text="Enter city name"/>
+
+        <EditText
+            android:id="@+id/id_city_name"
+            style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/common_border_light_black_radius"
+            android:ems="10"
+            android:hint="City name"
+            android:imeOptions="normal"
+            android:inputType="text"
+            android:singleLine="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            tools:layout_editor_absoluteX="98dp"
+            tools:layout_editor_absoluteY="123dp" />
+
+        <TextView
+            android:id="@+id/text_enter_state_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+
+            android:text="Enter state name"/>
+
+        <EditText
+            android:id="@+id/id_state_name"
+            style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/common_border_light_black_radius"
+            android:ems="10"
+            android:hint="State name"
+            android:imeOptions="normal"
+            android:inputType="text"
+            android:singleLine="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            tools:layout_editor_absoluteX="98dp"
+            tools:layout_editor_absoluteY="123dp" />
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

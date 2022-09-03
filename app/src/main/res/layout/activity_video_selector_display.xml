@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    tools:context=".VideoSelectorDisplay">
+
+
+    <RelativeLayout
+        android:id="@+id/top_nav"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        >
+
+
+        <ImageView
+            android:id="@+id/back_video_selector_display"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_block_40"
+            app:tint="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/back_video_selector_display"
+            android:text="Browse"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/main"
+        android:layout_below="@id/top_nav"
+        android:background="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
+        <com.skyblue.skybluea.utils.AutoFitRecyclerView
+            android:id="@+id/folderRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:columnWidth="@dimen/folder_column_width"
+            android:clipToPadding="false">
+
+            <!--app:fastScrollEnabled="true"
+       app:fastScrollHorizontalThumbDrawable="@drawable/thumb_drawable"
+       app:fastScrollHorizontalTrackDrawable="@drawable/line_drawable"
+       app:fastScrollVerticalThumbDrawable="@drawable/thumb_drawable"
+       app:fastScrollVerticalTrackDrawable="@drawable/line_drawable"-->
+
+        </com.skyblue.skybluea.utils.AutoFitRecyclerView>
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/empty"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+</RelativeLayout>

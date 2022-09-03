@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="#FFFFFF">
+
+    <RelativeLayout
+        android:id="@+id/top_nav"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FFFFFF"
+        >
+
+
+        <Button
+            android:id="@+id/post_btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/common_bg_medium_blue_radius"
+            android:text="Post"
+
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_block_40"
+            app:tint="@color/black" />
+
+        <ImageView
+            android:id="@+id/id_tag_frd"
+            android:onClick="ClickTagFriends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/backBtn"
+            android:src="@drawable/common_friends" />
+
+
+        <ImageView
+            android:id="@+id/id_location"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:onClick="ClickAddLocation"
+            android:src="@drawable/common_location_1_35"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/id_tag_frd"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/common_public_35"
+            android:onClick="ClickButton"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/id_location"
+            android:layout_centerVertical="true"/>
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/id_text_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/top_nav"
+        android:layout_marginTop="-2dp"
+        android:layout_marginBottom="45dp"
+
+        android:background="#3F51B5">
+
+        <com.vanniktech.emoji.EmojiEditText
+            android:id="@+id/id_post_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:backgroundTint="#FFFFFF"
+            android:textCursorDrawable="@drawable/color_cursor_blue"
+            android:hint="Something write"
+            android:textColor="@color/white"
+            android:textColorHighlight="@color/white"
+            android:textColorHint="@color/white"
+            android:textColorLink="@color/white"
+            android:textSize="20dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/main_activity_root_view"
+        android:layout_below="@id/id_text_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/id_color_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="3dp"
+        android:layout_alignParentBottom="true"
+        >
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:measureAllChildren="false"
+            android:scrollbars="none"
+            android:layout_centerVertical="true"
+            >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="3dp">
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:cardCornerRadius="50dp"
+
+                app:cardBackgroundColor="@color/white">
+
+
+
+                <ImageView
+                    android:id="@+id/emoji"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/zemoji_grinning_face"
+                    android:background="@color/white"/>
+
+                <ImageView
+                    android:id="@+id/emoji_keyboard"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/post_keyboard_black_35dp"
+                    tools:visibility="invisible" />
+
+            </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="50dp">
+
+                <RelativeLayout
+                    android:id="@+id/id_color_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:background="#3F51B5" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                app:cardCornerRadius="50dp"
+
+                app:cardBackgroundColor="@color/white">
+
+                <RelativeLayout
+                    android:id="@+id/id_colour_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#9C27B0"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                app:cardCornerRadius="50dp"
+
+                app:cardBackgroundColor="@color/white">
+
+                <RelativeLayout
+                    android:id="@+id/id_color_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#298800"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                app:cardCornerRadius="50dp"
+
+                app:cardBackgroundColor="@color/white">
+
+                <RelativeLayout
+                    android:id="@+id/id_color_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#E91E63"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                app:cardCornerRadius="50dp"
+
+                app:cardBackgroundColor="@color/white">
+
+                <RelativeLayout
+                    android:id="@+id/id_color_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#707070"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                app:cardCornerRadius="50dp"
+
+                app:cardBackgroundColor="@color/white">
+
+                <RelativeLayout
+                    android:id="@+id/id_color_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#FF5722"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                app:cardCornerRadius="50dp"
+
+                app:cardBackgroundColor="@color/white">
+
+                <RelativeLayout
+                    android:id="@+id/id_color_7"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#1E88E5"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                app:cardCornerRadius="50dp"
+
+                app:cardBackgroundColor="@color/white">
+
+                <RelativeLayout
+                    android:id="@+id/id_color_8"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#AFB42B"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                app:cardCornerRadius="50dp"
+
+                app:cardBackgroundColor="@color/white">
+
+                <RelativeLayout
+                    android:id="@+id/id_color_9"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#6A1B9A"/>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                app:cardCornerRadius="50dp"
+
+                app:cardBackgroundColor="@color/white">
+
+                <RelativeLayout
+                    android:id="@+id/id_color_10"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#AD1457"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                app:cardCornerRadius="50dp"
+
+                app:cardBackgroundColor="@color/white">
+
+                <RelativeLayout
+                    android:id="@+id/id_color_11"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#0277BD"/>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+        </HorizontalScrollView>
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

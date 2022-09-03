@@ -1,0 +1,79 @@
+package com.skyblue.skybluea;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.WindowManager;
+import android.widget.Toast;
+
+import com.skyblue.skybluea.utils.ChooseLanguageActivity;
+
+public class SplashActivity extends AppCompatActivity {
+    private SessionHandler session;
+    private static final String SHARED_PREFE_ID = "mypref";
+    private static final String KEY_PREFE_LANG = "lang";
+    Handler handler;
+    Context context = this;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splash);
+
+        session = new SessionHandler(getApplicationContext());
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.activity_splash);
+
+        handler=new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                SharedPreferences sp = context.getSharedPreferences(SHARED_PREFE_ID, MODE_PRIVATE);
+                String LANG_ID = sp.getString(KEY_PREFE_LANG, String.valueOf(3));
+
+                if (LANG_ID.equals("1")){
+                    Intent intent=new Intent(context,Home.class);
+                    startActivity(intent);
+                    finish();
+                }else{
+                    Intent intent=new Intent(context, ChooseLanguageActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+
+//                if(CheckNetwork.isInternetAvailable(SplashActivity.this)) //returns true if internet available
+//                {
+//
+//                    session = new SessionHandler(getApplicationContext());
+//
+//                    loadHome();
+
+//                    //do something. loadwebview.
+//                    //   Toast.makeText(SplashActivity.this,"Internet Connected",Toast.LENGTH_SHORT).show();
+//                }
+//
+//                else
+//                {
+//                    Intent intent=new Intent(SplashActivity.this,NoInternetActivity.class);
+//                    startActivity(intent);
+//                    finish();
+//                   // Toast.makeText(SplashActivity.this,"No Internet Connection", Toast.LENGTH_SHORT).show();
+//                }
+            }
+        },1500);
+    }
+
+    private void loadHome() {
+        // Changed by MainActivity.class to HomeDummyActivity
+        Intent i = new Intent(getApplicationContext(), Home.class);
+        startActivity(i);
+        finish();
+
+    }
+}

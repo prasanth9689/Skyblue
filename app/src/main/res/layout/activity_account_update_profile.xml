@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <RelativeLayout
+        android:id="@+id/top_nav"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:layout_alignParentBottom="false">
+
+
+        <ImageView
+            android:id="@+id/id_back"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            app:srcCompat="@drawable/common_arrow_back"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            app:tint="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/id_back"
+            android:text="Set profile"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+
+        <RelativeLayout
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true">
+
+            <RelativeLayout
+                android:id="@+id/id_crop_btn_rel"
+                android:layout_width="45dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"/>
+
+        <ImageView
+            android:id="@+id/id_crop_btn"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/common_crop"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            app:tint="@color/black" />
+
+            <ImageView
+                android:id="@+id/id_undo_btn"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                app:srcCompat="@drawable/common_undo"
+               android:layout_toLeftOf="@id/id_crop_btn_rel"
+                android:layout_marginRight="10dp"
+                app:tint="@color/black"
+                android:visibility="invisible"/>
+
+            <!--
+        <ImageView
+            android:id="@+id/id_delete_icon_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:visibility="visible"
+            app:srcCompat="@drawable/common_delete"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"/>
+            -->
+
+
+    </RelativeLayout>
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true">
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
+<!--
+    <com.jsibbold.zoomage.ZoomageView
+        android:id="@+id/CropImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="52dp"
+        android:layout_marginBottom="52dp"
+        app:zoomage_animateOnReset="true"
+        app:zoomage_autoCenter="true"
+        app:zoomage_autoResetMode="UNDER"
+        app:zoomage_maxScale="8"
+        app:zoomage_minScale="0.6"
+        app:zoomage_restrictBounds="false"
+        app:zoomage_translatable="true"
+        app:zoomage_zoomable="true" />
+        -->
+
+    <com.theartofdev.edmodo.cropper.CropImageView
+        android:id="@+id/CropImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="52dp"
+        android:layout_marginBottom="52dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/id_update_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:text="SET NOW"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:textColor="@color/white"
+        android:background="@drawable/common_bg_medium_blue_radius" />
+
+
+    <Button
+        android:id="@+id/id_crop_finish_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:text="CROP"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:textColor="@color/white"
+        android:background="@drawable/common_bg_black_radius"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/id_crop_cancel_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_toLeftOf="@id/id_crop_finish_btn"
+        android:text="CANCEL"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:textColor="@color/black"
+        android:background="@drawable/common_border_black_radius"
+        android:visibility="invisible"/>
+</RelativeLayout>

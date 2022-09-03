@@ -1,0 +1,153 @@
+{
+  "project_info": {
+    "project_number": "567264268637",
+    "firebase_url": "https://skyblue-25691.firebaseio.com",
+    "project_id": "skyblue-25691",
+    "storage_bucket": "skyblue-25691.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:567264268637:android:27c04ae621caf3ebf018b4",
+        "android_client_info": {
+          "package_name": "com.skyblue.skybluea"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "567264268637-20lh13lgluvvhjn2s93ieoqrghh0n8o0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skyblue.skybluea",
+            "certificate_hash": "373837ae782175dcb9fb47c8d8731a1c113a8d91"
+          }
+        },
+        {
+          "client_id": "567264268637-2duvc4jcs3ol7ts3ndgb3gtptlj6rvf3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skyblue.skybluea",
+            "certificate_hash": "a62b259aab65dcab399b66892cdd0da8c0e0d630"
+          }
+        },
+        {
+          "client_id": "567264268637-34f7dsni8kh5mvodkchkgvu37qlrjvgt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skyblue.skybluea",
+            "certificate_hash": "183f919c570bc58f41ebb4e6dfbadeb959fe0175"
+          }
+        },
+        {
+          "client_id": "567264268637-7hv3g5g1ecbqqc6861qeq94074otrruu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skyblue.skybluea",
+            "certificate_hash": "8c842b259d50be35d7303cafb416ad728390afc6"
+          }
+        },
+        {
+          "client_id": "567264268637-d3438d93mdvqkhcj714o8e3mbmp13b86.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skyblue.skybluea",
+            "certificate_hash": "0663d80818dc947f875efe1a939c89ea1e20fb33"
+          }
+        },
+        {
+          "client_id": "567264268637-flpqpu2nr68ns29fo4b5gp5n057ca9hl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skyblue.skybluea",
+            "certificate_hash": "fe9588a72ecf5a096e9d7f47cca11058c7cdf5d9"
+          }
+        },
+        {
+          "client_id": "567264268637-nanm8q2dv9h8tpdbd060ctrd9qhd9605.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skyblue.skybluea",
+            "certificate_hash": "af26b4874332a057a9da807b5cc9d15b0dcba67d"
+          }
+        },
+        {
+          "client_id": "567264268637-pcfpmnpjm5jkt61hr5mat4qkkfrdmhb3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skyblue.skybluea",
+            "certificate_hash": "90aacb61a137466f7c022a1b96f8e3944980b11e"
+          }
+        },
+        {
+          "client_id": "567264268637-pg4dornbjqolmcm7r1q064ema3krqirr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skyblue.skybluea",
+            "certificate_hash": "d63962ddb75c280001fc24e3188ca409754f94da"
+          }
+        },
+        {
+          "client_id": "567264268637-q1qh9pg384i72892hrirv88vchcleo4s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skyblue.skybluea",
+            "certificate_hash": "cfa25b53526447bf743af855d39b147085300dce"
+          }
+        },
+        {
+          "client_id": "567264268637-rnl8hr3oud5p8vppqb23hg9052649kj1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skyblue.skybluea",
+            "certificate_hash": "01ddaba33c4e990e5b75c594a01d54b5504512e7"
+          }
+        },
+        {
+          "client_id": "567264268637-tlnvdartgablh1n1itk8go4abkncfscr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skyblue.skybluea",
+            "certificate_hash": "d568153d00f969e3a64bd2e33e9181b8d260c4ca"
+          }
+        },
+        {
+          "client_id": "567264268637-uq508mko76jvm77tg9vgk46r5b1uvloi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skyblue.skybluea",
+            "certificate_hash": "324aee577b48426e87be4f4e43b7532bdde03091"
+          }
+        },
+        {
+          "client_id": "567264268637-vaqcf456mj7b3tuerkqd364pkec9s96p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skyblue.skybluea",
+            "certificate_hash": "5a09ecf0a8ac3e7bbba6a5e3a01e37ea9d7e3116"
+          }
+        },
+        {
+          "client_id": "567264268637-nlgc2rh7q38i9h0bn22u6eh65mv3hvve.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6SfC8a1igoScFfy2zHh_A3ugucnyeAvA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "567264268637-nlgc2rh7q38i9h0bn22u6eh65mv3hvve.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-2228333899809887~8851180205"
+    }
+  ],
+  "configuration_version": "1"
+}

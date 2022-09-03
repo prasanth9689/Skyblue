@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VideoViewActivity"
+    android:background="#FFFFFF">
+
+    <RelativeLayout
+        android:id="@+id/rel_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            tools:visibility="visible" />
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/player_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            app:controller_layout_id="@layout/custom_exo_playback_control_video_player"
+            tools:visibility="visible" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/id_back_arrow_ps"
+        android:layout_width="30dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
+        app:srcCompat="@drawable/left_arrow"
+        app:tint="@color/white"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@drawable/shadow_black"
+        android:layout_alignParentBottom="true"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/id_text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_condensed_bold"
+            android:textStyle="bold"
+            android:text="Title"
+            android:textColor="@color/white"
+            android:textSize="30sp"/>
+
+        <RelativeLayout
+            android:layout_below="@id/id_text_title"
+            android:layout_width="match_parent"
+            android:layout_height="25dp">
+            <TextView
+                android:id="@+id/id_text_discription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:fontFamily="@font/open_sans"
+                android:textStyle="bold"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

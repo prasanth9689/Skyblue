@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InitPhotoSelectActivity">
+
+    <RelativeLayout
+        android:id="@+id/top_nav"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="false">
+
+
+        <ImageView
+            android:id="@+id/id_back_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:layout_centerInParent="false"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            app:srcCompat="@drawable/select_chevron_left_black_35dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/select_image"
+            android:textColor="#070E39"
+            android:textSize="19dp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+    <GridView
+        android:id="@+id/grid_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/top_nav"
+        android:layout_marginBottom="45dp"
+        android:columnWidth="90dp"
+        android:gravity="center"
+        android:horizontalSpacing="0.1dp"
+        android:numColumns="auto_fit"
+        android:stretchMode="columnWidth"
+        android:textFilterEnabled="false"
+        android:verticalSpacing="0.1dp" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_alignParentBottom="true">
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:id="@+id/textCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/textPhotos"
+                android:text="@string/camera"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textPhotos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/photos"
+                android:textColor="#303F9F"
+
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".registration.InitImageViewActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:id="@+id/id_back"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_block_40"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            app:tint="@color/black" />
+
+        <TextView
+            android:id="@+id/foldername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/id_back"
+            android:fontFamily="@font/open_sans"
+            android:text="Set profile"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/id_skip_button_init"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/gradient_radius"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/skip"
+            android:textColor="#FFFFFF"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+    <com.jsibbold.zoomage.ZoomageView
+        android:id="@+id/myZoomageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="54dp"
+        android:layout_marginBottom="68dp"
+        android:src="@drawable/placeholder"
+        app:zoomage_animateOnReset="true"
+        app:zoomage_autoCenter="true"
+        app:zoomage_autoResetMode="UNDER"
+        app:zoomage_maxScale="8"
+        app:zoomage_minScale="0.6"
+        app:zoomage_restrictBounds="false"
+        app:zoomage_translatable="true"
+        app:zoomage_zoomable="true" />
+
+    <ImageView
+        android:id="@+id/button_crop_next"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="23dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/image_view_crop_rotate_white_35dp"
+        android:textColor="#FFFFFF" />
+
+
+    <Button
+        android:id="@+id/post_page_next_button"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/send_button"
+        android:fontFamily="@font/open_sans"
+        android:text="@string/set_now"
+        android:textColor="@color/white" />
+
+
+
+
+
+
+
+    <TextView
+        android:id="@+id/camera_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
+        android:text="camera uri"
+        android:textColor="#DC0000"
+        android:visibility="invisible"
+        tools:visibility="invisible" />
+</RelativeLayout>

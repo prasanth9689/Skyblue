@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="5dp"
+    card_view:cardCornerRadius="5dp"
+    card_view:cardElevation="10dp"
+    android:layout_height="wrap_content"
+    card_view:cardBackgroundColor="@color/white"
+   >
+
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ic_share"
+            android:layout_width="24dp"
+            android:layout_height="27dp"
+
+            android:layout_below="@id/id_thumbnail"
+            android:layout_alignParentRight="false"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="9.5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toLeftOf="@id/download_round_box"
+            android:background="@drawable/home_reply_black_35dp"
+            android:focusable="true"
+            android:scaleX="-1"
+            android:stateListAnimator="@animator/scale" />
+
+        <RelativeLayout
+            android:id="@+id/like_round_box"
+            android:layout_width="70dp"
+            android:layout_height="35dp"
+            android:layout_below="@id/id_thumbnail"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/like_box_round">
+
+            <TextView
+                android:id="@+id/load_likes_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_alignParentRight="false"
+                android:layout_marginLeft="19dp"
+                android:layout_marginTop="7dp"
+                android:bufferType="normal" />
+
+            <CheckBox
+                android:id="@+id/id_like_checkbox"
+                android:layout_width="24dp"
+                android:layout_height="27dp"
+                android:layout_alignParentRight="false"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/like_icon"
+                android:button="@null"
+                android:focusable="true"
+                android:stateListAnimator="@animator/scale" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/comment_round_box"
+            android:layout_width="70dp"
+            android:layout_height="35dp"
+            android:layout_below="@id/id_thumbnail"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/like_round_box"
+            android:background="@drawable/like_box_round">
+
+            <TextView
+                android:id="@+id/load_total_comments_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_alignParentRight="false"
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="7dp"
+                android:bufferType="normal" />
+
+            <CheckBox
+                android:id="@+id/id_ic_cmd"
+                android:layout_width="24dp"
+                android:layout_height="27dp"
+
+                android:layout_alignParentRight="false"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/home_chat_bubble_outline_black_35dp"
+                android:button="@null"
+                android:focusable="true"
+                android:stateListAnimator="@animator/scale" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/download_round_box"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:layout_below="@id/id_thumbnail"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/like_box_round">
+
+
+            <CheckBox
+                android:id="@+id/id_ic_download"
+                android:layout_width="24dp"
+                android:layout_height="27dp"
+
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/home_file_download_black_35dp"
+                android:button="@null"
+                android:focusable="true"
+
+                android:stateListAnimator="@animator/scale" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/id_user_rounded_thumbnail"
+            android:layout_width="0dp"
+            android:layout_height="49dp"
+
+            android:layout_centerHorizontal="false"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="2dp"
+            android:src="@drawable/placeholder_person"
+            android:visibility="invisible" />
+
+
+        <TextView
+            android:id="@+id/post_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp"
+            android:padding="5dp"
+            android:text="Id"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#000000"
+            android:visibility="invisible"
+            tools:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginBottom="-10dp"
+            android:padding="5dp"
+            android:text="Name"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#3A3838"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/time_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/user_name"
+            android:layout_marginLeft="50dp"
+            android:layout_marginBottom="-10dp"
+            android:hint="."
+            android:padding="5dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#636363"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/post_user_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:layout_marginBottom="-10dp"
+            android:padding="5dp"
+            android:text="User id"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#3A3838"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            tools:visibility="invisible" />
+
+
+        <TextView
+            android:id="@+id/post_user_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="25dp"
+            android:hint="profile picture"
+            android:padding="5dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#3A3838"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            tools:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/post_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/time_date"
+            android:layout_marginLeft="50dp"
+            android:padding="5dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#555454"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/post_image_url"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignBottom="@+id/user_name"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="72dp"
+            android:layout_marginRight="72dp"
+            android:layout_marginBottom="-47dp"
+            android:padding="5dp"
+            android:text="Url"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/id_thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/user_name"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+
+            />
+
+        <ImageView
+            android:id="@+id/side_three_dots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            card_view:srcCompat="@drawable/vert_black_35dp" />
+
+
+        <TextView
+            android:id="@+id/id_status"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/id_thumbnail"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentBottom="false"
+            android:layout_marginEnd="72dp"
+            android:layout_marginRight="72dp"
+            android:layout_marginBottom="-47dp"
+            android:padding="5dp"
+            android:text="status"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:visibility="invisible"
+            tools:visibility="invisible" />
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

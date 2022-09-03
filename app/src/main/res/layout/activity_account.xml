@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cover_linear"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".account.AccountActivity">
+
+    <RelativeLayout
+        android:id="@+id/Rel_cover_profile_container"
+        android:layout_width="match_parent"
+        android:layout_height="173dp">
+
+        <RelativeLayout
+            android:id="@+id/Rel_profile_cover_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="128dp">
+
+            <ImageView
+                android:id="@+id/profile_cover_image_view"
+                android:layout_width="match_parent"
+                android:layout_height="128dp"
+                android:layout_alignParentTop="true"
+                android:background="#E6E6E6"
+                android:scaleType="centerCrop" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/Rel_id_image_view_up"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="80dp">
+
+            <ImageView
+                android:id="@+id/id_image_view_up"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:src="@drawable/placeholder_person" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/change_profile"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/Rel_profile_cover_image_view"
+            android:layout_marginLeft="65dp"
+            android:background="@drawable/account_round_circle">
+
+            <ImageView
+                android:id="@+id/id_image_add_button_open_gallery"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="false"
+                android:layout_alignParentBottom="false"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="10dp"
+                app:srcCompat="@drawable/account_add_photo" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Rel_profile_cover_image_view"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="30dp">
+
+            <TextView
+                android:id="@+id/user_name_pfview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:textColor="#000000"
+                android:textColorHint="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/id_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/user_name_pfview"
+                android:layout_marginLeft="10dp"
+                android:layout_toLeftOf="@id/skyblue_id_text"
+                android:text=" id :"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/skyblue_id_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/user_name_pfview"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="3dp"
+                android:textSize="12dp" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/id_back"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            app:srcCompat="@drawable/account_arrow_back"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            app:tint="@color/black" />
+
+        <RelativeLayout
+            android:id="@+id/Rel_update_cover"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp">
+
+            <RelativeLayout
+                android:id="@+id/id_add_cover_image_button_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/account_round_circle">
+
+                <ImageView
+                    android:id="@+id/post_page_next_button....."
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    app:srcCompat="@drawable/account_create"
+                    app:tint="@color/white" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/following_txt_edit_bio_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Rel_cover_profile_container"
+        android:layout_marginTop="10dp"
+        >
+
+        <RelativeLayout
+            android:id="@+id/id_rel_total_friends_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="false"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="8dp"
+            >
+
+            <TextView
+                android:id="@+id/text_total_friends"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Subscribers"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/id_total_friends"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_total_friends"
+                android:layout_centerHorizontal="true"
+                android:text="0"
+                android:textColor="@color/black_light"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/id_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="0.5"
+        android:divider="@drawable/account_list_divider"
+        android:dividerHeight="1dp"
+        android:layout_below="@id/following_txt_edit_bio_container"
+        android:layout_marginTop="10dp" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:onClick="onClickMyProfile"
+            android:background="@drawable/button_click_effect_default">
+            <ImageView
+                android:id="@+id/appIconIV"
+                android:src="@drawable/account_circle"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+
+            <TextView
+                android:id="@+id/id_my_profile_account"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_toEndOf="@+id/appIconIV"
+                android:layout_toRightOf="@+id/appIconIV"
+                android:maxLines="1"
+                android:text="@string/my_profile"
+                android:textColor="#294051"
+                android:textSize="16sp"
+                android:layout_width="wrap_content" />
+
+            <TextView
+                android:id="@+id/id_my_profile_account_line_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/id_my_profile_account"
+                android:layout_alignStart="@+id/id_my_profile_account"
+                android:layout_alignLeft="@+id/id_my_profile_account"
+                android:maxLines="1"
+                android:text="@string/edit_your_profile"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_click_effect_default"
+            android:onClick="onClickMyVideos"
+            android:padding="8dp">
+            <ImageView
+                android:id="@+id/ic_video_account"
+                android:src="@drawable/account_video_library"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+
+            <TextView
+                android:id="@+id/id_my_videos_account"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_toEndOf="@+id/ic_video_account"
+                android:layout_toRightOf="@+id/ic_video_account"
+                android:maxLines="1"
+                android:text="@string/my_videos"
+                android:textColor="#294051"
+                android:textSize="16sp"
+                android:layout_width="wrap_content" />
+
+            <TextView
+                android:id="@+id/id_my_videos_account_line_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/id_my_videos_account"
+                android:layout_alignStart="@+id/id_my_videos_account"
+                android:layout_alignLeft="@+id/id_my_videos_account"
+                android:maxLines="1"
+                android:text="@string/manage_uploaded_videos"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_click_effect_default"
+            android:onClick="onClickMyPhotos"
+            android:padding="8dp">
+            <ImageView
+                android:id="@+id/ic_photos_account"
+                android:src="@drawable/ic_account_photos_library"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+
+            <TextView
+                android:id="@+id/id_my_photos_account"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_toEndOf="@+id/ic_photos_account"
+                android:layout_toRightOf="@+id/ic_photos_account"
+                android:maxLines="1"
+                android:text="@string/my_photos"
+                android:textColor="#294051"
+                android:textSize="16sp"
+                android:layout_width="wrap_content" />
+
+            <TextView
+                android:id="@+id/id_my_photos_account_line_2"
+                android:text="@string/manage_uploaded_photos"
+                android:textSize="14sp"
+                android:maxLines="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/id_my_photos_account"
+                android:layout_alignLeft="@+id/id_my_photos_account"
+                android:layout_alignStart="@+id/id_my_photos_account" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_click_effect_default"
+            android:onClick="onClickSettings"
+            android:padding="8dp">
+            <ImageView
+                android:id="@+id/ic_settings_account"
+                android:src="@drawable/account_settings"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+
+            <TextView
+                android:id="@+id/id_settings_account"
+
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_toEndOf="@+id/ic_settings_account"
+                android:layout_toRightOf="@+id/ic_settings_account"
+                android:maxLines="1"
+                android:text="@string/settings"
+                android:textColor="#294051"
+                android:textSize="16sp"
+                android:layout_width="wrap_content" />
+
+            <TextView
+                android:id="@+id/id_settings_account_line_2"
+                android:text="@string/language_privacy_and_policy"
+                android:textSize="14sp"
+                android:maxLines="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/id_settings_account"
+                android:layout_alignLeft="@+id/id_settings_account"
+                android:layout_alignStart="@+id/id_settings_account" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_click_effect_default"
+            android:onClick="onClickLogout"
+            android:padding="8dp">
+            <ImageView
+                android:id="@+id/ic_logout_account"
+                android:src="@drawable/account_lock_out"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+
+            <TextView
+                android:id="@+id/id_logout_account"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_toEndOf="@+id/ic_logout_account"
+                android:layout_toRightOf="@+id/ic_logout_account"
+                android:maxLines="1"
+                android:text="@string/logout"
+                android:textColor="#294051"
+                android:textSize="16sp"
+                android:layout_width="wrap_content" />
+
+            <TextView
+                android:id="@+id/id_logout_account_line_2"
+                android:text="@string/click_to_logout_now"
+                android:textSize="14sp"
+                android:maxLines="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/id_logout_account"
+                android:layout_alignLeft="@+id/id_logout_account"
+                android:layout_alignStart="@+id/id_logout_account" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

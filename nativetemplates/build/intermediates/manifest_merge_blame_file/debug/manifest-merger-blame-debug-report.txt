@@ -1,0 +1,34 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    xmlns:tools="http://schemas.android.com/tools"
+4    package="com.google.admob_advanced_native_recyvlerview" >
+5
+6    <uses-sdk
+7        android:minSdkVersion="16"
+7-->/home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml
+8        android:targetSdkVersion="32" />
+8-->/home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml
+9
+10    <uses-permission android:name="android.permission.INTERNET" />
+10-->/home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:5:5-67
+10-->/home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:5:22-64
+11    <uses-permission
+11-->/home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:6:5-9:39
+12        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+12-->/home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:6:22-78
+13        android:maxSdkVersion="29"
+13-->/home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:7:9-35
+14        android:required="true"
+14-->/home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:8:9-32
+15        tools:ignore="ScopedStorage" />
+15-->/home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:9:9-37
+16    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+16-->/home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:10:5-80
+16-->/home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:10:22-77
+17
+18    <application android:requestLegacyExternalStorage="true" >
+18-->/home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:12:5-15:19
+18-->/home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:14:9-52
+19    </application>
+20
+21</manifest>

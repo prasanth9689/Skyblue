@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    tools:context=".forget_password.ForgetPasChangeActivity">
+
+    <Button
+        android:id="@+id/btnChangePass"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@id/id_confirm_password"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorMessageBackground"
+        android:text="@string/change_password"
+        android:textColor="#FFFFFF"
+        tools:layout_editor_absoluteX="133dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <EditText
+        android:id="@+id/id_password"
+        style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="40dp"
+        android:background="@drawable/edit_text_border_color_light_blue"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+    <EditText
+        android:id="@+id/id_confirm_password"
+        style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id_password"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edit_text_border_color_light_blue"
+        android:ems="10"
+        android:hint="@string/confirm_password"
+        android:inputType="textPassword"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+    <TextView
+        android:id="@+id/id_mobile_no_txtview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnChangePass"
+        android:text="mobile  no"
+        android:visibility="invisible"
+        tools:visibility="invisible" />
+</RelativeLayout>

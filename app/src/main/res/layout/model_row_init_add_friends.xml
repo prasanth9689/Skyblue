@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/white"
+    android:padding="5dp"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="5dp">
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            >
+
+            <ImageView
+                android:id="@+id/thumbnail_view"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                tools:srcCompat="@drawable/placeholder_person" />
+
+            <TextView
+                android:id="@+id/text_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_toEndOf="@id/thumbnail_view"
+                android:layout_toRightOf="@id/thumbnail_view"
+                android:hint="Prasanth"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/text_hometown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_toEndOf="@id/thumbnail_view"
+                android:layout_toRightOf="@id/thumbnail_view"
+                android:layout_below="@id/text_name"
+                android:hint="Ariyalur"
+                android:textColorHint="@color/grey"
+                android:textColor="@color/black"
+                android:textSize="11sp" />
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_toLeftOf="@id/id_add_friend_container"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                >
+
+                <ProgressBar
+                    android:id="@+id/cancel_req_progress_bar"
+                    style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Small.Inverse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="invisible"
+                    tools:visibility="invisible"
+                    android:theme="@style/AppTheme.Skyble"/>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/id_card_view_cancel_request_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="4dp"
+                    android:visibility="invisible">
+                    <Button
+                        android:id="@+id/cancel_request"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:padding="1dp"
+                        android:textSize="9dp"
+                        android:text="CANCEL REQUEST"
+                        android:background="@color/image_placeholder_bg"
+                        android:textColor="@color/company_search_light_dark"/>
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/id_add_friend_container"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp">
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Small.Inverse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="invisible"
+                    tools:visibility="invisible"
+                    android:theme="@style/AppTheme.Skyble"/>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/id_card_view_add_friend_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="4dp">
+                    <Button
+                        android:id="@+id/id_add_friend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:padding="1dp"
+                        android:textSize="9dp"
+                        android:text="ADD FRIEND"
+                        android:background="@color/colorMessageBackground"
+                        android:textColor="@color/white"/>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/id_card_view_add_friend_has_send_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="4dp"
+                    android:visibility="invisible"
+                    >
+                    <Button
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:padding="1dp"
+                        android:textSize="9dp"
+                        android:text="REQUEST SENDED"
+                        android:background="#689F38"
+                        android:textColor="@color/white"
+                        />
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+
+
+
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                >
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>

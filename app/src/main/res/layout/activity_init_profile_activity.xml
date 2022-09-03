@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/id_relative_layout_top_one"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:paddingLeft="5dp"
+    android:paddingTop="10dp"
+    android:paddingRight="5dp"
+    android:paddingBottom="10dp"
+    tools:context=".registration.InitProfileActivity">
+
+    <TextView
+        android:id="@+id/id_mobile_number_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:inputType="number|textPersonName|text"
+        android:text="191"
+        android:visibility="invisible" />
+
+    <RelativeLayout
+        android:id="@+id/top_nav"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="false">
+
+
+        <TextView
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/set_profile_picture"
+            android:textColor="@color/black"
+            android:textSize="19dp"
+            android:textStyle="bold" />
+
+
+        <Button
+            android:id="@+id/id_skip_button"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_click_default"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/skip"
+            android:textColor="#000000"
+            android:visibility="visible" />
+
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/id_text_view_user_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <RelativeLayout
+        android:id="@+id/thumbnail_container"
+        android:layout_width="160dp"
+        android:layout_height="167dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/edit_text_border_color_black">
+
+        <ImageView
+            android:id="@+id/thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/person_dark_blue_35dp"
+            app:tint="#909EAC" />
+
+        <ImageView
+            android:id="@+id/add_icon_center"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/add_a_photo_dark_blue_35dp"
+            app:tint="#909EAC" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

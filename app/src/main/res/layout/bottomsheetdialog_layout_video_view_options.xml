@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+    <LinearLayout
+        android:id="@+id/Linearlayout_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:onClick="clickDownload"
+    android:paddingLeft="10dp"
+    android:clickable="true"
+    android:background="?android:attr/selectableItemBackground"
+    android:focusable="true">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Download"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+</LinearLayout>
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingTop="10dp"-->
+<!--            android:paddingBottom="10dp"-->
+<!--            android:paddingLeft="10dp"-->
+<!--            android:clickable="true"-->
+<!--            android:focusable="true"-->
+<!--            android:background="?android:attr/selectableItemBackground">-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Share now"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textColor="@color/black"/>-->
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingTop="10dp"-->
+<!--            android:paddingBottom="10dp"-->
+<!--            android:paddingLeft="10dp"-->
+<!--            android:clickable="true"-->
+<!--            android:focusable="true"-->
+<!--            android:background="?android:attr/selectableItemBackground">-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Save watch later"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textColor="@color/black"/>-->
+<!--        </LinearLayout>-->
+
+        <LinearLayout
+            android:id="@+id/share_link_video_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="clickShareVVA"
+            android:background="?android:attr/selectableItemBackground">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Share this video"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="clickReport"
+            android:background="?android:attr/selectableItemBackground">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Report this video"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+</LinearLayout>

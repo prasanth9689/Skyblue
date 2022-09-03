@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorTopMenu"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+    <LinearLayout
+        android:id="@+id/Linearlayout_two"
+        android:layout_width="match_parent"
+        android:layout_height="195dp"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="Select Date Of Birth"
+            android:textSize="15dp" />
+
+        <RelativeLayout
+            android:id="@+id/id_relative_layout_date_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/text_dd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="10dp"
+                android:text="DD-MM-YYYY"
+                android:textSize="15dp" />
+
+            <Spinner
+                android:id="@+id/id_spinner_day"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp" />
+
+            <Spinner
+                android:id="@+id/id_spinner_month"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                android:layout_toRightOf="@id/id_spinner_day" />
+
+            <Spinner
+                android:id="@+id/id_spinner_year"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                android:layout_toRightOf="@id/id_spinner_month" />
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/id_save_dob_button"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/account_message_bg"
+            android:text="SAVE"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/id_date_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="date"
+            android:visibility="invisible"/>
+
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context=".MessageActivity">
+
+
+
+    <ProgressBar
+        android:id="@+id/myDataLoaderProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateBehavior="cycle"
+        android:visibility="gone" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/message_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:divider="@null"
+        android:cacheColorHint="@android:color/transparent"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="auto_fit"
+        android:orientation="vertical"
+        android:stackFromBottom="true"
+        app:stackFromEnd="true">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+    <RelativeLayout
+        android:id="@+id/main_activity_root_view"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="5dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/rel_text_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/rel_text_send_btn"
+            android:background="@drawable/edit_text_border_color_primary">
+
+            <ImageView
+                android:id="@+id/emoji"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="false"
+                android:layout_centerHorizontal="false"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="3dp"
+                app:srcCompat="@drawable/message_mood_blue_35dp" />
+
+            <ImageView
+                android:id="@+id/emoji_keyboard"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="false"
+                android:layout_centerHorizontal="false"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="3dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/message_keyboard_blue_35dp"
+                tools:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/attach_file"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="false"
+                android:layout_centerHorizontal="false"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="7dp"
+                android:layout_toLeftOf="@id/camera"
+                android:rotation="-30"
+                app:srcCompat="@drawable/message_attach_file_blue_35dp" />
+
+            <ImageView
+                android:id="@+id/camera"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="false"
+                android:layout_centerHorizontal="false"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="8dp"
+                app:srcCompat="@drawable/message_photo_camera_blue_35dp" />
+
+            <com.vanniktech.emoji.EmojiEditText
+                android:id="@+id/message_text_box"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_toLeftOf="@id/attach_file"
+                android:layout_weight="2"
+                android:background="@null"
+                android:ems="10"
+                android:hint="Write a message"
+                android:imeOptions="actionSend"
+                android:inputType="textCapSentences|textMultiLine"
+                android:paddingHorizontal="10dp"
+                android:text="" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel_text_send_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true">
+
+
+            <ImageButton
+                android:id="@+id/message_send_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/ic_send_black_35dp"
+                android:padding="20dp"
+                android:scaleType="fitCenter" />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/white"
+    android:padding="5dp"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="5dp">
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            >
+
+            <ImageView
+                android:id="@+id/thumbnail_view"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                tools:srcCompat="@drawable/placeholder_person" />
+
+            <TextView
+                android:id="@+id/text_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_toEndOf="@id/thumbnail_view"
+                android:layout_toRightOf="@id/thumbnail_view"
+                android:hint=""
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="11sp" />
+
+
+            <RelativeLayout
+                android:id="@+id/id_add_friend_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp">
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_compact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:thumb="@drawable/switch_thumb"
+                    app:track="@drawable/switch_track"
+
+                    app:showText="false"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".settings.AboutUsActivity">
+    <RelativeLayout
+        android:id="@+id/top_nav"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:id="@+id/back_about_us"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            app:srcCompat="@drawable/common_arrow_back"
+            app:tint="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/back_about_us"
+            android:text="About us"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/top_nav"
+        android:layout_marginLeft="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Skyblue digital platform development started in 2017. a small team of college students started." />
+                      <TextView
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Thanks to Skyblue team ."/>
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profile"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:orientation="horizontal"
+               android:layout_marginTop="5dp">
+
+
+               <RelativeLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+
+                   <androidx.cardview.widget.CardView
+                       android:id="@+id/img1"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_centerHorizontal="true"
+                       app:cardCornerRadius="20dp">
+                       <ImageView
+
+                           android:layout_width="100dp"
+                           android:layout_height="100dp"
+                           android:layout_centerHorizontal="true"
+                           android:src="@drawable/founder" />
+                   </androidx.cardview.widget.CardView>
+
+                   <TextView
+                       android:id="@+id/name1"
+                       android:layout_below="@id/img1"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_centerHorizontal="true"
+                       android:text="Prasanth"
+                       android:textColor="@color/black"/>
+
+                   <TextView
+                       android:id="@+id/description"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_below="@id/name1"
+                       android:layout_centerHorizontal="true"
+                       android:text="Developer" />
+               </RelativeLayout>
+
+
+<!--               <RelativeLayout-->
+<!--                   android:layout_width="wrap_content"-->
+<!--                   android:layout_height="wrap_content">-->
+<!--                   <ImageView-->
+<!--                       android:id="@+id/img2"-->
+<!--                       android:layout_width="100dp"-->
+<!--                       android:layout_height="100dp"-->
+<!--                       android:src="@drawable/placeholder_person"-->
+<!--                       android:layout_centerHorizontal="true"/>-->
+<!--                   <TextView-->
+<!--                       android:id="@+id/name2"-->
+<!--                       android:layout_below="@id/img2"-->
+<!--                       android:layout_width="wrap_content"-->
+<!--                       android:layout_height="wrap_content"-->
+<!--                       android:layout_centerHorizontal="true"-->
+<!--                       android:text="Santhiya"-->
+<!--                       android:textColor="@color/black"/>-->
+<!--                   <TextView-->
+<!--                       android:id="@+id/description2"-->
+<!--                       android:layout_below="@id/name2"-->
+<!--                       android:layout_width="wrap_content"-->
+<!--                       android:layout_height="wrap_content"-->
+<!--                       android:layout_centerHorizontal="true"-->
+<!--                       android:text="Co-Founder"-->
+<!--                       />-->
+<!--               </RelativeLayout>-->
+
+
+
+           </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+<!--    Skyblue digital platform development started in 2017. a small team of college students started. -->
+<!--    the team name is "Skyblue developers". when team members reached in two months strenth of 42 members.-->
+<!--    but few years later LEFTED 40 members in Skyblue team. and we have NO Money for buying SERVER and renewal server.-->
+<!--    and we are rejected some times but Skyblue team proove the proof of result, this time thanks to some helped persons Parameshwari, KP-Karuppusamy, Santhiya, Chitra, Ramakrishnan-->
+</RelativeLayout>

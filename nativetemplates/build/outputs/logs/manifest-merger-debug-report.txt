@@ -1,0 +1,49 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:1:1-16:12
+INJECTED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:1:1-16:12
+INJECTED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:1:1-16:12
+	package
+		ADDED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:3:5-60
+		INJECTED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml
+		INJECTED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:2:5-51
+	xmlns:android
+		ADDED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:1:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:5:5-67
+	android:name
+		ADDED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:5:22-64
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:6:5-9:39
+	android:maxSdkVersion
+		ADDED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:7:9-35
+	tools:ignore
+		ADDED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:9:9-37
+	android:required
+		ADDED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:8:9-32
+	android:name
+		ADDED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:6:22-78
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:10:5-80
+	android:name
+		ADDED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:10:22-77
+application
+ADDED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:12:5-15:19
+	android:requestLegacyExternalStorage
+		ADDED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml:14:9-52
+uses-sdk
+INJECTED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml
+INJECTED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml
+INJECTED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml
+INJECTED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml
+		ADDED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml
+		INJECTED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml
+		ADDED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml
+		INJECTED from /home/innocrux/AndroidStudioProjects/Skyblue (1)/nativetemplates/src/main/AndroidManifest.xml
