@@ -28,11 +28,10 @@
             android:layout_height="wrap_content"
             android:background="@drawable/button_click_default"
             android:fontFamily="@font/open_sans_condensed_bold"
-            android:textStyle="bold"
             android:text="@string/english_post"
             android:textAllCaps="false"
             android:textColor="@color/black"
-            />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/id_tamil"

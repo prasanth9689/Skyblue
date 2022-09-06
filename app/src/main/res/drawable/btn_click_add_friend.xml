@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_focused="true" android:state_pressed="false" android:drawable="@drawable/btn_black_radius" />
+    <item android:state_focused="true" android:state_pressed="true" android:drawable="@drawable/btn_white_radius" />
+    <item android:state_focused="false" android:state_pressed="true" android:drawable="@drawable/click_ble" />
+    <item android:drawable="@drawable/btn_black_radius" />
+
+
+    <!--        <item android:state_pressed="true"-->
+    <!--        android:drawable="@drawable/click_ble" /> &lt;!&ndash; pressed &ndash;&gt;-->
+    <!--    <item android:state_focused="true"-->
+    <!--        android:drawable="@drawable/dark_blue_radius" /> &lt;!&ndash; focused &ndash;&gt;-->
+</selector>

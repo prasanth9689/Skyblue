@@ -3,117 +3,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:layout_marginTop="1dp"
-    card_view:cardCornerRadius="0dp"
+    android:layout_marginTop="2dp"
+    card_view:cardCornerRadius="5dp"
     card_view:cardElevation="10dp"
-    android:layout_height="wrap_content"
+    android:layout_height="70dp"
+    android:layout_marginStart="2dp"
+    android:layout_marginEnd="2dp"
     card_view:cardBackgroundColor="@color/white"
     >
-
-
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:id="@+id/top_container">
 
             <ImageView
-                android:id="@+id/id_user_rounded_thumbnail"
-                android:layout_width="47dp"
-                android:layout_height="49dp"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="2dp"
-                android:src="@drawable/placeholder_person"
-                android:visibility="gone"/>
-
+                android:id="@+id/id_user_image_search"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="2dp"
+                android:src="@drawable/placeholder_person" />
 
             <TextView
-                android:id="@+id/time_date"
+                android:id="@+id/id_user_name_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/id_video_name"
-                android:layout_marginLeft="5dp"
-                android:layout_marginBottom="-10dp"
-                android:layout_toRightOf="@id/id_user_name_text"
-                android:hint="."
-                android:padding="5dp"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="#636363"
-                android:textSize="10sp" />
-
-            <com.vanniktech.emoji.EmojiTextView
-                android:id="@+id/id_user_name_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/id_video_name"
-                android:layout_toRightOf="@id/id_rel_thumbnail"
-                android:padding="5dp"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="#555454"
-                android:textSize="10sp" />
-
-
-            <RelativeLayout
-                android:id="@+id/id_rel_thumbnail"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_toEndOf="@id/id_user_image_search"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
-                android:layout_below="@id/id_user_rounded_thumbnail">
-
-
-                <ImageView
-                    android:id="@+id/id_thumbnail"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-
-                    android:adjustViewBounds="true"
-                    android:scaleType="center" />
-
-                <ImageView
-                    android:id="@+id/id_play_icon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/play_35dp" />
-
-            </RelativeLayout>
-
-
-            <TextView
-                android:id="@+id/id_video_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginBottom="-10dp"
-                android:layout_toRightOf="@id/id_rel_thumbnail"
                 android:padding="5dp"
-                android:text=""
+                android:text="Prasanth"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#000000"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
-        </RelativeLayout>
-
-
-
-        <TextView
-            android:id="@+id/id_status"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/id_rel_thumbnail"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="false"
-            android:layout_alignParentBottom="false"
-            android:layout_marginEnd="72dp"
-            android:layout_marginRight="72dp"
-            android:layout_marginBottom="-47dp"
-            android:padding="5dp"
-            android:text="status"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:visibility="invisible"
-            tools:visibility="invisible" />
-
+            </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

@@ -1,5 +1,7 @@
 package com.skyblue.skybluea.account;
 
+import static android.view.View.GONE;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -41,6 +43,7 @@ public class AccountImageListActivity extends AppCompatActivity {
     private SessionHandler session;
 
     ImageView backButton;
+    RelativeLayout noPhotosEmptyExeptHandling;
 
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
@@ -81,6 +84,12 @@ public class AccountImageListActivity extends AppCompatActivity {
 
         getUserMedia();
 
+//       if (postList.isEmpty()){
+//           noPhotosEmptyExeptHandling.setVisibility(View.VISIBLE);
+//           progressBar.setVisibility(GONE);
+//           recyclerView.setVisibility(GONE);
+//       }
+
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
@@ -108,6 +117,7 @@ public class AccountImageListActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         //  Utils.showMessage(context, response);
+                        progressBar.setVisibility(GONE);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             JSONArray jsonArray = jsonObject.getJSONArray("data");
@@ -141,6 +151,7 @@ public class AccountImageListActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("Volley", error.toString());
+                progressBar.setVisibility(GONE);
                 if(CheckNetwork.isInternetAvailable(context)) //returns true if internet available
                 {
                     //   Toast.makeText(context,"Internet Connected",Toast.LENGTH_SHORT).show();
@@ -187,6 +198,7 @@ public class AccountImageListActivity extends AppCompatActivity {
         errorLoad = findViewById(R.id.error_load_home);
         progressBar = findViewById(R.id.progress_bar);
         recyclerView = findViewById(R.id.recycler_view);
+        noPhotosEmptyExeptHandling = findViewById(R.id.id_no_photos_expet_handling);
     }
 
     public void setLoading(boolean status) {

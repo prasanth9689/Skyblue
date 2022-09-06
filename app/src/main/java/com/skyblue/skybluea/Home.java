@@ -79,9 +79,9 @@ public class Home extends AppCompatActivity {
     User user;
     ImageView userprofileIV;
 
-    private RecyclerView recyclerViewList;
+    private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
-    private List<Post> snapFeedDataListW;
+    private List<Post> postList;
     private RecyclerView.Adapter adapter;
 
     private int lastVisibleItem, totalItemCount;
@@ -115,25 +115,25 @@ public class Home extends AppCompatActivity {
                     .into(userprofileIV);
         }
 
-        snapFeedDataListW = new ArrayList<>();
+        postList = new ArrayList<>();
 
-        adapter = new PostAdapter(this, snapFeedDataListW);
+        adapter = new PostAdapter(this, postList);
 
         linearLayoutManager = new LinearLayoutManager(context);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerViewList.setHasFixedSize(true);
-        recyclerViewList.setItemViewCacheSize(20);
-        recyclerViewList.setLayoutManager(linearLayoutManager);
-        recyclerViewList.setAdapter(adapter);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setItemViewCacheSize(20);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(adapter);
 
         AdmobNativeAdAdapter admobNativeAdAdapter = AdmobNativeAdAdapter.Builder.with(getString(R.string.admob_app_native_ad_id), adapter,
                 "medium").adItemInterval(10).build();
-        recyclerViewList.setAdapter(admobNativeAdAdapter);
+        recyclerView.setAdapter(admobNativeAdAdapter);
 
         //   getFeedDetails(0);
         getVideoDataUserNotLogged();
 
-        recyclerViewList.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
@@ -145,8 +145,8 @@ public class Home extends AppCompatActivity {
                         totalItemCount <= (lastVisibleItem + visibleThreshold)) {
 
                     //Loading more data from server
-                    snapFeedDataListW.add(null);
-                    adapter.notifyItemInserted(snapFeedDataListW.size() - 1);
+                    postList.add(null);
+                    adapter.notifyItemInserted(postList.size() - 1);
                     getVideoDataUserNotLoggedgetLoadMore();
                     setLoading(true);
                 }
@@ -251,7 +251,7 @@ public class Home extends AppCompatActivity {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                snapFeedDataListW.clear();
+                postList.clear();
                 //getVideoDataUserLogged();
                 getVideoDataUserNotLogged();
                 swipeRefreshLayout.setRefreshing(false);
@@ -275,7 +275,7 @@ public class Home extends AppCompatActivity {
 
     private void initVariable() {
         bottomNavigationView = findViewById(R.id.bottom_nav_home);
-        recyclerViewList = findViewById(R.id.recycler_view);
+        recyclerView = findViewById(R.id.recycler_view);
         swipeRefreshLayout = findViewById(R.id.swipeContainer);
         UserAccountBtn = findViewById(R.id.ic_user);
         addPhotoFloat = findViewById(R.id.add_photo_cam);
@@ -293,8 +293,8 @@ public class Home extends AppCompatActivity {
                         //  Utils.showMessage(context, response);
                         setLoading(false);
 
-                        snapFeedDataListW.remove(snapFeedDataListW.size() - 1);
-                        adapter.notifyItemRemoved(snapFeedDataListW.size());
+                        postList.remove(postList.size() - 1);
+                        adapter.notifyItemRemoved(postList.size());
 
                         try {
                             JSONObject jsonObject = new JSONObject(response);
@@ -320,7 +320,7 @@ public class Home extends AppCompatActivity {
                                 post.setVideo_url(jsonObject2.getString("video_url"));
 //                                post.setTotal_views(jsonObject2.getString("total_views"));
 
-                                snapFeedDataListW.add(post);
+                                postList.add(post);
 
                             }
                         } catch (JSONException e) {
@@ -342,7 +342,7 @@ public class Home extends AppCompatActivity {
                 {
                     errorLoad.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.INVISIBLE);
-                    recyclerViewList.setVisibility(View.INVISIBLE);
+                    recyclerView.setVisibility(View.INVISIBLE);
                     // Toast.makeText(context,"No Internet Connection", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -392,7 +392,7 @@ public class Home extends AppCompatActivity {
                                 post.setVideo_url(jsonObject2.getString("video_url"));
 //                                post.setTotal_views(jsonObject2.getString("total_views"));
 
-                                snapFeedDataListW.add(post);
+                                postList.add(post);
 
                             }
                         } catch (JSONException e) {

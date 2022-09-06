@@ -33,8 +33,8 @@
         android:id="@+id/id_back_arrow_ps"
         android:layout_width="30dp"
         android:layout_height="25dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
         app:srcCompat="@drawable/left_arrow"
         app:tint="@color/white"/>
 

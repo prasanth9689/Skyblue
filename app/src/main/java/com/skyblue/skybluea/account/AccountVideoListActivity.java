@@ -27,6 +27,7 @@ import com.skyblue.skybluea.PostAdapter;
 import com.skyblue.skybluea.R;
 import com.skyblue.skybluea.SessionHandler;
 import com.skyblue.skybluea.User;
+import com.skyblue.skybluea.Utils;
 import com.skyblue.skybluea.account.adapter.UserVideoListAdapter;
 
 import org.json.JSONArray;
@@ -42,6 +43,7 @@ public class AccountVideoListActivity extends AppCompatActivity {
     private SessionHandler session;
 
     ImageView backButton;
+    RelativeLayout noVideosContainer;
 
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
@@ -82,6 +84,12 @@ public class AccountVideoListActivity extends AppCompatActivity {
 
         getUserVideos();
 
+//        if (postList.isEmpty()){
+//            noVideosContainer.setVisibility(View.VISIBLE);
+//            recyclerView.setVisibility(View.GONE);
+//            progressBar.setVisibility(View.GONE);
+//        }
+
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
@@ -108,7 +116,9 @@ public class AccountVideoListActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        //  Utils.showMessage(context, response);
+                        //Utils.showMessage(context, response);
+
+                        progressBar.setVisibility(View.GONE);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             JSONArray jsonArray = jsonObject.getJSONArray("data");
@@ -142,6 +152,7 @@ public class AccountVideoListActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("Volley", error.toString());
+                progressBar.setVisibility(View.GONE);
                 if(CheckNetwork.isInternetAvailable(context)) //returns true if internet available
                 {
                     //   Toast.makeText(context,"Internet Connected",Toast.LENGTH_SHORT).show();
@@ -188,6 +199,7 @@ public class AccountVideoListActivity extends AppCompatActivity {
         errorLoad = findViewById(R.id.error_load_home);
         progressBar = findViewById(R.id.progress_bar);
         recyclerView = findViewById(R.id.recycler_view);
+        noVideosContainer = findViewById(R.id.id_no_videos_expet_handling);
     }
 
     public void setLoading(boolean status) {

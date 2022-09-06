@@ -91,7 +91,6 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     ImageView snapFeedImageView;
     User user;
 
-
     public PostAdapter(Activity context, List<Post>mSnapFeedList) {
         this.mContext = context;
         this.mSnapFeedList = mSnapFeedList;
@@ -263,7 +262,6 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             postHolder.imgPostImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     if (post.getMedia_type().equals("video")) {
                         Intent intent = new Intent(mContext, VideoViewActivity.class);
                         intent.putExtra("video_url", post.getVideo_url());
@@ -291,12 +289,13 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                             i.putExtra("user_id", post_user_id_string);
                             mContext.startActivity(i);
                         } else {
-                            if (!"".equals(post.getProfileurl()) && !"null".equals(post.getProfileurl())) {
+                          //  if (!"".equals(post.getProfileurl()) && !"null".equals(post.getProfileurl())) {
                                 Intent i = new Intent(mContext, ProfileViewActivity.class);
                                 i.putExtra("user_id", post_user_id_string);
                                 i.putExtra("user_profile", post.getProfileurl());
+                                i.putExtra("user_name", post.getPost_user_name());
                                 mContext.startActivity(i);
-                            }
+                          //  }
                         }
                     } else {
                         Intent ii = new Intent(mContext, LoginActivity.class);
