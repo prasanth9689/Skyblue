@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/item_home"
+        android:title="Home"
+        android:icon="@drawable/ic_home_216"/>
+
+    <item
+        android:id="@+id/item_media"
+        android:title="Channels"
+        android:icon="@drawable/ic_video_216"/>
+
+    <item
+        android:id="@+id/item_add"
+        android:title="Add"
+        android:icon="@drawable/ic_add_216"/>
+
+    <!--
+    <item
+        android:id="@+id/item_notification"
+        android:title="Notification"
+        android:icon="@drawable/ic_chat_bubble216"/>
+        -->
+
+    <item
+        android:id="@+id/item_notification"
+        android:title="Account"
+        android:icon="@drawable/ic_user_new"/>
+
+    <item
+        android:id="@+id/item_chat"
+        android:title="Search"
+        android:icon="@drawable/ic_search_216"/>
+
+
+
+</menu>

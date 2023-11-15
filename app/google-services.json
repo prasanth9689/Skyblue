@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "852456076552",
+    "firebase_url": "https://ccpfirebaseproject.firebaseio.com",
+    "project_id": "ccpfirebaseproject",
+    "storage_bucket": "ccpfirebaseproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852456076552:android:3fcb7a49a8acdaf114e8bd",
+        "android_client_info": {
+          "package_name": "com.skyblue.skybluea"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "852456076552-deh2nqk6k3sro9k2qb32qqdahanrhf97.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjuQHu4N98PnuUyAVc4UFCtZIVIuFD3mA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "852456076552-deh2nqk6k3sro9k2qb32qqdahanrhf97.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

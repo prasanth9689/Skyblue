@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/main_media_frame"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="#000000">
+
+                <com.google.android.exoplayer2.ui.PlayerView
+                    android:id="@+id/exoplayer"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    app:show_buffering="always"/>
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/video_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                       android:orientation="horizontal">
+                       <TextView
+                           android:id="@+id/upload_date_text"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginRight="5dp"
+                           android:layout_marginLeft="5dp"
+                           android:text="@string/uploaded_on"
+                           android:fontFamily="@font/poppins_semibold"
+                           android:textColor="@color/light2"
+                           android:textSize="15sp" />
+
+                       <TextView
+                           android:id="@+id/upload_date"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginEnd="5dp"
+                           android:layout_marginStart="3dp"
+                           android:text=""
+                           android:fontFamily="@font/poppins_semibold"
+                           android:textColor="@color/light2"
+                           android:textSize="15sp" />
+
+               </LinearLayout>
+                <!-- container like / comments  -->
+                <RelativeLayout
+                    android:id="@+id/like_views_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_marginStart="3dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp"
+                            tools:ignore="UselessParent">
+
+                                <RelativeLayout
+                                    android:id="@+id/like_layout"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:paddingEnd="5dp"
+                                    android:layout_marginStart="0dp"
+                                    android:background="@drawable/like_box_round">
+
+                                        <TextView
+                                            android:id="@+id/total_likes"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentEnd="false"
+                                            android:layout_marginStart="10dp"
+                                            android:text="0"
+                                            android:layout_marginTop="7dp"
+                                            android:bufferType="normal"
+                                            android:textColor="#000000" />
+
+                                        <CheckBox
+                                            android:id="@+id/like_checkbox"
+                                            android:layout_width="20dp"
+                                            android:layout_height="20dp"
+                                            android:paddingEnd="10dp"
+                                            android:layout_alignParentEnd="false"
+                                            android:layout_marginStart="32dp"
+                                            android:layout_marginTop="5dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:background="@drawable/like_icon"
+                                            android:button="@null"
+                                            android:focusable="true"
+                                            android:stateListAnimator="@animator/scale"
+                                            tools:ignore="RtlSymmetry" />
+
+                                        <TextView
+                                            android:id="@+id/like_textview"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="5dp"
+                                            android:layout_marginTop="11dp"
+                                            android:layout_marginRight="5dp"
+                                            android:layout_toEndOf="@id/like_checkbox"
+                                            android:text="@string/likes"
+                                            android:textColor="@color/grey"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold"
+                                            tools:ignore="SmallSp" />
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:id="@+id/comment_round_box"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="35dp"
+                                    android:layout_marginStart="5dp"
+                                    android:paddingEnd="5dp"
+                                    android:layout_toEndOf="@id/like_layout"
+                                    android:background="@drawable/like_box_round">
+
+                                        <TextView
+                                            android:id="@+id/id_load_total_comments_main"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentEnd="false"
+                                            android:layout_marginStart="13dp"
+                                            android:layout_marginTop="7dp"
+                                            android:bufferType="normal"
+                                            android:textColor="#000000" />
+
+                                        <CheckBox
+                                            android:id="@+id/comment_checkbox"
+                                            android:layout_width="24dp"
+                                            android:layout_height="27dp"
+                                            android:layout_alignParentEnd="false"
+                                            android:layout_marginStart="30dp"
+                                            android:layout_marginTop="8dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:background="@drawable/comment"
+                                            android:button="@null"
+                                            android:focusable="true" />
+
+                                        <TextView
+                                            android:id="@+id/comment_textview"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="5dp"
+                                            android:layout_marginTop="11dp"
+                                            android:layout_marginRight="5dp"
+                                            android:layout_toEndOf="@id/comment_checkbox"
+                                            android:text="@string/comments"
+                                            android:fontFamily="@font/ubuntu"
+                                            android:textColor="@color/grey"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold"
+                                            tools:ignore="SmallSp" />
+
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:id="@+id/total_views_round_box"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="35dp"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_toEndOf="@id/comment_round_box"
+                                    android:paddingEnd="5dp"
+                                    android:background="@drawable/like_box_round">
+
+
+                                        <TextView
+                                            android:id="@+id/id_load_total_views"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentEnd="false"
+                                            android:layout_marginStart="13dp"
+                                            android:layout_marginTop="7dp"
+                                            android:fontFamily="@font/ubuntu"
+                                            android:bufferType="normal"
+                                            android:text="@string/zero"
+                                            android:textColor="#000000" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="5dp"
+                                        android:layout_marginTop="11dp"
+                                        android:layout_marginRight="5dp"
+                                        android:layout_toEndOf="@id/id_load_total_views"
+                                        android:fontFamily="@font/ubuntu"
+                                        android:text="@string/views"
+                                        android:textColor="@color/grey"
+                                        android:textSize="10sp"
+                                        android:textStyle="bold"
+                                        tools:ignore="SmallSp" />
+
+                                </RelativeLayout>
+                        </RelativeLayout>
+                </RelativeLayout>
+        </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/profile_image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="0dp"
+                android:src="@drawable/placeholder_person"
+                android:contentDescription="@string/profile_image" />
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ubuntu"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/btn_follow"
+            android:text="@string/subscribe"
+            android:textColor="@color/white"
+            tools:ignore="RelativeOverlap" />
+
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Comments"/>
+
+        <RelativeLayout
+            android:id="@+id/input_comments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input_comment_bg"
+            android:layout_marginTop="10dp"
+            android:paddingStart="20dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="10dp"
+            tools:ignore="RtlSymmetry" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="test comment and test comment test comment  test comment test comment"
+                android:maxLines="2"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            >
+
+<!--                <View-->
+<!--                    android:id="@+id/view"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:layout_marginLeft="30dp"-->
+<!--                    android:layout_marginRight="30dp"-->
+<!--                    android:background="@color/colorPrimary"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="none"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.033"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+</LinearLayout>

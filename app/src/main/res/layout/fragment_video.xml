@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".helper.custom_media_picker.VideoFragment">
+
+
+        <com.skyblue.skybluea.helper.custom_media_picker.util.AutoFitRecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:columnWidth="@dimen/folder_column_width"
+            android:clipToPadding="false">
+
+            <!--app:fastScrollEnabled="true"
+       app:fastScrollHorizontalThumbDrawable="@drawable/thumb_drawable"
+       app:fastScrollHorizontalTrackDrawable="@drawable/line_drawable"
+       app:fastScrollVerticalThumbDrawable="@drawable/thumb_drawable"
+       app:fastScrollVerticalTrackDrawable="@drawable/line_drawable"-->
+
+        </com.skyblue.skybluea.helper.custom_media_picker.util.AutoFitRecyclerView>
+        <TextView
+            android:id="@+id/empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/empty"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+    </FrameLayout>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="activity.SearchActivity">
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:indeterminateDrawable="@drawable/progrress_bar_circle_custom"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="13dp"
+        android:visibility="gone"/>
+
+    <RelativeLayout
+        android:id="@+id/top_nav"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            app:srcCompat="@drawable/arrow_back"
+            app:tint="@color/black" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40dp">
+
+
+            <EditText
+                android:id="@+id/edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:textCursorDrawable="@drawable/cursor_blue"
+                android:background="@drawable/edit_text_common"
+                android:hint="@string/item_12"
+                android:imeOptions="actionSearch"
+                android:includeFontPadding="true"
+                android:inputType="text"
+                android:paddingLeft="5dp"
+                android:textColor="@color/black"
+                android:textColorHighlight="#00BCD4"
+                android:textColorHint="#C46D6D6D"
+                android:textColorLink="#00BCD4"
+                android:textSize="12dp" />
+
+
+            <ImageView
+                android:id="@+id/action_search"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="12dp"
+                app:srcCompat="@drawable/ic_search_216" />
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+
+    <!--
+    <RelativeLayout
+        android:id="@+id/id_search_filter"
+        android:layout_width="match_parent"
+        android:layout_below="@id/top_nav"
+        android:layout_height="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="Filter"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/black"
+                android:text="People"
+                android:theme="@style/AppTheme.WhiteAccent" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/black"
+                android:text="Page"
+                android:theme="@style/AppTheme.WhiteAccent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="Location :" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="All" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+    -->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/top_nav">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</RelativeLayout>

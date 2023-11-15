@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    card_view:cardCornerRadius="0dp"
+    card_view:cardElevation="10dp"
+    android:layout_height="wrap_content"
+    card_view:cardBackgroundColor="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/black">
+
+            <ImageView
+                android:id="@+id/thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/id_play_icon"
+                android:layout_width="69dp"
+                android:layout_height="70dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/ic_play"
+                android:visibility="gone"/>
+
+
+            <TextView
+                android:id="@+id/duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="10sp"
+                android:padding="3dp"
+                android:textColor="@color/white"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/ic_duration"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="3dp"
+                />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/main"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/placeholder_person" />
+
+        <TextView
+            android:id="@+id/video_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/main"
+            android:layout_marginStart="50dp"
+            android:layout_marginBottom="-10dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:hint="@string/video_name"
+            android:padding="5dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/video_name"
+            android:layout_marginStart="55dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="0dp">
+
+            <TextView
+                android:id="@+id/channel_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:padding="0dp"
+                android:text="@string/channel_name"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#8C8C8C"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/upload_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:padding="0dp"
+                android:text="@string/abcd"
+                android:layout_marginStart="10dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#8C8C8C"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

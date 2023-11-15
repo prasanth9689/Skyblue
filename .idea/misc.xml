@@ -1,0 +1,33 @@
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/btn_black_radius.xml" value="0.208" />
+        <entry key="app/src/main/res/drawable/btn_click_add_friend.xml" value="0.1265" />
+        <entry key="app/src/main/res/drawable/btn_click_friend_ef.xml" value="0.1265" />
+        <entry key="app/src/main/res/drawable/btn_radius_border_black.xml" value="0.208" />
+        <entry key="app/src/main/res/drawable/btn_white_radius.xml" value="0.1265" />
+        <entry key="app/src/main/res/drawable/button_click_default.xml" value="0.298" />
+        <entry key="app/src/main/res/drawable/click_ble.xml" value="0.298" />
+        <entry key="app/src/main/res/drawable/dark_blue_radius.xml" value="0.298" />
+        <entry key="app/src/main/res/layout/activity_account_image_list.xml" value="0.264" />
+        <entry key="app/src/main/res/layout/activity_choose_language.xml" value="0.536" />
+        <entry key="app/src/main/res/layout/activity_image_view.xml" value="0.32135416666666666" />
+        <entry key="app/src/main/res/layout/activity_list_video_account.xml" value="0.32135416666666666" />
+        <entry key="app/src/main/res/layout/activity_new_video_view.xml" value="0.32135416666666666" />
+        <entry key="app/src/main/res/layout/activity_profile_view.xml" value="0.264" />
+        <entry key="app/src/main/res/layout/activity_search.xml" value="0.536" />
+        <entry key="app/src/main/res/layout/model_row_search.xml" value="0.4" />
+        <entry key="app/src/main/res/layout/row_model_account_user_video_list.xml" value="0.32135416666666666" />
+        <entry key="app/src/main/res/layout/row_model_fragment_home.xml" value="0.32135416666666666" />
+        <entry key="app/src/main/res/layout/row_model_profile_common_user_media.xml" value="0.3203125" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

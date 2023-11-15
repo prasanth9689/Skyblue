@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.skyblue.skybluea.activity.VideoViewActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp">
+            <com.google.android.exoplayer2.ui.PlayerView
+                android:id="@+id/player_view"
+                android:background="@android:color/background_dark"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                app:controller_layout_id="@layout/custom_controller"
+                app:fastforward_increment="10000"
+                app:hide_on_touch="true"
+                app:player_layout_id="@layout/exo_simple_player_view"
+                app:rewind_increment="10000"
+                app:show_timeout="5000"
+                app:use_controller="true"/>
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:indeterminate="true"
+                android:indeterminateTintMode="src_atop"
+                android:indeterminateTint="#008EFF"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/video_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/upload_date_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:text="@string/uploaded_on"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/light2"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/upload_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="3dp"
+                android:text=""
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/light2"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+
+            <ImageView
+                android:id="@+id/profile_image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/placeholder_person"
+                android:layout_marginStart="5dp"/>
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_semibold"
+                android:layout_toEndOf="@+id/profile_image"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"/>
+            <Button
+
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:text="@string/subscribe"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/btn_follow"
+                android:textColor="@color/white"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

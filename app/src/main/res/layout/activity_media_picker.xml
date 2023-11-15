@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".helper.custom_media_picker.MediaPickerActivity"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:elevation="20dp"
+        android:background="#FFFFFF">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back_btn"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:contentDescription="@string/todo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_video"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_toEndOf="@+id/back"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="5dp"/>
+
+    </RelativeLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:visibility="gone"
+        android:id="@+id/tab_layout"
+        android:backgroundTint="#007FE4"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="#DFDFDF"
+        app:tabBackground="@drawable/tab_color_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:layout_weight="1" />
+</LinearLayout>
