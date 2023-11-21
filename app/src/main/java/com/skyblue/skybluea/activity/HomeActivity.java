@@ -99,7 +99,7 @@ public class HomeActivity extends AppCompatActivity {
 
         if (GlobalVariables.isNetworkConnected){
             // call retrofit api
-            postListViewModel.makeApiCall();
+            loadPostData();
             Log.e("home_", "Internet connected");
         }else{
             Log.e("home_", "Internet not connected");
@@ -368,7 +368,7 @@ public class HomeActivity extends AppCompatActivity {
         binding.swipeContainer.setOnRefreshListener(() -> {
             if (postList != null){
                 postList.clear();
-                postListViewModel.makeApiCall();
+                loadPostData();
                 binding.swipeContainer.setRefreshing(false);
             }
         });
@@ -382,6 +382,14 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(ii);
             }
         });
+    }
+
+    private void loadPostData() {
+        if (session.isLoggedIn()) {
+            postListViewModel.makeApiCall(user.getUser_id());
+        } else {
+            postListViewModel.makeApiCall("1");
+        }
     }
 
     private void login() {
@@ -440,7 +448,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (postList == null){
-            postListViewModel.makeApiCall();
+            loadPostData();
         }
     }
 }

@@ -57,6 +57,7 @@ import com.skyblue.skybluea.viewmodels.PostListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -98,7 +99,7 @@ public class HomeActivity2 extends AppCompatActivity {
 
         if (GlobalVariables.isNetworkConnected){
             // call retrofit api
-            postListViewModel.makeApiCall();
+            loadPostData();
             Log.e("home_", "Internet connected");
         }else{
             Log.e("home_", "Internet not connected");
@@ -124,11 +125,20 @@ public class HomeActivity2 extends AppCompatActivity {
         }
     }
 
+    private void loadPostData() {
+        if (session.isLoggedIn()) {
+            postListViewModel.makeApiCall(user.getUser_id());
+        } else {
+            postListViewModel.makeApiCall("1");
+        }
+    }
+
+
     private void iniChannelDialog() {
         Dialog channelDialog = new Dialog(HomeActivity2.this);
         channelDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         channelDialog.setContentView(R.layout.model_primary_channel_selection);
-        channelDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        Objects.requireNonNull(channelDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         channelDialog.setCancelable(false);
 
         RecyclerView recyclerView = channelDialog.findViewById(R.id.primaryChannelList);
@@ -155,6 +165,7 @@ public class HomeActivity2 extends AppCompatActivity {
         postListViewModel = new ViewModelProvider(this).get(PostListViewModel.class);
 
         binding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
@@ -164,7 +175,7 @@ public class HomeActivity2 extends AppCompatActivity {
                         currentPage += 1;
                         Log.e("load__", "Recyclerview current page if loop = " + currentPage);
                         //  getMostPopularTVShows();
-                        postListViewModel.makeApiCall();
+                        loadPostData();
                         updateNow();
                         adapter.notifyDataSetChanged();
                     }
@@ -211,18 +222,23 @@ public class HomeActivity2 extends AppCompatActivity {
 
     private void toggleLoading() {
         if (currentPage == 1) {
-            if (binding.getIsLoading() != null && binding.getIsLoading()) {
-                binding.setIsLoading(false);
-            } else {
-                binding.setIsLoading(true);
-            }
+            binding.setIsLoading(binding.getIsLoading() == null || !binding.getIsLoading());
         } else {
-            if (binding.getIsLoadingMore() != null && binding.getIsLoadingMore()) {
-                binding.setIsLoadingMore(false);
-            } else {
-                binding.setIsLoadingMore(true);
-            }
+            binding.setIsLoadingMore(binding.getIsLoadingMore() == null || !binding.getIsLoadingMore());
         }
+//        if (currentPage == 1) {
+//            if (binding.getIsLoading() != null && binding.getIsLoading()) {
+//                binding.setIsLoading(false);
+//            } else {
+//                binding.setIsLoading(true);
+//            }
+//        } else {
+//            if (binding.getIsLoadingMore() != null && binding.getIsLoadingMore()) {
+//                binding.setIsLoadingMore(false);
+//            } else {
+//                binding.setIsLoadingMore(true);
+//            }
+//        }
     }
 
     private void
@@ -239,7 +255,7 @@ public class HomeActivity2 extends AppCompatActivity {
 
         call.enqueue(new Callback<ChannelCreation>() {
             @Override
-            public void onResponse(Call<ChannelCreation> call, Response<ChannelCreation> response) {
+            public void onResponse(@NonNull Call<ChannelCreation> call, @NonNull Response<ChannelCreation> response) {
                 if (response.isSuccessful()){
                     ChannelCreation channelCreation = response.body();
 
@@ -272,7 +288,7 @@ public class HomeActivity2 extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ChannelCreation> call, Throwable t) {
+            public void onFailure(@NonNull Call<ChannelCreation> call, @NonNull Throwable t) {
                 Log.e("channel_", "Error : Unable to sync from server");
             }
         });
@@ -313,7 +329,7 @@ public class HomeActivity2 extends AppCompatActivity {
     }
 
     public class ChannelsPrimarySelectAdapater extends RecyclerView.Adapter<ChannelsPrimarySelectAdapater.ViewHolder> {
-        private Context context;
+        private final Context context;
         private Activity activity;
         private ArrayList<ChannelsModel> arrayList;
 
@@ -344,7 +360,7 @@ public class HomeActivity2 extends AppCompatActivity {
 
             String channelName = channelsModel.getChannelName();
 
-            holder.channelLetter.setText(channelName.substring(0,1));
+            holder.channelLetter.setText(channelName.substring(0,1).toUpperCase());
 
             holder.mainLayout.setOnClickListener(view -> {
                 Toast.makeText(context, getString(R.string.success), Toast.LENGTH_SHORT).show();
@@ -515,7 +531,7 @@ public class HomeActivity2 extends AppCompatActivity {
         binding.swipeContainer.setOnRefreshListener(() -> {
             if (postList != null){
                 postList.clear();
-                postListViewModel.makeApiCall();
+                loadPostData();
                 binding.swipeContainer.setRefreshing(false);
             }
         });
@@ -589,7 +605,7 @@ public class HomeActivity2 extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (postList == null){
-            postListViewModel.makeApiCall();
+            loadPostData();
         }
     }
 }

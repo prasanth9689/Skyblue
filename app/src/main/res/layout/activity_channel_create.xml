@@ -62,6 +62,7 @@
                 android:paddingStart="10dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
+                android:textCursorDrawable="@drawable/cursor_blue"
                 android:fontFamily="@font/poppins_semibold"
                 android:background="@drawable/bg_upload_video_edit"
                 android:hint="Type"/>

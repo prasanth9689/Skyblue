@@ -278,17 +278,53 @@
             android:layout_height="wrap_content"
             android:background="@drawable/input_comment_bg"
             android:layout_marginTop="10dp"
-            android:paddingStart="20dp"
+            android:paddingStart="5dp"
             android:paddingTop="10dp"
             android:paddingEnd="10dp"
             android:paddingBottom="10dp"
             tools:ignore="RtlSymmetry" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="test comment and test comment test comment  test comment test comment"
-                android:maxLines="2"/>
+            <RelativeLayout
+                android:id="@+id/empty_comments_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/first_comment_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_centerVertical="true"
+                            app:srcCompat="@drawable/gradient_splash" />
+
+                        <ImageView
+                            android:id="@+id/user_image_comment"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_centerVertical="true"
+                            app:srcCompat="@drawable/placeholder_person" />
+
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:id="@+id/comment_username"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/post_your_comment"
+                        android:maxLines="2"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
 
         </RelativeLayout>
 

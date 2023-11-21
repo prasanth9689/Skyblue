@@ -63,6 +63,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/edit_text_login"
+            android:textCursorDrawable="@drawable/cursor_blue"
             android:digits="0123456789"
             android:fontFamily="@font/open_sans"
             android:gravity="center"

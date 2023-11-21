@@ -12,16 +12,11 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.skyblue.skybluea.R;
-import com.skyblue.skybluea.activity.HomeActivity;
 import com.skyblue.skybluea.activity.HomeActivity2;
 import com.skyblue.skybluea.activity.PrivacyPolicyActivity;
 import com.skyblue.skybluea.databinding.ActivityNameBinding;
@@ -29,12 +24,10 @@ import com.skyblue.skybluea.helper.session.SessionHandler;
 import com.skyblue.skybluea.model.Register;
 import com.skyblue.skybluea.retrofit.APIClient;
 import com.skyblue.skybluea.retrofit.APIInterface;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -49,10 +42,9 @@ public class NameActivity extends AppCompatActivity {
     private static final String PREFE_REG_C_NAME = "country";
     private static final String PREFE_C_CODE = "country_code";
     private ActivityNameBinding binding;
-    private Context context = this;
+    private final Context context = this;
     private String firebaseToken;
     private ProgressDialog progressDialog;
-    private APIInterface apiInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,7 +122,6 @@ public class NameActivity extends AppCompatActivity {
        String currentTimeZone = new SimpleDateFormat("z", Locale.getDefault()).format(new Date());
 
         // get timezone
-        String todayDate = currentDate ;
         String timeZone = currentDate +" "+ currentTime +" "+ currentTimeZone;
 
        // get signup user name
@@ -159,14 +150,14 @@ public class NameActivity extends AppCompatActivity {
 //                .addFormDataPart("country_name_code", country_name_code)
                 .addFormDataPart("dob", dateDob)
                 .addFormDataPart("gender", genderName)
-                .addFormDataPart("date", todayDate)
+                .addFormDataPart("date", currentDate)
                 .addFormDataPart("time", currentTime)
                 .addFormDataPart("time_zone", currentTimeZone)
                 .addFormDataPart("date_time_zone", timeZone)
                 .addFormDataPart("firebase_token", "test")
                 .build();
 
-        apiInterface = APIClient.getClient().create(APIInterface.class);
+        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
         Call<List<Register>> call = apiInterface.register(requestBody);
 
         call.enqueue(new Callback<List<Register>>() {
@@ -174,22 +165,24 @@ public class NameActivity extends AppCompatActivity {
             public void onResponse(@NonNull Call<List<Register>> call, @NonNull Response<List<Register>> response) {
                 progressDialog.dismiss();
                 if (response.isSuccessful()){
-                    for (Register register: response.body()){
-                        String userId = register.user_id;
+                    if (response.body() != null) {
+                        for (Register register: response.body()){
+                            String userId = register.user_id;
 
-                        if (userId != null && !userId.isEmpty()) {
-                            session.loginUser(mobile,userName,userId,"","",genderName,dateDob,firebaseToken);
-                            Intent intent = new Intent(context, HomeActivity2.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent);
-                            finish();
+                            if (userId != null && !userId.isEmpty()) {
+                                session.loginUser(mobile,userName,userId,"","",genderName,dateDob,firebaseToken);
+                                Intent intent = new Intent(context, HomeActivity2.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
+                                finish();
+                            }
                         }
                     }
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Register>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<Register>> call, @NonNull Throwable t) {
                 progressDialog.dismiss();
                 Toast.makeText(NameActivity.this, String.valueOf(t), Toast.LENGTH_SHORT).show();
             }
@@ -237,12 +230,12 @@ public class NameActivity extends AppCompatActivity {
     private void showMessageInSnackbar(String message)
     {
         Snackbar snack = Snackbar.make((((Activity) context).findViewById(android.R.id.content)), message, Snackbar.LENGTH_SHORT);
-        snack.setDuration(Snackbar.LENGTH_SHORT);//change Duration as you need
+        snack.setDuration(Snackbar.LENGTH_SHORT);
         //snack.setAction(actionButton, new View.OnClickListener());//add your own listener
         View view = snack.getView();
-        TextView tv = (TextView) view.findViewById(com.google.android.material.R.id.snackbar_text);
-        tv.setTextColor(Color.WHITE);//change textColor
-        TextView tvAction = (TextView) view.findViewById(com.google.android.material.R.id.snackbar_action);
+        TextView tv = view.findViewById(com.google.android.material.R.id.snackbar_text);
+        tv.setTextColor(Color.WHITE);
+        TextView tvAction = view.findViewById(com.google.android.material.R.id.snackbar_action);
         tvAction.setTextSize(16);
         tvAction.setTextColor(Color.WHITE);
         tv.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimaryBlue));

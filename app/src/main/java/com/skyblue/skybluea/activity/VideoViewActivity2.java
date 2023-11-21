@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -44,6 +46,8 @@ import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.skyblue.skybluea.R;
 import com.skyblue.skybluea.databinding.ActivityVideoView2Binding;
 import com.skyblue.skybluea.helper.session.SessionHandler;
@@ -73,21 +77,22 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
     private final String STATE_RESUME_POSITION = "resumePosition";
     private final String STATE_PLAYER_FULLSCREEN = "playerFullscreen";
     private PlayerView playerView;
-    private MediaSource mVideoSource;
     private boolean mExoPlayerFullscreen = false;
-    private FrameLayout mFullScreenButton;
     private ImageView mFullScreenIcon;
     private Dialog mFullScreenDialog;
     private  DataSource.Factory dataSourceFactory;
     private SimpleExoPlayer player;
     private int mResumeWindow;
     private long mResumePosition;
-    String videoUrl;
-    List<Post> postList;
-    PostListViewModel postListViewModel;
-    PostAdapter adapter;
-    User user;
-    APIInterface apiInterface;
+    private String videoUrl;
+    private List<Post> postList;
+    private PostListViewModel postListViewModel;
+    private PostAdapter adapter;
+    private User user;
+    private APIInterface apiInterface;
+    private BottomSheetDialog bottomSheetDialog;
+    private BottomSheetBehavior sheetBehavior;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,9 +120,17 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
         binding.userName.setText(getIntent().getStringExtra("channel_name"));
 
         String totalLikes = getIntent().getStringExtra("likes");
+        String likeStatus = getIntent().getStringExtra("like_status");
 
-        assert totalLikes != null;
-        if (totalLikes.equals("null")){
+        if (likeStatus != null) {
+            int mLikeStatus = Integer.parseInt(likeStatus);
+
+            if (mLikeStatus == 1){
+                binding.likeCheckbox.setChecked(true);
+            }
+        }
+
+        if (totalLikes != null && totalLikes.equals("null")) {
             binding.totalLikes.setText("0");
         }else {
             binding.totalLikes.setText(totalLikes);
@@ -159,9 +172,30 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
             }
         });
         binding.commentRoundBox.setOnClickListener(v -> {
-            if(session.isLoggedIn());
-
+         openCommentSheet();
         });
+        binding.emptyCommentsLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (session.isLoggedIn()) {
+                    View bottomSheetView = getLayoutInflater().inflate(R.layout.bottomsheetdialog_comment, null);
+                    bottomSheetDialog = new BottomSheetDialog(context, R.style.AppBottomSheetCommentDialogTheme);
+                    bottomSheetDialog.setContentView(bottomSheetView);
+
+
+
+
+                    bottomSheetDialog.show();
+                } else {
+                    startActivity(new Intent(context, LoginActivity.class));
+                }
+            }
+        });
+
+         }
+
+    private void openCommentSheet() {
+
     }
 
     private void insertUnlike() {
@@ -264,7 +298,15 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
             }
         });
         // call retrofit api
-        postListViewModel.makeApiCall();
+        loadPostData();
+    }
+
+    private void loadPostData() {
+        if (session.isLoggedIn()) {
+            postListViewModel.makeApiCall(user.getUser_id());
+        } else {
+            postListViewModel.makeApiCall("1");
+        }
     }
 
     private void loadUploadTime() {
@@ -336,7 +378,7 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
     private void initFullscreenButton() {
         PlayerControlView controlView = playerView.findViewById(R.id.exo_controller);
         mFullScreenIcon = controlView.findViewById(R.id.exo_fullscreen_icon);
-        mFullScreenButton = controlView.findViewById(R.id.exo_fullscreen_button);
+        FrameLayout mFullScreenButton = controlView.findViewById(R.id.exo_fullscreen_button);
         mFullScreenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -356,8 +398,8 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
             Log.i("DEBUG"," haveResumePosition ");
             player.seekTo(mResumeWindow, mResumePosition);
         }
-        mVideoSource = buildMediaSource(Uri.parse(videoUrl));
-        Log.i("DEBUG"," mVideoSource "+mVideoSource);
+        MediaSource mVideoSource = buildMediaSource(Uri.parse(videoUrl));
+        Log.i("DEBUG"," mVideoSource "+ mVideoSource);
         player.prepare(mVideoSource);
         player.setPlayWhenReady(true);
     }

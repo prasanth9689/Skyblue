@@ -118,6 +118,7 @@
                 android:layout_below="@id/mobileNo"
                 android:layout_marginTop="10dp"
                 android:background="@color/colorMessageBackground"
+                android:textCursorDrawable="@drawable/cursor_blue"
                 android:text="@string/continue_"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"

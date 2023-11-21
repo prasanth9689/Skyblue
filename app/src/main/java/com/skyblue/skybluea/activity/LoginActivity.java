@@ -1,9 +1,5 @@
 package com.skyblue.skybluea.activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -14,12 +10,10 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.gson.Gson;
 import com.skyblue.skybluea.R;
 import com.skyblue.skybluea.activity.registration.RegisterActivity;
 import com.skyblue.skybluea.databinding.ActivityLoginBinding;
@@ -28,20 +22,16 @@ import com.skyblue.skybluea.helper.GlobalVariables;
 import com.skyblue.skybluea.helper.Utils;
 import com.skyblue.skybluea.helper.session.SessionHandler;
 import com.skyblue.skybluea.model.Login;
-import com.skyblue.skybluea.model.LoginData;
 import com.skyblue.skybluea.retrofit.APIClient;
 import com.skyblue.skybluea.retrofit.APIInterface;
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Objects;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.FieldMap;
 
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
@@ -116,10 +106,9 @@ public class LoginActivity extends AppCompatActivity {
         call.enqueue(new Callback<List<Login>>() {
             @Override
             public void onResponse(@NonNull Call<List<Login>> call, @NonNull Response<List<Login>> response) {
-                Log.e("login_", response.body().toString());
                 if (response.code() == 200){
+                    assert response.body() != null;
                     for(Login login: response.body()) {
-                        Log.e("login", login.getMessage());
                         pDialog.dismiss();
                         switch (Integer.parseInt(login.getMessage())) {
 
@@ -169,7 +158,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Login>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<Login>> call, @NonNull Throwable t) {
                 Log.e("login", String.valueOf(t));
                 Utils.showMessageInSnackbar(context, getString(R.string.failed));
                 pDialog.dismiss();
@@ -194,11 +183,10 @@ public class LoginActivity extends AppCompatActivity {
 
     /**
      * Validates inputs and shows error if any
-     * @return
      */
     private boolean validateInputs() {
          mobile = binding.mobile.getText().toString();
-         password = binding.password.getText().toString();
+         password = Objects.requireNonNull(binding.password.getText()).toString();
         if("".equals(mobile)){
             binding.mobile.setError(getResources().getString(R.string.phone_cannot_be_empty));
             binding.mobile.requestFocus();

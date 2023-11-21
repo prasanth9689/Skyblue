@@ -43,6 +43,7 @@
                     android:layout_marginTop="11dp"
                     android:text="@string/skyblue"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/ubuntu"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
@@ -99,6 +100,7 @@
                         android:cursorVisible="false"
                         android:focusable="false"
                         android:hint="@string/search_videos_movies_songs"
+                        android:fontFamily="@font/ubuntu"
                         android:imeOptions="actionSearch"
                         android:inputType="text"
                         android:paddingStart="10dp"
@@ -485,7 +487,7 @@
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_nav_home"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="50dp"
                 android:layout_alignParentBottom="true"
                 android:background="@color/white"
                 app:elevation="8dp"
@@ -504,8 +506,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layoutHeader" />
-
-
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

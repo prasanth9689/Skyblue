@@ -1,5 +1,7 @@
 package com.skyblue.skybluea.activity.registration;
 
+import static com.skyblue.skybluea.helper.Utils.showMessageInSnackbar;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -101,10 +103,10 @@ public class RegisterActivity extends AppCompatActivity {
                     if ("1".equals(response.body())){
                         newUser();
                     }else {
-                        showAlreadyRegistered();
+                        showMessageInSnackbar(context, getResources().getString(R.string.already_registered_this_number_please_login));
                     }
                 } else {
-                    Utils.showMessageInSnackbar(context, getString(R.string.server_down_try_agin_after_2_hrs));
+                    showMessageInSnackbar(context, getResources().getString(R.string.server_error));
                 }
             }
 
@@ -115,12 +117,6 @@ public class RegisterActivity extends AppCompatActivity {
                 progressbar.dismiss();
             }
         });
-    }
-
-    private void showAlreadyRegistered() {
-        String message = getResources().getString(R.string.already_registered_this_number_please_login);
-        //Utils.showMessageInSnackbar(RegisterActivity.this, message);
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
     private void newUser() {

@@ -8,6 +8,28 @@
         <item name="colorAccent">@color/colorTopMenu</item>
     </style>
 
+<!--     common bottom sheet -->
+    <style name="AppBottomSheetDialogTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/rounded_dialog_top_right_left</item>
+    </style>
+
+    <!--     comment bottom sheet -->
+
+    <style name="AppBottomSheetCommentDialogTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppCommentModalStyle</item>
+    </style>
+
+    <style name="AppCommentModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/round_dialog_top_left_right_cmt</item>
+    </style>
 
     <style name="DialogCustom">
         <item name="android:textSize">14sp</item>

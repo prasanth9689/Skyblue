@@ -61,6 +61,7 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:hint="Enter channel name"
+           android:textCursorDrawable="@drawable/cursor_blue"
            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
            />
 

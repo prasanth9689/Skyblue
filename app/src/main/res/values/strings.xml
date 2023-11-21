@@ -482,7 +482,7 @@
     <string name="please_enter_empty_field">Please Enter Empty Field</string>
     <string name="firebase_token_updated">Firebase token updated</string>
     <string name="server_error_db">Server error! DB</string>
-    <string name="server_error">Server error!</string>
+    <string name="server_error">Error!</string>
     <string name="failed">Failed!</string>
     <string name="please_enter_video_name">Please enter video name.</string>
     <string name="video_uploading_started">Video uploading started</string>
@@ -495,5 +495,7 @@
     <string name="views">VIEWS</string>
     <string name="zero">0</string>
     <string name="enter_comment">Enter comment</string>
+    <string name="post_your_comment">Post your comment..</string>
+    <string name="write_comment">write comment</string>
 
 </resources>

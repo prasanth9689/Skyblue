@@ -2,6 +2,7 @@ package com.skyblue.skybluea.viewmodels;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -26,12 +27,12 @@ public class PostListViewModel extends ViewModel {
         return postList;
     }
 
-    public void makeApiCall(){
+    public void makeApiCall(String userId){
         APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-        Call<List<Post>> call=apiInterface.getCommonPosts("1");
+        Call<List<Post>> call=apiInterface.getCommonPosts(userId);
         call.enqueue(new Callback<List<Post>>() {
             @Override
-            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+            public void onResponse(@NonNull Call<List<Post>> call, @NonNull Response<List<Post>> response) {
                 postList.postValue(response.body());
             }
 

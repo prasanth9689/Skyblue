@@ -43,7 +43,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
             mCallBack = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
         @Override
-        public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+        public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
            // super.onCodeSent(s, forceResendingToken);
             Log.e("otp_", "loading");
             if (s != null){
