@@ -12,29 +12,34 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom">
+            android:layout_gravity="bottom"
+            android:paddingTop="5dp">
 
             <EditText
+                android:id="@+id/edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:hint="@string/write_comment"
+                android:layout_marginEnd="10dp"
+                android:layout_toStartOf="@+id/submit"
                 android:fontFamily="@font/ubuntu"
+                android:hint="@string/write_comment"
                 android:inputType="textMultiLine"
-                android:textSize="14sp"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
-                android:layout_toStartOf="@+id/comment_submit_btn"
-                android:layout_marginEnd="10dp"
-                />
+                android:textSize="14sp"
+                android:textCursorDrawable="@drawable/cursor_blue"
+                android:autofillHints="name" />
 
             <Button
-                android:id="@+id/comment_submit_btn"
+                android:id="@+id/submit"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="Submit"
-                android:layout_alignParentRight="true"/>
-
+                android:background="@drawable/btn_follow"
+                android:textColor="@color/white"
+                android:fontFamily="@font/ubuntu"
+                android:text="@string/send"
+                android:layout_alignParentEnd="true"/>
 
         </RelativeLayout>
 

@@ -117,6 +117,7 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             postViewHolder.imgThumbnail.setOnClickListener(view -> {
               Intent intent = new Intent(view.getContext(), VideoViewActivity2.class);
                 intent.putExtra("post_id", postList.get(position).getPost_id());
+                intent.putExtra("post_user_id", postList.get(position).getUser_id());
                 intent.putExtra("url", postList.get(position).getVideo_url());
                 intent.putExtra("video_name", finalNewStringEmojidecooded);
                 intent.putExtra("profile_image", postList.get(position).getProfile_url());

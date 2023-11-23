@@ -497,5 +497,6 @@
     <string name="enter_comment">Enter comment</string>
     <string name="post_your_comment">Post your comment..</string>
     <string name="write_comment">write comment</string>
+    <string name="send">SEND</string>
 
 </resources>

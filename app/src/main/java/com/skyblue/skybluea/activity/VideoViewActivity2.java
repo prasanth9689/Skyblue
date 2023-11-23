@@ -14,11 +14,14 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -92,7 +95,7 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
     private APIInterface apiInterface;
     private BottomSheetDialog bottomSheetDialog;
     private BottomSheetBehavior sheetBehavior;
-
+    private String loggedUserId, loggedUserName, postId, postUserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +108,24 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
 
         session = new SessionHandler(getApplicationContext());
         user = session.getUserDetails();
+
+        postId = getIntent().getStringExtra("post_id");
+        postUserId = getIntent().getStringExtra("post_user_id");
+
+        if (session.isLoggedIn()){
+            loggedUserId = user.getUser_id();
+            loggedUserName = user.getName();
+
+            String likeStatus = getIntent().getStringExtra("like_status");
+
+            if (likeStatus != null) {
+                int mLikeStatus = Integer.parseInt(likeStatus);
+
+                if (mLikeStatus == 1){
+                    binding.likeCheckbox.setChecked(true);
+                }
+            }
+        }
 
         dataSourceFactory =
                 new DefaultDataSourceFactory(
@@ -120,15 +141,6 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
         binding.userName.setText(getIntent().getStringExtra("channel_name"));
 
         String totalLikes = getIntent().getStringExtra("likes");
-        String likeStatus = getIntent().getStringExtra("like_status");
-
-        if (likeStatus != null) {
-            int mLikeStatus = Integer.parseInt(likeStatus);
-
-            if (mLikeStatus == 1){
-                binding.likeCheckbox.setChecked(true);
-            }
-        }
 
         if (totalLikes != null && totalLikes.equals("null")) {
             binding.totalLikes.setText("0");
@@ -171,9 +183,7 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
                 startActivity(intent);
             }
         });
-        binding.commentRoundBox.setOnClickListener(v -> {
-         openCommentSheet();
-        });
+
         binding.emptyCommentsLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,11 +191,18 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
                     View bottomSheetView = getLayoutInflater().inflate(R.layout.bottomsheetdialog_comment, null);
                     bottomSheetDialog = new BottomSheetDialog(context, R.style.AppBottomSheetCommentDialogTheme);
                     bottomSheetDialog.setContentView(bottomSheetView);
-
-
-
-
                     bottomSheetDialog.show();
+
+                    EditText edText = bottomSheetDialog.findViewById(R.id.edit_text);
+                    Button btSubmit = bottomSheetDialog.findViewById(R.id.submit);
+
+                    if (btSubmit != null) {
+                        btSubmit.setOnClickListener(v1 -> {
+                            String commentText = edText.getText().toString().trim();
+                            edText.setText("");
+                            saveComment(commentText);
+                        });
+                    }
                 } else {
                     startActivity(new Intent(context, LoginActivity.class));
                 }
@@ -194,15 +211,32 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
 
          }
 
-    private void openCommentSheet() {
+    private void saveComment(String commentText) {
+        RequestBody mLoggedUserId = RequestBody.create(MediaType.parse("multipart/form-data"), loggedUserId);
+        RequestBody mLoggedUserName = RequestBody.create(MediaType.parse("multipart/form-data"), loggedUserName);
+        RequestBody mCommentText = RequestBody.create(MediaType.parse("multipart/form-data"), commentText);
+        RequestBody mPostId = RequestBody.create(MediaType.parse("multipart/form-data"), postId);
+        RequestBody mPostUserId = RequestBody.create(MediaType.parse("multipart/form-data"), postUserId);
+        Call<String> call = apiInterface.saveComment(mLoggedUserId, mLoggedUserName, mCommentText, mPostId, mPostUserId);
 
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                if (response.isSuccessful()){
+                    String res = response.toString();
+                    Toast.makeText(VideoViewActivity2.this, res, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+
+            }
+        });
     }
 
     private void insertUnlike() {
-        String userId = user.getUser_id();
-        String postId = getIntent().getStringExtra("post_id");
-
-        RequestBody mUserid = RequestBody.create(MediaType.parse("multipart/form-data"), userId);
+        RequestBody mUserid = RequestBody.create(MediaType.parse("multipart/form-data"), loggedUserId);
         assert postId != null;
         RequestBody mPostId = RequestBody.create(MediaType.parse("multipart/form-data"), postId);
 
@@ -233,10 +267,7 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
 
     private void insertLike() {
 
-        String userId = user.getUser_id();
-        String postId = getIntent().getStringExtra("post_id");
-
-        RequestBody mUserid = RequestBody.create(MediaType.parse("multipart/form-data"), userId);
+        RequestBody mUserid = RequestBody.create(MediaType.parse("multipart/form-data"), loggedUserId);
         assert postId != null;
         RequestBody mPostId = RequestBody.create(MediaType.parse("multipart/form-data"), postId);
 

@@ -87,4 +87,12 @@ public interface APIInterface {
     Call<LikeVideo> insertUnLike(@Part("user_id") RequestBody user_id,
                                @Part("post_id") RequestBody post_id);
 
+    @Multipart
+    @POST("/skyblue/comment_send.php")
+    Call<String> saveComment(@Part("logged_user_id") RequestBody logged_user_id,
+                                @Part("logged_user_name") RequestBody logged_user_name,
+                                @Part("logged_user_comment") RequestBody logged_user_comment,
+                                @Part("post_id") RequestBody post_id,
+                                @Part("post_user_id") RequestBody post_user_id);
+
 }
