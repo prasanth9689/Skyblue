@@ -191,10 +191,15 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
                     View bottomSheetView = getLayoutInflater().inflate(R.layout.bottomsheetdialog_comment, null);
                     bottomSheetDialog = new BottomSheetDialog(context, R.style.AppBottomSheetCommentDialogTheme);
                     bottomSheetDialog.setContentView(bottomSheetView);
-                    bottomSheetDialog.show();
 
                     EditText edText = bottomSheetDialog.findViewById(R.id.edit_text);
                     Button btSubmit = bottomSheetDialog.findViewById(R.id.submit);
+
+                    assert edText != null;
+                    edText.setFocusableInTouchMode(true);
+                    edText.requestFocus();
+
+                    bottomSheetDialog.show();
 
                     if (btSubmit != null) {
                         btSubmit.setOnClickListener(v1 -> {
