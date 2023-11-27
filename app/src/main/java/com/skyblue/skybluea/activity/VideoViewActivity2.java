@@ -55,11 +55,14 @@ import com.skyblue.skybluea.R;
 import com.skyblue.skybluea.databinding.ActivityVideoView2Binding;
 import com.skyblue.skybluea.helper.session.SessionHandler;
 import com.skyblue.skybluea.helper.session.User;
+import com.skyblue.skybluea.model.Comments;
 import com.skyblue.skybluea.model.LikeVideo;
 import com.skyblue.skybluea.model.Post;
 import com.skyblue.skybluea.retrofit.APIClient;
 import com.skyblue.skybluea.retrofit.APIInterface;
 import com.skyblue.skybluea.viewmodels.PostListViewModel;
+
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -68,6 +71,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -148,9 +152,84 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
             binding.totalLikes.setText(totalLikes);
         }
 
+        String totalComments = getIntent().getStringExtra("comments");
+
+        if (totalComments != null && totalComments.equals("null")) {
+          binding.totalComments.setText("0");
+        }else {
+            assert totalComments != null;
+            int check = Integer.parseInt(totalComments);
+            if (check == 0){
+                binding.totalComments.setText("0");
+            }else {
+                binding.totalComments.setText(totalComments);
+            }
+        }
+
+        String totalViews = getIntent().getStringExtra("total_views");
+
+        if (!totalViews.equals("")) {
+            binding.totalViews.setText(totalViews);
+        }else {
+            binding.totalComments.setText("0");
+        }
+
         loadUploadTime();
         loadVideos();
+        viewsInit();
+        initBottomSheet();
+        loadComments();
         onClick();
+    }
+
+    private void viewsInit() {
+        RequestBody mPostId = RequestBody.create(MediaType.parse("multipart/form-data"), postId);
+        Call<ResponseBody> call = apiInterface.sendViews(mPostId);
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                if (response.isSuccessful()){
+                    assert response.body() != null;
+                    String res = null;
+                    try {
+                        res = response.body().string();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                   // Toast.makeText(context, "views count :" + res, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+
+            }
+        });
+    }
+
+    private void initBottomSheet() {
+        View bottomSheetView = getLayoutInflater().inflate(R.layout.bottomsheetdialog_comment, null);
+        bottomSheetDialog = new BottomSheetDialog(context, R.style.AppBottomSheetCommentDialogTheme);
+        bottomSheetDialog.setContentView(bottomSheetView);
+    }
+
+    private void loadComments() {
+        RequestBody mLoggedUserId = RequestBody.create(MediaType.parse("multipart/form-data"), loggedUserId);
+        RequestBody mPostId = RequestBody.create(MediaType.parse("multipart/form-data"), loggedUserName);
+
+        Call<Comments> call = apiInterface.getComments(mLoggedUserId, mPostId);
+        call.enqueue(new Callback<Comments>() {
+            @Override
+            public void onResponse(@NonNull Call<Comments> call, @NonNull Response<Comments> response) {
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Comments> call, @NonNull Throwable t) {
+
+            }
+        });
     }
 
     private void onClick() {
@@ -188,9 +267,6 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
             @Override
             public void onClick(View v) {
                 if (session.isLoggedIn()) {
-                    View bottomSheetView = getLayoutInflater().inflate(R.layout.bottomsheetdialog_comment, null);
-                    bottomSheetDialog = new BottomSheetDialog(context, R.style.AppBottomSheetCommentDialogTheme);
-                    bottomSheetDialog.setContentView(bottomSheetView);
 
                     EditText edText = bottomSheetDialog.findViewById(R.id.edit_text);
                     Button btSubmit = bottomSheetDialog.findViewById(R.id.submit);
@@ -199,12 +275,27 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
                     edText.setFocusableInTouchMode(true);
                     edText.requestFocus();
 
+
+
                     bottomSheetDialog.show();
 
                     if (btSubmit != null) {
                         btSubmit.setOnClickListener(v1 -> {
                             String commentText = edText.getText().toString().trim();
+
+                            if (commentText.isEmpty()){
+                                edText.requestFocus();
+                                Toast.makeText(context, "Please write something", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
                             edText.setText("");
+
+                            String totalComments = binding.totalComments.getText().toString();
+                            int mTotalComments = Integer.parseInt(totalComments);
+                            mTotalComments++;
+
+                            binding.totalComments.setText(String.valueOf(mTotalComments));
                             saveComment(commentText);
                         });
                     }
@@ -217,25 +308,32 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
          }
 
     private void saveComment(String commentText) {
+        bottomSheetDialog.dismiss();
         RequestBody mLoggedUserId = RequestBody.create(MediaType.parse("multipart/form-data"), loggedUserId);
         RequestBody mLoggedUserName = RequestBody.create(MediaType.parse("multipart/form-data"), loggedUserName);
         RequestBody mCommentText = RequestBody.create(MediaType.parse("multipart/form-data"), commentText);
         RequestBody mPostId = RequestBody.create(MediaType.parse("multipart/form-data"), postId);
         RequestBody mPostUserId = RequestBody.create(MediaType.parse("multipart/form-data"), postUserId);
-        Call<String> call = apiInterface.saveComment(mLoggedUserId, mLoggedUserName, mCommentText, mPostId, mPostUserId);
+        Call<ResponseBody> call = apiInterface.saveComment(mLoggedUserId, mLoggedUserName, mCommentText, mPostId, mPostUserId);
 
-        call.enqueue(new Callback<String>() {
+        call.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                 if (response.isSuccessful()){
-                    String res = response.toString();
-                    Toast.makeText(VideoViewActivity2.this, res, Toast.LENGTH_SHORT).show();
+                    assert response.body() != null;
+                    String res = null;
+                    try {
+                        res = response.body().string();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    Toast.makeText(context, res, Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
-
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

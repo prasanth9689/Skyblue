@@ -125,6 +125,8 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 intent.putExtra("time_date", postList.get(position).getTime_date());
                 intent.putExtra("likes", postList.get(position).getLikes());
                 intent.putExtra("like_status", postList.get(position).getLike_status());
+                intent.putExtra("comments", postList.get(position).getComments());
+                intent.putExtra("total_views", postList.get(position).getTotal_views());
                 // send like status to vv activity use putextra do now
                 view.getContext().startActivity(intent);
             });

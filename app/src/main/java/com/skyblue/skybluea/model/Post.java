@@ -4,7 +4,23 @@ import com.google.gson.annotations.SerializedName;
 
 public class Post {
     String video_name, profile_url, user_name, thumbnail_url, video_url, user_id, duration, post_id, time_date;
-    String channel_id, channel_name, likes, like_status;
+    String channel_id, channel_name, likes, like_status, comments, total_views;
+
+    public void setTotal_views(String total_views) {
+        this.total_views = total_views;
+    }
+
+    public String getTotal_views() {
+        return total_views;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public String getComments() {
+        return comments;
+    }
 
     public void setLike_status(String like_status) {
         this.like_status = like_status;

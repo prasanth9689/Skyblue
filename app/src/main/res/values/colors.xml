@@ -2,6 +2,7 @@
 <resources>
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryBlue">#0179D8</color>
+    <color name="colorPrimaryBlueLight">#72C1FF</color>
     <color name="colorAccent">#2BBD18</color>
     <color name="shimmer_placeholder">#dddddd</color>
     <color name="shadow_2">#dddddd</color>

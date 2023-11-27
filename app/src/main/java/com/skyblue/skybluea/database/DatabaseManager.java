@@ -2,15 +2,11 @@ package com.skyblue.skybluea.database;
 
 import static com.skyblue.skybluea.database.DatabaseHelper.TABLE_NAME;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
-
-import androidx.annotation.Nullable;
 
 import com.skyblue.skybluea.model.ChannelsModel;
 
