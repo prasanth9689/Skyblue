@@ -105,4 +105,9 @@ public interface APIInterface {
     @Multipart
     @POST("/skyblue/views_insert.php")
     Call<ResponseBody> sendViews(@Part("post_id") RequestBody post_id);
+
+    @Multipart
+    @POST("/skyblue/subscription_new.php")
+    Call<ResponseBody> subscriptionNew(@Part("logged_user_id") RequestBody logged_user_id,
+                                       @Part("channel_id") RequestBody channel_id);
 }

@@ -115,6 +115,12 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
 
         postId = getIntent().getStringExtra("post_id");
         postUserId = getIntent().getStringExtra("post_user_id");
+        videoUrl = getIntent().getStringExtra("url");
+        binding.videoName.setText(getIntent().getStringExtra("video_name"));
+        binding.userName.setText(getIntent().getStringExtra("channel_name"));
+        String totalLikes = getIntent().getStringExtra("likes");
+        String totalComments = getIntent().getStringExtra("comments");
+        String totalViews = getIntent().getStringExtra("total_views");
 
         if (session.isLoggedIn()){
             loggedUserId = user.getUser_id();
@@ -140,19 +146,12 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
             mResumePosition = savedInstanceState.getLong(STATE_RESUME_POSITION);
             mExoPlayerFullscreen = savedInstanceState.getBoolean(STATE_PLAYER_FULLSCREEN);
         }
-        videoUrl = getIntent().getStringExtra("url");
-        binding.videoName.setText(getIntent().getStringExtra("video_name"));
-        binding.userName.setText(getIntent().getStringExtra("channel_name"));
-
-        String totalLikes = getIntent().getStringExtra("likes");
 
         if (totalLikes != null && totalLikes.equals("null")) {
             binding.totalLikes.setText("0");
         }else {
             binding.totalLikes.setText(totalLikes);
         }
-
-        String totalComments = getIntent().getStringExtra("comments");
 
         if (totalComments != null && totalComments.equals("null")) {
           binding.totalComments.setText("0");
@@ -165,8 +164,6 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
                 binding.totalComments.setText(totalComments);
             }
         }
-
-        String totalViews = getIntent().getStringExtra("total_views");
 
         if (!totalViews.equals("")) {
             binding.totalViews.setText(totalViews);
@@ -267,45 +264,60 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
             @Override
             public void onClick(View v) {
                 if (session.isLoggedIn()) {
-
-                    EditText edText = bottomSheetDialog.findViewById(R.id.edit_text);
-                    Button btSubmit = bottomSheetDialog.findViewById(R.id.submit);
-
-                    assert edText != null;
-                    edText.setFocusableInTouchMode(true);
-                    edText.requestFocus();
-
-
-
-                    bottomSheetDialog.show();
-
-                    if (btSubmit != null) {
-                        btSubmit.setOnClickListener(v1 -> {
-                            String commentText = edText.getText().toString().trim();
-
-                            if (commentText.isEmpty()){
-                                edText.requestFocus();
-                                Toast.makeText(context, "Please write something", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-
-                            edText.setText("");
-
-                            String totalComments = binding.totalComments.getText().toString();
-                            int mTotalComments = Integer.parseInt(totalComments);
-                            mTotalComments++;
-
-                            binding.totalComments.setText(String.valueOf(mTotalComments));
-                            saveComment(commentText);
-                        });
-                    }
+                    openPostCommentDialog();
                 } else {
                     startActivity(new Intent(context, LoginActivity.class));
                 }
             }
         });
 
+        binding.commentRoundBox.setOnClickListener(v -> {
+            if (session.isLoggedIn()) {
+                openPostCommentDialog();
+            } else {
+                startActivity(new Intent(context, LoginActivity.class));
+            }
+        });
+
+        binding.postUserProfileLayout.setOnClickListener(v -> {
+            Intent intent = new Intent(context, CommonAccountDashboard.class);
+            intent.putExtra("user_id", postUserId);
+            startActivity(intent);
+        });
+
          }
+
+    private void openPostCommentDialog() {
+        EditText edText = bottomSheetDialog.findViewById(R.id.edit_text);
+        Button btSubmit = bottomSheetDialog.findViewById(R.id.submit);
+
+        assert edText != null;
+        edText.setFocusableInTouchMode(true);
+        edText.requestFocus();
+
+        bottomSheetDialog.show();
+
+        if (btSubmit != null) {
+            btSubmit.setOnClickListener(v1 -> {
+                String commentText = edText.getText().toString().trim();
+
+                if (commentText.isEmpty()){
+                    edText.requestFocus();
+                    Toast.makeText(context, "Please write something", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                edText.setText("");
+
+                String totalComments = binding.totalComments.getText().toString();
+                int mTotalComments = Integer.parseInt(totalComments);
+                mTotalComments++;
+
+                binding.totalComments.setText(String.valueOf(mTotalComments));
+                saveComment(commentText);
+            });
+        }
+    }
 
     private void saveComment(String commentText) {
         bottomSheetDialog.dismiss();

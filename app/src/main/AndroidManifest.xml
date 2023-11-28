@@ -28,6 +28,9 @@
         android:vmSafeMode="true"
         tools:targetApi="n">
         <activity
+            android:name=".activity.CommonAccountDashboard"
+            android:exported="false" />
+        <activity
             android:name=".activity.report.ReportActivity"
             android:exported="false" />
         <activity
