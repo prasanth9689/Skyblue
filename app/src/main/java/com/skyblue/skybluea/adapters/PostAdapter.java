@@ -121,6 +121,7 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 intent.putExtra("url", postList.get(position).getVideo_url());
                 intent.putExtra("video_name", finalNewStringEmojidecooded);
                 intent.putExtra("profile_image", postList.get(position).getProfile_url());
+                intent.putExtra("channel_id", postList.get(position).getChannel_id());
                 intent.putExtra("channel_name", postList.get(position).getChannel_name());
                 intent.putExtra("time_date", postList.get(position).getTime_date());
                 intent.putExtra("likes", postList.get(position).getLikes());

@@ -99,7 +99,7 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
     private APIInterface apiInterface;
     private BottomSheetDialog bottomSheetDialog;
     private BottomSheetBehavior sheetBehavior;
-    private String loggedUserId, loggedUserName, postId, postUserId;
+    private String loggedUserId, loggedUserName, postId, postUserId, channelId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +121,7 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
         String totalLikes = getIntent().getStringExtra("likes");
         String totalComments = getIntent().getStringExtra("comments");
         String totalViews = getIntent().getStringExtra("total_views");
+        channelId = getIntent().getStringExtra("channel_id");
 
         if (session.isLoggedIn()){
             loggedUserId = user.getUser_id();
@@ -259,7 +260,6 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
                 startActivity(intent);
             }
         });
-
         binding.emptyCommentsLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -270,7 +270,6 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
                 }
             }
         });
-
         binding.commentRoundBox.setOnClickListener(v -> {
             if (session.isLoggedIn()) {
                 openPostCommentDialog();
@@ -278,13 +277,38 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
                 startActivity(new Intent(context, LoginActivity.class));
             }
         });
-
         binding.postUserProfileLayout.setOnClickListener(v -> {
             Intent intent = new Intent(context, CommonAccountDashboard.class);
             intent.putExtra("user_id", postUserId);
             startActivity(intent);
         });
+        binding.subscription.setOnClickListener(v -> {
+            RequestBody mUserId = RequestBody.create(MediaType.parse("multipart/form-data"), loggedUserId);
+            RequestBody mChannelId = RequestBody.create(MediaType.parse("multipart/form-data"), channelId);
 
+            Call<ResponseBody> call = apiInterface.subscriptionNew(mUserId, mChannelId);
+
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                    if (response.isSuccessful()){
+                        assert response.body() != null;
+                        String res = null;
+                        try {
+                            res = response.body().string();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                         Toast.makeText(context, "response :" + res, Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+
+                }
+            });
+        });
          }
 
     private void openPostCommentDialog() {
