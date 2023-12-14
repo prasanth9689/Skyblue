@@ -38,6 +38,7 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 import com.skyblue.skybluea.R;
 import com.skyblue.skybluea.databinding.ActivityUploadBinding;
+import com.skyblue.skybluea.helper.RealPathUtil;
 import com.skyblue.skybluea.helper.session.SessionHandler;
 import com.skyblue.skybluea.helper.session.User;
 import com.skyblue.skybluea.service.UploadService;
@@ -99,7 +100,21 @@ public class UploadActivity extends AppCompatActivity implements AdsMediaSource.
             mExoPlayerFullscreen = savedInstanceState.getBoolean(STATE_PLAYER_FULLSCREEN);
         }
 
-        video_url = getIntent().getStringExtra("img");
+        Intent intent = getIntent();
+        if (intent != null){
+            String action = intent.getAction();
+            String type = intent.getType();
+            if (Intent.ACTION_SEND.equals(action) && type != null){
+                if (type.equalsIgnoreCase("video/*")){
+                    Uri videoFile = intent.getParcelableExtra(Intent.EXTRA_STREAM);
+                   // Uri sendUri = Uri.fromFile(new File(String.valueOf(videoFile)));
+                    assert videoFile != null;
+                    video_url = RealPathUtil.getRealPath(context, videoFile);
+                }
+            }else {
+                video_url = getIntent().getStringExtra("img");
+            }
+        }
 
         createFolder();
         video_duration_final = getVideoDuration();
@@ -111,6 +126,9 @@ public class UploadActivity extends AppCompatActivity implements AdsMediaSource.
         if (!primaryChannelName.equals("")){
             binding.primaryChannel.setText(primaryChannelName);
         }
+    }
+
+    private void handleVideoIntent(Intent intent) {
     }
 
     private void checkChannel() {
