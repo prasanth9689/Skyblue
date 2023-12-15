@@ -95,22 +95,20 @@
                 android:layout_marginStart="10dp">
 
                 <TextView
-                    android:id="@+id/id_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/channel_name"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:textSize="12sp" />
+                    android:text="Channel Name"
+                    android:fontFamily="@font/ubuntu_medium"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/channel_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:text=""
+                    android:textSize="17sp"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:layout_marginTop="5dp"/>
+                    android:fontFamily="@font/ubuntu_medium"
+                    android:layout_marginTop="1dp"/>
 
             </LinearLayout>
 
@@ -211,7 +209,7 @@
             android:background="@drawable/click_effect">
             <ImageView
                 android:id="@+id/my_ac_profile_img"
-                android:src="@drawable/ic_ac_circle"
+                android:src="@drawable/ic_user_account"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:contentDescription="@string/cover_image" />
@@ -223,7 +221,8 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="12dp"
                 android:layout_toEndOf="@+id/my_ac_profile_img"
-                android:fontFamily="@font/poppins_semibold"
+                android:fontFamily="@font/ubuntu_medium"
+                android:textStyle="bold"
                 android:maxLines="1"
                 android:text="@string/my_profile"
                 android:textColor="@color/black"
@@ -250,7 +249,7 @@
             android:padding="8dp">
             <ImageView
                 android:id="@+id/my_channel_img"
-                android:src="@drawable/temp_ic_channel"
+                android:src="@drawable/ic_user_channel"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:contentDescription="@string/my_videos" />
@@ -261,7 +260,8 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="12dp"
                 android:layout_toEndOf="@+id/my_channel_img"
-                android:fontFamily="@font/poppins_semibold"
+                android:fontFamily="@font/ubuntu_medium"
+                android:textStyle="bold"
                 android:maxLines="1"
                 android:text="@string/my_channel"
                 android:textColor="@color/black"
@@ -366,7 +366,7 @@
             android:padding="8dp">
             <ImageView
                 android:id="@+id/settings_img"
-                android:src="@drawable/ic_ac_settings"
+                android:src="@drawable/ic_user_settings"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:contentDescription="@string/settings" />
@@ -379,7 +379,8 @@
                 android:layout_toEndOf="@+id/settings_img"
                 android:maxLines="1"
                 android:text="@string/settings"
-                android:fontFamily="@font/poppins_semibold"
+                android:fontFamily="@font/ubuntu_medium"
+                android:textStyle="bold"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:layout_width="wrap_content" />
@@ -404,7 +405,7 @@
             android:padding="8dp">
             <ImageView
                 android:id="@+id/logout_img"
-                android:src="@drawable/ic_ac_log_out"
+                android:src="@drawable/ic_user_logout_sharp"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:contentDescription="@string/logout" />
@@ -416,7 +417,8 @@
                 android:layout_marginStart="12dp"
                 android:layout_toEndOf="@+id/logout_img"
                 android:maxLines="1"
-                android:fontFamily="@font/poppins_semibold"
+                android:fontFamily="@font/ubuntu_medium"
+                android:textStyle="bold"
                 android:text="@string/logout"
                 android:textColor="@color/black"
                 android:textSize="16sp"

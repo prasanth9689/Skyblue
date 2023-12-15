@@ -119,24 +119,11 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
         binding.videoName.setText(getIntent().getStringExtra("video_name"));
         binding.userName.setText(getIntent().getStringExtra("channel_name"));
         String totalLikes = getIntent().getStringExtra("likes");
+        String likeStatus = getIntent().getStringExtra("like_status");
         String totalComments = getIntent().getStringExtra("comments");
         String totalViews = getIntent().getStringExtra("total_views");
         channelId = getIntent().getStringExtra("channel_id");
-
-        if (session.isLoggedIn()){
-            loggedUserId = user.getUser_id();
-            loggedUserName = user.getName();
-
-            String likeStatus = getIntent().getStringExtra("like_status");
-
-            if (likeStatus != null) {
-                int mLikeStatus = Integer.parseInt(likeStatus);
-
-                if (mLikeStatus == 1){
-                    binding.likeCheckbox.setChecked(true);
-                }
-            }
-        }
+        String uploadTime = getIntent().getStringExtra("time_date");
 
         dataSourceFactory =
                 new DefaultDataSourceFactory(
@@ -148,36 +135,46 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
             mExoPlayerFullscreen = savedInstanceState.getBoolean(STATE_PLAYER_FULLSCREEN);
         }
 
-        if (totalLikes != null && totalLikes.equals("null")) {
-            binding.totalLikes.setText("0");
-        }else {
-            binding.totalLikes.setText(totalLikes);
-        }
 
-        if (totalComments != null && totalComments.equals("null")) {
-          binding.totalComments.setText("0");
-        }else {
-            assert totalComments != null;
-            int check = Integer.parseInt(totalComments);
-            if (check == 0){
-                binding.totalComments.setText("0");
-            }else {
-                binding.totalComments.setText(totalComments);
-            }
-        }
+        loadLikeFunction(likeStatus, totalLikes);
+        loadComments(totalComments);
+        loadUploadTime(uploadTime);
+        assert totalViews != null;
+        loadTotalViews(totalViews);
 
+        loadVideos();
+        viewsInit();
+        initBottomSheet();
+        onClick();
+    }
+
+    private void loadTotalViews(String totalViews) {
         if (!totalViews.equals("")) {
             binding.totalViews.setText(totalViews);
         }else {
             binding.totalComments.setText("0");
         }
+    }
 
-        loadUploadTime();
-        loadVideos();
-        viewsInit();
-        initBottomSheet();
-        loadComments();
-        onClick();
+    private void loadLikeFunction(String likeStatus, String totalLikes) {
+        if (session.isLoggedIn()){
+            loggedUserId = user.getUser_id();
+            loggedUserName = user.getName();
+
+            if (likeStatus != null) {
+                int mLikeStatus = Integer.parseInt(likeStatus);
+
+                if (mLikeStatus == 1){
+                    binding.likeCheckbox.setChecked(true);
+                }
+            }
+        }
+
+        if (totalLikes != null && totalLikes.equals("null")) {
+            binding.totalLikes.setText("0");
+        }else {
+            binding.totalLikes.setText(totalLikes);
+        }
     }
 
     private void viewsInit() {
@@ -212,22 +209,34 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
         bottomSheetDialog.setContentView(bottomSheetView);
     }
 
-    private void loadComments() {
-        RequestBody mLoggedUserId = RequestBody.create(MediaType.parse("multipart/form-data"), loggedUserId);
-        RequestBody mPostId = RequestBody.create(MediaType.parse("multipart/form-data"), loggedUserName);
-
-        Call<Comments> call = apiInterface.getComments(mLoggedUserId, mPostId);
-        call.enqueue(new Callback<Comments>() {
-            @Override
-            public void onResponse(@NonNull Call<Comments> call, @NonNull Response<Comments> response) {
-
+    private void loadComments(String totalComments) {
+        if (totalComments != null && totalComments.equals("null")) {
+            binding.totalComments.setText("0");
+        }else {
+            assert totalComments != null;
+            int check = Integer.parseInt(totalComments);
+            if (check == 0){
+                binding.totalComments.setText("0");
+            }else {
+                binding.totalComments.setText(totalComments);
             }
+        }
 
-            @Override
-            public void onFailure(@NonNull Call<Comments> call, @NonNull Throwable t) {
-
-            }
-        });
+//        RequestBody mLoggedUserId = RequestBody.create(MediaType.parse("multipart/form-data"), loggedUserId);
+//        RequestBody mPostId = RequestBody.create(MediaType.parse("multipart/form-data"), loggedUserName);
+//
+//        Call<Comments> call = apiInterface.getComments(mLoggedUserId, mPostId);
+//        call.enqueue(new Callback<Comments>() {
+//            @Override
+//            public void onResponse(@NonNull Call<Comments> call, @NonNull Response<Comments> response) {
+//
+//            }
+//
+//            @Override
+//            public void onFailure(@NonNull Call<Comments> call, @NonNull Throwable t) {
+//
+//            }
+//        });
     }
 
     private void onClick() {
@@ -479,8 +488,7 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
         }
     }
 
-    private void loadUploadTime() {
-        String uploadTime = getIntent().getStringExtra("time_date");
+    private void loadUploadTime(String uploadTime) {
 
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Date past = null;
@@ -693,17 +701,19 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
             postViewHolder.imgThumbnail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                  Intent intent = new Intent(view.getContext(), VideoViewActivity2.class);
-//                    intent.putExtra("url", postList.get(position).getVideo_url());
-//                    intent.putExtra("video_name", finalNewStringEmojidecooded);
-//                    intent.putExtra("profile_image", postList.get(position).getProfile_url());
-//                    intent.putExtra("channel_name", postList.get(position).getChannel_name());
-//                    intent.putExtra("time_date", postList.get(position).getTime_date());
-//                    view.getContext().startActivity(intent);
 
+                        postId = postList.get(position).getPost_id();
+                        postUserId = postList.get(position).getUser_id();
                         videoUrl = postList.get(position).getVideo_url();
                         binding.videoName.setText(finalNewStringEmojidecooded);
                         binding.userName.setText(postList.get(position).getChannel_name());
+
+                        loadUploadTime(postList.get(position).getTime_date());
+                        binding.likeCheckbox.setChecked(false);
+                        loadLikeFunction(postList.get(position).getLike_status(), postList.get(position).getLikes());
+                        loadComments(postList.get(position).getComments());
+                        loadTotalViews(postList.get(position).getTotal_views());
+
                         player.stop();
 
                         initExoPlayer();

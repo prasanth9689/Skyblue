@@ -21,6 +21,19 @@
 
         </FrameLayout>
 
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
         <TextView
             android:id="@+id/video_name"
             android:layout_width="wrap_content"
@@ -30,7 +43,6 @@
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/black"
             android:textSize="20sp" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -216,7 +228,6 @@
                         </RelativeLayout>
                 </RelativeLayout>
         </LinearLayout>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="80dp">
@@ -331,11 +342,6 @@
         </RelativeLayout>
 
     </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            >
 
 <!--                <View-->
 <!--                    android:id="@+id/view"-->
@@ -355,7 +361,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scrollbars="none"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.033"
@@ -364,14 +370,7 @@
                     app:layout_constraintVertical_bias="0.0" />
 
 
-
-
         </LinearLayout>
-
-
-
-
-
-
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

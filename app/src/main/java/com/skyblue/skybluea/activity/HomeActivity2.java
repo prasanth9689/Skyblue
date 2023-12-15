@@ -367,6 +367,7 @@ public class HomeActivity2 extends AppCompatActivity {
                 holder.radioButton.setEnabled(true);
                 session.saveChannelPrimary(channelsModel.getChannelId(), channelsModel.getChannelName());
                 Intent intent = new Intent(context, HomeActivity2.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             });
 
@@ -375,6 +376,7 @@ public class HomeActivity2 extends AppCompatActivity {
                 holder.radioButton.setEnabled(true);
                 session.saveChannelPrimary(channelsModel.getChannelId(), channelsModel.getChannelName());
                 Intent intent = new Intent(context, HomeActivity2.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             });
         }

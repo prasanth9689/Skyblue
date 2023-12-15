@@ -58,7 +58,7 @@
             android:layout_marginStart="2dp"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="5dp"
-            android:src="@drawable/placeholder_person" />
+            android:src="@drawable/ic_placeholder3" />
 
         <TextView
             android:id="@+id/video_name"
@@ -67,7 +67,7 @@
             android:layout_below="@id/main"
             android:layout_marginStart="50dp"
             android:layout_marginBottom="-10dp"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/ubuntu_medium"
             android:hint="@string/video_name"
             android:padding="5dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -83,13 +83,13 @@
             android:layout_below="@id/video_name"
             android:layout_marginStart="55dp"
             android:layout_marginBottom="5dp"
-            android:layout_marginTop="0dp">
+            android:layout_marginTop="5dp">
 
             <TextView
                 android:id="@+id/channel_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_semibold"
+                android:fontFamily="@font/ubuntu"
                 android:padding="0dp"
                 android:text="@string/channel_name"
                 android:textAppearance="?android:attr/textAppearanceSmall"
