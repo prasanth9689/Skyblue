@@ -135,7 +135,6 @@ public class VideoViewActivity2 extends AppCompatActivity implements AdsMediaSou
             mExoPlayerFullscreen = savedInstanceState.getBoolean(STATE_PLAYER_FULLSCREEN);
         }
 
-
         loadLikeFunction(likeStatus, totalLikes);
         loadComments(totalComments);
         loadUploadTime(uploadTime);

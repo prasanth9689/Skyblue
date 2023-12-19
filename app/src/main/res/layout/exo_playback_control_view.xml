@@ -13,41 +13,63 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_gravity="bottom"
     android:layoutDirection="ltr"
-    android:background="#CC000000"
-    android:orientation="vertical">
+    android:background="#CC000000">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingTop="4dp"
+        android:layout_centerInParent="true"
         android:orientation="horizontal">
 
-        <ImageButton android:id="@id/exo_prev"
-            style="@style/ExoMediaButton.Previous"/>
+<!--        <ImageButton-->
+<!--            android:id="@id/exo_prev"-->
+<!--            style="@style/ExoMediaButton.Previous"-->
+<!--            android:visibility="gone"-->
+<!--            tools:visibility="gone" />-->
 
-        <ImageButton android:id="@id/exo_rew"
-            style="@style/ExoMediaButton.Rewind"/>
+        <ImageView android:id="@id/exo_rew"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/ic_rewind_left"/>
 
         <ImageButton android:id="@id/exo_repeat_toggle"
-            style="@style/ExoMediaButton"/>
+            style="@style/ExoMediaButton"
+            app:tint="#CFD2D3"/>
 
-        <ImageButton android:id="@id/exo_play"
-            style="@style/ExoMediaButton.Play"/>
+        <ImageView android:id="@id/exo_play"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:src="@drawable/ic_smart_play"/>
 
-        <ImageButton android:id="@id/exo_pause"
-            style="@style/ExoMediaButton.Pause"/>
+        <ImageView
+            android:id="@id/exo_pause"
+            android:layout_width="50dp"
+            android:layout_height="55dp"
+            android:src="@drawable/ic_pause"
+            app:tint="#CFD2D3" />
 
-        <ImageButton android:id="@id/exo_ffwd"
-            style="@style/ExoMediaButton.FastForward"/>
+        <ImageView android:id="@id/exo_ffwd"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/ic_rewind_right"/>
 
-        <ImageButton android:id="@id/exo_next"
-            style="@style/ExoMediaButton.Next"/>
+<!--        <ImageButton-->
+<!--            android:id="@id/exo_next"-->
+<!--            style="@style/ExoMediaButton.Next"-->
+<!--            android:visibility="gone"-->
+<!--            app:tint="#CFD2D3"-->
+<!--            tools:visibility="gone" />-->
 
     </LinearLayout>
 
@@ -56,7 +78,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
 
         <TextView android:id="@id/exo_position"
             android:layout_width="wrap_content"
@@ -72,7 +95,11 @@
             android:id="@id/exo_progress"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="26dp"/>
+            android:layout_height="15dp"
+            app:played_color="#0089F6"
+            app:unplayed_color="@color/light2"
+            app:buffered_color="#CACDCF"
+            app:scrubber_color="@color/light2"/>
 
         <TextView android:id="@id/exo_duration"
             android:layout_width="wrap_content"
@@ -103,4 +130,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>
