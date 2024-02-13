@@ -1,7 +1,6 @@
 package com.skyblue.skybluea.adapters;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Base64;
@@ -16,13 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.skyblue.skybluea.R;
-import com.skyblue.skybluea.activity.LoginActivity;
-import com.skyblue.skybluea.activity.SearchActivity;
 import com.skyblue.skybluea.activity.VideoViewActivity;
-import com.skyblue.skybluea.activity.VideoViewActivity2;
-import com.skyblue.skybluea.model.Post;
 import com.skyblue.skybluea.model.Search;
 import com.vanniktech.emoji.EmojiTextView;
 
@@ -148,7 +142,7 @@ public class SearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
             String finalNewStringEmojidecooded = newStringEmojidecooded;
             holder.itemView.setOnClickListener(view -> {
-                Intent intent = new Intent(view.getContext(), VideoViewActivity2.class);
+                Intent intent = new Intent(view.getContext(), VideoViewActivity.class);
                 intent.putExtra("url", postList.get(position).getVideo_url());
                 intent.putExtra("video_name", finalNewStringEmojidecooded);
               //  intent.putExtra("profile_image", postList.get(position).getProfile_url());

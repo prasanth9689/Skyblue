@@ -15,16 +15,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.Toast;
+import android.view.inputmethod.InputMethodManager;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.skyblue.skybluea.R;
 
-import com.skyblue.skybluea.activity.HomeActivity2;
+import com.skyblue.skybluea.activity.HomeActivity;
 import com.skyblue.skybluea.databinding.ActivityRegisterBinding;
 import com.skyblue.skybluea.helper.CheckNetwork;
 import com.skyblue.skybluea.helper.GlobalVariables;
-import com.skyblue.skybluea.helper.Utils;
 import com.skyblue.skybluea.helper.session.SessionHandler;
 import com.skyblue.skybluea.retrofit.APIClient;
 import com.skyblue.skybluea.retrofit.APIInterface;
@@ -52,6 +51,10 @@ public class RegisterActivity extends AppCompatActivity {
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        binding.mobileNo.requestFocus();
+        InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 
         CheckNetwork network = new CheckNetwork(getApplicationContext());
         network.registerNetworkCallback();
@@ -113,7 +116,6 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 Log.e("retrofit", String.valueOf(t));
-                binding.error.setText(getString(R.string.server_down_try_agin_after_2_hrs));
                 progressbar.dismiss();
             }
         });
@@ -145,7 +147,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void loadHome() {
-        Intent i = new Intent(getApplicationContext(), HomeActivity2.class);
+        Intent i = new Intent(getApplicationContext(), HomeActivity.class);
         startActivity(i);
         finish();
     }

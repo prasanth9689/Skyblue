@@ -3,8 +3,6 @@ package com.skyblue.skybluea.adapters;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,17 +15,11 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.skyblue.skybluea.R;
-import com.skyblue.skybluea.activity.VideoViewActivity;
-import com.skyblue.skybluea.activity.VideoViewActivity2;
-import com.skyblue.skybluea.activity.account.MyVideoListActivity;
 import com.skyblue.skybluea.helper.session.SessionHandler;
 import com.skyblue.skybluea.helper.session.User;
 import com.skyblue.skybluea.model.Post;
-import com.squareup.picasso.Picasso;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
-import java.util.PrimitiveIterator;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Handler;
 

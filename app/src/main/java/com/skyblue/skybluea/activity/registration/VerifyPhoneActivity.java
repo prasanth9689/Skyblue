@@ -45,13 +45,11 @@ public class VerifyPhoneActivity extends AppCompatActivity {
         @Override
         public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
            // super.onCodeSent(s, forceResendingToken);
-            Log.e("otp_", "loading");
             if (s != null){
                 Log.e("otp_", "success");
                 sendingOtpDialog.dismiss();
                 verificationId = s;
             }
-            PhoneAuthProvider.ForceResendingToken mResendToken = forceResendingToken;
         }
 
         @Override
@@ -66,11 +64,11 @@ public class VerifyPhoneActivity extends AppCompatActivity {
 
         @Override
         public void onVerificationFailed(FirebaseException e) {
-            Toast.makeText(VerifyPhoneActivity.this, "onVerificationFailed " + e.toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, "onVerificationFailed " + e.toString(), Toast.LENGTH_SHORT).show();
             if (e instanceof FirebaseAuthInvalidCredentialsException) {
-                Toast.makeText(VerifyPhoneActivity.this, "Invalid Request " + e.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Invalid Request " + e, Toast.LENGTH_SHORT).show();
             } else if (e instanceof FirebaseTooManyRequestsException) {
-                Toast.makeText(VerifyPhoneActivity.this, "The SMS quota for the project has been exceeded " + e.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "The SMS quota for the project has been exceeded " + e, Toast.LENGTH_SHORT).show();
             }
         }
     };
@@ -87,8 +85,6 @@ public class VerifyPhoneActivity extends AppCompatActivity {
 
         String mobileNo = getIntent().getStringExtra("mobile");
         getotp = getIntent().getStringExtra("s");
-        ProgressBar progressBar = findViewById(R.id.progressBar);
-        Log.e("mobile", mobileNo);
         sendVerificationCode( mobileNo);
         setOnClickListener();
         initSendingOtpDialog();
@@ -96,10 +92,10 @@ public class VerifyPhoneActivity extends AppCompatActivity {
     }
 
     private void initSendingOtpDialog() {
-        sendingOtpDialog = new Dialog(this);
+        sendingOtpDialog = new Dialog(mContext);
         sendingOtpDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         sendingOtpDialog.setContentView(R.layout.m_send_otp_wait);
-        sendingOtpDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        Objects.requireNonNull(sendingOtpDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         sendingOtpDialog.setCancelable(false);
     }
 
@@ -116,26 +112,21 @@ public class VerifyPhoneActivity extends AppCompatActivity {
 
     private void verifyCode(String code) {
         displayLoader();
-        String vvid = verificationId;
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
         signInWithCredential(credential);
     }
 
     private void signInWithCredential(PhoneAuthCredential credential) {
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            pDialog.dismiss();
-                            Intent i = new Intent(mContext, PasswordActivity.class);
-                            startActivity(i);
-                            finish();
-                        } else {
-                            pDialog.dismiss();
-                            Log.e("fr_", Objects.requireNonNull(task.getException().getMessage()));
-                            Toast.makeText(mContext, task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                        }
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        pDialog.dismiss();
+                        Intent i = new Intent(mContext, PasswordActivity.class);
+                        startActivity(i);
+                        finish();
+                    } else {
+                        pDialog.dismiss();
+                        Toast.makeText(mContext, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
     }
@@ -148,7 +139,6 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                 binding.editTextCode.requestFocus();
                 return;
             }
-            String err = "";
             verifyCode(code);
 
         });
@@ -156,7 +146,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
     }
 
     private void displayLoader() {
-        pDialog = new ProgressDialog(VerifyPhoneActivity.this, R.style.AppCompatAlertDialogStyle);
+        pDialog = new ProgressDialog(mContext, R.style.AppCompatAlertDialogStyle);
         pDialog.setMessage(getResources().getString(R.string.checking_otp_please_wait));
         pDialog.setIndeterminate(false);
         pDialog.setCancelable(false);

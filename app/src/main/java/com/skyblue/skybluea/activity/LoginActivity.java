@@ -167,7 +167,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loadHome() {
-        Intent intent = new Intent(getApplicationContext(), HomeActivity2.class);
+        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
@@ -203,12 +203,11 @@ public class LoginActivity extends AppCompatActivity {
     private void showMessageInSnackbar(String message)
     {
         Snackbar snack = Snackbar.make((((Activity) context).findViewById(android.R.id.content)), message, Snackbar.LENGTH_SHORT);
-        snack.setDuration(Snackbar.LENGTH_SHORT);//change Duration as you need
-        //snack.setAction(actionButton, new View.OnClickListener());//add your own listener
+        snack.setDuration(Snackbar.LENGTH_SHORT);
         View view = snack.getView();
-        TextView tv = (TextView) view.findViewById(com.google.android.material.R.id.snackbar_text);
-        tv.setTextColor(Color.WHITE);//change textColor
-        TextView tvAction = (TextView) view.findViewById(com.google.android.material.R.id.snackbar_action);
+        TextView tv = view.findViewById(com.google.android.material.R.id.snackbar_text);
+        tv.setTextColor(Color.WHITE);
+        TextView tvAction = view.findViewById(com.google.android.material.R.id.snackbar_action);
         tvAction.setTextSize(16);
         tvAction.setTextColor(Color.WHITE);
         tv.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimaryBlue));

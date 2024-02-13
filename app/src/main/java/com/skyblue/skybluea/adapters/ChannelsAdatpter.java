@@ -15,10 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.skyblue.skybluea.R;
-import com.skyblue.skybluea.activity.HomeActivity2;
+import com.skyblue.skybluea.activity.HomeActivity;
 import com.skyblue.skybluea.activity.channels.ManageChannelActivity;
 import com.skyblue.skybluea.model.ChannelsModel;
-import com.skyblue.skybluea.model.Post;
 
 import java.util.ArrayList;
 
@@ -52,7 +51,7 @@ public class ChannelsAdatpter extends RecyclerView.Adapter<ChannelsAdatpter.View
         });
 
         Glide
-                .with(HomeActivity2.context)
+                .with(HomeActivity.context)
                 .load(R.drawable.channel_bg)
                 .placeholder(R.color.image_placeholder_bg)
                 .into(holder.channelImage);

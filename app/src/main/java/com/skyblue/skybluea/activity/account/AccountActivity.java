@@ -7,9 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.skyblue.skybluea.R;
 import com.skyblue.skybluea.activity.HomeActivity;
-import com.skyblue.skybluea.activity.HomeActivity2;
 import com.skyblue.skybluea.activity.channels.ChannelsDashboard;
 import com.skyblue.skybluea.databinding.ActivityAccountBinding;
 import com.skyblue.skybluea.helper.session.SessionHandler;
@@ -49,7 +47,7 @@ public class AccountActivity extends AppCompatActivity {
             session = new SessionHandler(getApplicationContext());
             User user = session.getUserDetails();
             session.logoutUser();
-            Intent intent = new Intent(context, HomeActivity2.class);
+            Intent intent = new Intent(context, HomeActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         });

@@ -48,12 +48,13 @@
                 android:imeOptions="actionSearch"
                 android:includeFontPadding="true"
                 android:inputType="text"
-                android:paddingLeft="5dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
                 android:textColor="@color/black"
                 android:textColorHighlight="#00BCD4"
                 android:textColorHint="#C46D6D6D"
                 android:textColorLink="#00BCD4"
-                android:textSize="12dp" />
+                android:textSize="12sp" />
 
 
             <ImageView

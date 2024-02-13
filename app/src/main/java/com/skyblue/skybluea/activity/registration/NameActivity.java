@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import com.google.android.material.snackbar.Snackbar;
 import com.skyblue.skybluea.R;
-import com.skyblue.skybluea.activity.HomeActivity2;
+import com.skyblue.skybluea.activity.HomeActivity;
 import com.skyblue.skybluea.activity.PrivacyPolicyActivity;
 import com.skyblue.skybluea.databinding.ActivityNameBinding;
 import com.skyblue.skybluea.helper.session.SessionHandler;
@@ -171,7 +171,7 @@ public class NameActivity extends AppCompatActivity {
 
                             if (userId != null && !userId.isEmpty()) {
                                 session.loginUser(mobile,userName,userId,"","",genderName,dateDob,firebaseToken);
-                                Intent intent = new Intent(context, HomeActivity2.class);
+                                Intent intent = new Intent(context, HomeActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
                                 finish();

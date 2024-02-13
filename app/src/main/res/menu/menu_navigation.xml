@@ -3,17 +3,17 @@
 
     <item
         android:id="@+id/item_home"
-        android:title="Home"
+        android:title="@string/home"
         android:icon="@drawable/ic_home_216"/>
 
     <item
         android:id="@+id/item_media"
-        android:title="Channels"
+        android:title="@string/channels"
         android:icon="@drawable/ic_video_216"/>
 
     <item
         android:id="@+id/item_add"
-        android:title="Add"
+        android:title="@string/add"
         android:icon="@drawable/ic_add_216"/>
 
     <!--
@@ -25,12 +25,12 @@
 
     <item
         android:id="@+id/item_notification"
-        android:title="Account"
+        android:title="@string/account"
         android:icon="@drawable/ic_user_new"/>
 
     <item
         android:id="@+id/item_chat"
-        android:title="Search"
+        android:title="@string/search"
         android:icon="@drawable/ic_search_216"/>
 
 

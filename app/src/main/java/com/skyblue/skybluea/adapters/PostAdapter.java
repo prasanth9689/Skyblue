@@ -1,28 +1,23 @@
 package com.skyblue.skybluea.adapters;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.util.Base64;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.skyblue.skybluea.R;
-
-import com.skyblue.skybluea.activity.HomeActivity2;
-import com.skyblue.skybluea.activity.VideoViewActivity2;
+import com.skyblue.skybluea.activity.HomeActivity;
+import com.skyblue.skybluea.activity.VideoViewActivity;
+import com.skyblue.skybluea.databinding.MDialogLoadingProgressBinding;
+import com.skyblue.skybluea.databinding.MFragmentHomeBinding;
 import com.skyblue.skybluea.model.Post;
-
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -31,15 +26,18 @@ import java.util.concurrent.TimeUnit;
 
 public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final int VIEW_TYPE_ITEM = 0;
-    private final int VIEW_TYPE_LOADING = 1;
-    List<Post> postList;
-    private Activity context;
-    public PostAdapter(List<Post>list){
+    private List<Post> postList;
+    private Context context;
+
+    public PostAdapter(List<Post>list, Context context){
         this.postList = list;
+        this.context = context;
     }
 
-    public void updateUserList(List<Post> list){
+    @SuppressLint("NotifyDataSetChanged")
+    public void updateUserList(List<Post> list, Context context){
         this.postList = list;
+        this.context = context;
         notifyDataSetChanged();
     }
 
@@ -47,14 +45,15 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_ITEM){
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.m_fragment_home, parent, false);
-            return new PostViewHolder(view);
+            MFragmentHomeBinding binding = MFragmentHomeBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+            return new PostViewHolder(binding);
         }else {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.m_dialog_loading_progress, parent, false);
-            return new LoadingViewHolder(view);
+            MDialogLoadingProgressBinding binding = MDialogLoadingProgressBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+            return new LoadingViewHolder(binding);
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
@@ -62,60 +61,59 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             PostViewHolder postViewHolder = (PostViewHolder) holder;
 
             Glide
-                    .with(HomeActivity2.context)
+                    .with(HomeActivity.context)
                     .load(postList.get(position).getThumbnail_url())
                     .placeholder(R.color.image_placeholder_bg)
-                    .into(postViewHolder.imgThumbnail);
- int b=9;
+                    .into(postViewHolder.binding.thumbnail);
+
             Glide
-                    .with(HomeActivity2.context)
+                    .with(HomeActivity.context)
                     .load(postList.get(position).getProfile_url())
                     .apply(RequestOptions.circleCropTransform())
                     .placeholder(R.drawable.placeholder_person)
-                    .into(postViewHolder.imgProfile);
+                    .into(postViewHolder.binding.profileImage);
 
-               String newStringEmojidecooded = "";
+            String newStringEmojidecooded = "";
 
-            try {
-                byte[] data = Base64.decode(postList.get(position).getVideo_name(), Base64.DEFAULT);
-                newStringEmojidecooded = new String(data, "UTF-8");
+            byte[] data = Base64.decode(postList.get(position).getVideo_name(), Base64.DEFAULT);
+            newStringEmojidecooded = new String(data, StandardCharsets.UTF_8);
 
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
+            postViewHolder.binding.videoName.setText(newStringEmojidecooded);
+            postViewHolder.binding.duration.setText(postList.get(position).getDuration());
+            postViewHolder.binding.channelName.setText(postList.get(position).getChannel_name());
 
-            postViewHolder.txtVideoName.setText(newStringEmojidecooded);
-            //postViewHolder.txtUserName.setText(postList.get(position).getChannel_name());
-            postViewHolder.txtDuration.setText(postList.get(position).getDuration());
-            postViewHolder.txtChannelName.setText(postList.get(position).getChannel_name());
-
-            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-            Date past = null;
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            Date past;
             try {
                 past = format.parse(postList.get(position).getTime_date());
 
                 Date now = new Date();
+                assert past != null;
                 long seconds = TimeUnit.MILLISECONDS.toSeconds(now.getTime() - past.getTime());
                 long minutes = TimeUnit.MILLISECONDS.toMinutes(now.getTime() - past.getTime());
                 long hours = TimeUnit.MILLISECONDS.toHours(now.getTime() - past.getTime());
                 long days = TimeUnit.MILLISECONDS.toDays(now.getTime() - past.getTime());
 
                 if (seconds < 60) {
-                    postViewHolder.txtUploadDate.setText(seconds + " seconds ago");
+                    String sec = seconds + context.getString(R.string.seconds_ago);
+                    postViewHolder.binding.uploadDate.setText(sec);
                 } else if (minutes < 60) {
-                    postViewHolder.txtUploadDate.setText(minutes + " minutes ago");
+                    String min = minutes + context.getString(R.string.minutes_ago);
+                    postViewHolder.binding.uploadDate.setText(min);
                 } else if (hours < 24) {
-                    postViewHolder.txtUploadDate.setText(hours + " hours ago");
+                    String hrs = hours + context.getString(R.string.hours_ago);
+                    postViewHolder.binding.uploadDate.setText(hrs);
                 } else {
-                    postViewHolder.txtUploadDate.setText(days + " days ago");
+                    String day = days + context.getString(R.string.days_ago);
+                    postViewHolder.binding.uploadDate.setText(day);
                 }
             } catch (ParseException e) {
                 e.printStackTrace();
             }
 
             String finalNewStringEmojidecooded = newStringEmojidecooded;
-            postViewHolder.imgThumbnail.setOnClickListener(view -> {
-              Intent intent = new Intent(view.getContext(), VideoViewActivity2.class);
+            postViewHolder.binding.thumbnail.setOnClickListener(view -> {
+                Intent intent = new Intent(view.getContext(), VideoViewActivity.class);
                 intent.putExtra("post_id", postList.get(position).getPost_id());
                 intent.putExtra("post_user_id", postList.get(position).getUser_id());
                 intent.putExtra("url", postList.get(position).getVideo_url());
@@ -128,13 +126,12 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 intent.putExtra("like_status", postList.get(position).getLike_status());
                 intent.putExtra("comments", postList.get(position).getComments());
                 intent.putExtra("total_views", postList.get(position).getTotal_views());
-                // send like status to vv activity use putextra do now
                 view.getContext().startActivity(intent);
             });
 
         } else if (holder instanceof LoadingViewHolder) {
             LoadingViewHolder loadingViewHolder = (LoadingViewHolder) holder;
-            loadingViewHolder.progressBar.setIndeterminate(true);
+            loadingViewHolder.binding.progressBarloading.setIndeterminate(true);
         }
     }
 
@@ -146,34 +143,28 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     /**
      * The following method decides the type of ViewHolder to display in the RecyclerView
      *
-     * @param position
-     * @return
      */
     @Override
     public int getItemViewType(int position) {
+        int VIEW_TYPE_LOADING = 1;
         return postList.get(position) == null ? VIEW_TYPE_LOADING : VIEW_TYPE_ITEM;
     }
 
     public static class PostViewHolder extends RecyclerView.ViewHolder{
-        TextView txtVideoName, txtUploadDateName, txtDuration, txtChannelName, txtUploadDate;
-        ImageView imgProfile, imgThumbnail;
-        public PostViewHolder(@NonNull View itemView) {
-            super(itemView);
-            txtVideoName = itemView.findViewById(R.id.video_name);
-            txtUploadDateName = itemView.findViewById(R.id.user_name);
-            txtDuration = itemView.findViewById(R.id.duration);
-            imgProfile = itemView.findViewById(R.id.profile_image);
-            imgThumbnail = itemView.findViewById(R.id.thumbnail);
-            txtChannelName = itemView.findViewById(R.id.channel_name);
-            txtUploadDate = itemView.findViewById(R.id.upload_date);
+        private final MFragmentHomeBinding binding;
+
+        public PostViewHolder(MFragmentHomeBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
     }
 
     public static class LoadingViewHolder extends RecyclerView.ViewHolder {
-        public ProgressBar progressBar;
-        public LoadingViewHolder(View itemView) {
-            super(itemView);
-            progressBar = (ProgressBar) itemView.findViewById(R.id.progressBarloading);
+        private final MDialogLoadingProgressBinding binding;
+
+        public LoadingViewHolder(MDialogLoadingProgressBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
     }
 }

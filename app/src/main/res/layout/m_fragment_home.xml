@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    card_view:cardCornerRadius="0dp"
+    card_view:cardCornerRadius="2dp"
     card_view:cardElevation="10dp"
     android:layout_height="wrap_content"
     card_view:cardBackgroundColor="@color/white">
@@ -22,7 +23,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:adjustViewBounds="true"
-                android:scaleType="centerCrop" />
+                android:scaleType="fitCenter"
+                android:contentDescription="@string/thumbnail_image" />
 
             <ImageView
                 android:id="@+id/id_play_icon"
@@ -30,7 +32,8 @@
                 android:layout_height="70dp"
                 android:layout_centerInParent="true"
                 android:background="@drawable/ic_play"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                android:contentDescription="@string/play_button" />
 
 
             <TextView
@@ -46,7 +49,7 @@
                 android:background="@drawable/ic_duration"
                 android:layout_marginEnd="3dp"
                 android:layout_marginBottom="3dp"
-                />
+                tools:ignore="SmallSp" />
 
         </RelativeLayout>
 
@@ -58,7 +61,8 @@
             android:layout_marginStart="2dp"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="5dp"
-            android:src="@drawable/ic_placeholder3" />
+            android:src="@drawable/placeholder_person"
+            android:contentDescription="@string/profile_picture" />
 
         <TextView
             android:id="@+id/video_name"
@@ -68,7 +72,6 @@
             android:layout_marginStart="50dp"
             android:layout_marginBottom="-10dp"
             android:fontFamily="@font/ubuntu_medium"
-            android:hint="@string/video_name"
             android:padding="5dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#000000"
@@ -91,11 +94,11 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/ubuntu"
                 android:padding="0dp"
-                android:text="@string/channel_name"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#8C8C8C"
                 android:textSize="10sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="SmallSp" />
 
             <TextView
                 android:id="@+id/upload_date"
@@ -103,12 +106,12 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
                 android:padding="0dp"
-                android:text="@string/abcd"
                 android:layout_marginStart="10dp"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#8C8C8C"
                 android:textSize="10sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="SmallSp" />
 
         </LinearLayout>
 

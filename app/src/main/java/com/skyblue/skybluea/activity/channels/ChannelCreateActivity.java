@@ -10,14 +10,12 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.skyblue.skybluea.R;
 import com.skyblue.skybluea.activity.HomeActivity;
-import com.skyblue.skybluea.activity.HomeActivity2;
 import com.skyblue.skybluea.database.DatabaseManager;
 import com.skyblue.skybluea.databinding.ActivityChannelCreateBinding;
 import com.skyblue.skybluea.helper.AppConstants;
@@ -78,7 +76,7 @@ public class ChannelCreateActivity extends AppCompatActivity {
 
         cancelButton.setOnClickListener(view -> {
             successDialog.dismiss();
-            Intent intent = new Intent(context, HomeActivity2.class);
+            Intent intent = new Intent(context, HomeActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();

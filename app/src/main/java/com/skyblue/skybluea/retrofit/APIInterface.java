@@ -30,6 +30,10 @@ public interface APIInterface {
     @POST("/skyblue/get_common_data.php")
     Call<List<Post>> getCommonPosts(@Field("user_id") String user_id);
 
+    @FormUrlEncoded
+    @POST("/skyblue/get_common_data.php")
+    Call<ResponseBody> getCommonPosts2(@Field("user_id") String user_id);
+
     @POST("/skyblue/login.php")
     Call<List<Login>> login(@Body RequestBody params);
 

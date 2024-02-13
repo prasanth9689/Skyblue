@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.skyblue.skybluea">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
@@ -22,11 +26,18 @@
         android:largeHeap="true"
         android:networkSecurityConfig="@xml/network_security_config"
         android:requestLegacyExternalStorage="true"
+        android:hardwareAccelerated="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:vmSafeMode="true"
         tools:targetApi="n">
+        <activity
+            android:name=".ChooseLanguageActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.skyblue.skybluea.helper.custom_media_picker.MediaPickerActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.CommonAccountDashboard"
             android:exported="false" />
@@ -40,7 +51,7 @@
             android:name=".activity.SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.HomeActivity2"
+            android:name=".activity.HomeActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -77,16 +88,12 @@
             android:name=".activity.registration.VerifyPhoneActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.HomeActivity"
-            android:exported="false"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
             android:name=".activity.registration.RegisterActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".activity.VideoViewActivity2"
+            android:name=".activity.VideoViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -98,23 +105,19 @@
             android:exported="false" />
         <activity
             android:name=".activity.UploadActivity"
-            android:exported="true" >
-
+            android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.SEND"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="video/mp4" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".activity.LoginActivity"
             android:exported="false"
             android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".activity.VideoViewActivity"
-            android:exported="false" />
-        <activity android:name=".helper.custom_media_picker.MediaPickerActivity" />
         <activity
             android:name=".activity.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -125,9 +128,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-
 
         <service
             android:name=".service.MyFirebaseService"

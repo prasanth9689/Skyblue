@@ -15,7 +15,6 @@ import android.widget.RelativeLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.skyblue.skybluea.R;
-import com.skyblue.skybluea.activity.HomeActivity2;
 import com.skyblue.skybluea.databinding.ActivityManageChannelBinding;
 
 public class ManageChannelActivity extends AppCompatActivity {

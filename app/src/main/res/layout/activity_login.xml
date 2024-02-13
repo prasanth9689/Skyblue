@@ -14,23 +14,13 @@
         android:scaleType="fitXY"
         android:src="@drawable/ic_login_vector" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="@string/sign_in"
-        android:textColor="@color/black"
-        android:textSize="40sp" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginBottom="150dp">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,8 +32,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/sign_in"
+                android:textColor="@color/black"
+                android:textSize="40sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/mobile_no"
                 android:textColor="@color/black"
+                android:layout_marginTop="30dp"
                 android:fontFamily="@font/poppins_semibold"/>
             <EditText
                 android:id="@+id/mobile"
