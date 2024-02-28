@@ -21,16 +21,7 @@
             app:srcCompat="@drawable/arrow_back"
             app:tint="@color/black" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/backBtn"
-            android:fontFamily="@font/open_sans"
-            android:text="@string/back"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
+
 
     </RelativeLayout>
     <LinearLayout
@@ -46,7 +37,7 @@
             android:text="@string/enter_name"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:fontFamily="@font/open_sans"/>
+            android:fontFamily="@font/ubuntu_medium"/>
 
         <EditText
             android:id="@+id/name_ed"
@@ -60,7 +51,7 @@
             android:inputType="textPersonName"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textStyle="bold"
-            android:fontFamily="@font/open_sans"/>
+            android:fontFamily="@font/ubuntu"/>
 
         <LinearLayout
             android:id="@+id/LinearLayoutDob"
@@ -74,9 +65,7 @@
                 android:id="@+id/Linearlayout_two"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
                 android:orientation="vertical">
-
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -86,7 +75,7 @@
                     android:textColor="@color/black"
                     android:textSize="15dp"
                     android:textStyle="bold"
-                    android:fontFamily="@font/open_sans"
+                    android:fontFamily="@font/ubuntu_medium"
                     tools:ignore="RtlHardcoded" />
 
                 <RelativeLayout
@@ -140,18 +129,17 @@
                 android:textColor="@color/black"
                 android:textSize="15dp"
                 android:textStyle="bold"
-                android:fontFamily="@font/open_sans"/>
+                android:fontFamily="@font/ubuntu_medium"/>
 
             <RadioButton
                 android:id="@+id/radioBtnMale"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:fontFamily="@font/open_sans"
+                android:fontFamily="@font/ubuntu"
                 android:background="@drawable/edit_text_login"
                 android:text="@string/male"
-                android:textSize="18dp"
-                android:textStyle="bold"
+                android:textSize="18sp"
                 android:theme="@style/AppTheme.WhiteAccent" />
 
             <RadioButton
@@ -159,11 +147,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/open_sans"
+                android:fontFamily="@font/ubuntu"
                 android:background="@drawable/edit_text_login"
                 android:text="@string/female"
-                android:textSize="18dp"
-                android:textStyle="bold"
+                android:textSize="18sp"
                 android:theme="@style/AppTheme.WhiteAccent" />
 
 
@@ -339,7 +326,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
-            android:fontFamily="@font/open_sans"
+            android:fontFamily="@font/ubuntu"
             android:text="@string/privacy_one"
             android:textColor="@color/grey" />
 
@@ -350,7 +337,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
             android:layout_toRightOf="@id/text_one"
-            android:fontFamily="@font/open_sans"
+            android:fontFamily="@font/ubuntu"
             android:text="@string/privacy_two"
             android:textColor="@color/black" />
 
@@ -360,7 +347,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/text_one"
             android:layout_marginLeft="5dp"
-            android:fontFamily="@font/open_sans"
+            android:fontFamily="@font/ubuntu"
             android:text="@string/privacy_three"
             android:textColor="@color/black" />
 
@@ -371,7 +358,7 @@
             android:layout_below="@id/text_one"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@id/text_two_one"
-            android:fontFamily="@font/open_sans"
+            android:fontFamily="@font/ubuntu"
             android:text="@string/privacy_four"
             android:textColor="@color/grey" />
 
@@ -382,7 +369,7 @@
             android:layout_below="@id/text_one"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@id/text_three"
-            android:fontFamily="@font/open_sans"
+            android:fontFamily="@font/ubuntu"
             android:text="@string/privacy_five"
             android:textColor="@color/black" />
 
@@ -399,7 +386,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="40dp"
         android:background="@drawable/btn_follow"
-        android:fontFamily="@font/open_sans"
+        android:fontFamily="@font/ubuntu"
         android:text="@string/create_an_acccount"
         android:textAllCaps="false"
         android:textColor="#ffffff"

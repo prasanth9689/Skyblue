@@ -52,10 +52,11 @@ import java.util.concurrent.TimeUnit;
 
 public class UploadActivity extends AppCompatActivity implements AdsMediaSource.MediaSourceFactory  {
     private ActivityUploadBinding binding;
+    private static final String TAG = "upload_";
     public static final String APP_DATA = "/.skyblue";
     private final Context context = this;
     private User user;
-    private String videoName, video_url, video_duration_final;
+    private String videoName, video_uri, video_duration_final;
     private EmojiPopup emojiPopup;
     private final String STATE_RESUME_WINDOW = "resumeWindow";
     private final String STATE_RESUME_POSITION = "resumePosition";
@@ -102,16 +103,16 @@ public class UploadActivity extends AppCompatActivity implements AdsMediaSource.
                     Uri videoFile = intent.getParcelableExtra(Intent.EXTRA_STREAM);
                    // Uri sendUri = Uri.fromFile(new File(String.valueOf(videoFile)));
                     assert videoFile != null;
-                    video_url = RealPathUtil.getRealPath(context, videoFile);
+                    video_uri = RealPathUtil.getRealPath(context, videoFile);
                 }
             }else {
-                video_url = getIntent().getStringExtra("img");
+                video_uri = getIntent().getStringExtra("img");
             }
         }
 
         createFolder();
         video_duration_final = getVideoDuration();
-        createThumbnail(video_url);
+        createThumbnail(video_uri);
         OnClickListener();
 
         String primaryChannelName = user.getChannel_primary_name();
@@ -149,7 +150,7 @@ public class UploadActivity extends AppCompatActivity implements AdsMediaSource.
 
     @SuppressLint("DefaultLocale")
     private String getVideoDuration() {
-        MediaPlayer mp = MediaPlayer.create(this, Uri.parse(video_url));
+        MediaPlayer mp = MediaPlayer.create(this, Uri.parse(video_uri));
         int duration = mp.getDuration();
         mp.release();
 
@@ -188,7 +189,7 @@ public class UploadActivity extends AppCompatActivity implements AdsMediaSource.
         serviceIntent.putExtra("video_name", unicodeEncodedVideoName);
         serviceIntent.putExtra("user_id", user.getUser_id());
         serviceIntent.putExtra("video_duration", video_duration_final);
-        serviceIntent.putExtra("video_url", video_url);
+        serviceIntent.putExtra("video_url", video_uri);
         serviceIntent.putExtra("thumbnail_url", dir);
         serviceIntent.putExtra("description", mDescription);
         serviceIntent.putExtra("duration", video_duration_final);
@@ -197,10 +198,16 @@ public class UploadActivity extends AppCompatActivity implements AdsMediaSource.
         ContextCompat.startForegroundService(this, serviceIntent);
     }
 
-    private void createThumbnail(String video_url) {
-        MediaMetadataRetriever mMMR = new MediaMetadataRetriever();
-        mMMR.setDataSource(context, Uri.parse(video_url));
-        Bitmap videoThumbnail = mMMR.getFrameAtTime();
+    private void createThumbnail(String video_uri) {
+        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+        retriever.setDataSource(context, Uri.parse(video_uri));
+
+        int width = Integer.parseInt(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH));
+        int height = Integer.parseInt(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT));
+
+        Log.e("upload_", "width * height" + "\t" + width + "*" + height);
+
+        Bitmap videoThumbnail = retriever.getFrameAtTime();
         saveThumbnail(videoThumbnail);
     }
 
@@ -299,7 +306,7 @@ public class UploadActivity extends AppCompatActivity implements AdsMediaSource.
             Log.i("DEBUG"," haveResumePosition ");
             player.seekTo(mResumeWindow, mResumePosition);
         }
-        MediaSource mVideoSource = buildMediaSource(Uri.parse(video_url));
+        MediaSource mVideoSource = buildMediaSource(Uri.parse(video_uri));
         player.prepare(mVideoSource);
         player.setPlayWhenReady(true);
     }

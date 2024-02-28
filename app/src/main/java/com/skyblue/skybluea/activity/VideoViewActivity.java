@@ -462,6 +462,11 @@ public class VideoViewActivity extends AppCompatActivity implements AdsMediaSour
             loggedUserName = user.getName();
 
             if (likeStatus != null) {
+
+                if (likeStatus.equals("null")){
+                    return;
+                }
+
                 int mLikeStatus = Integer.parseInt(likeStatus);
 
                 if (mLikeStatus == 1){

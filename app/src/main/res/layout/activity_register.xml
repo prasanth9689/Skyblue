@@ -24,16 +24,6 @@
             app:srcCompat="@drawable/arrow_back"
             app:tint="@color/black" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/backBtn"
-            android:fontFamily="@font/open_sans"
-            android:text="@string/back"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
 
     </RelativeLayout>
 
@@ -56,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
-                android:fontFamily="@font/poppins_light"
+                android:fontFamily="@font/ubuntu"
                 android:text="@string/please_enter_mobile_number_to_verify"
                 android:textColor="@color/black" />
 
@@ -68,7 +58,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans"
+                    android:fontFamily="@font/ubuntu_medium"
                     android:text="@string/enter_phone_number"
                     android:textColor="#000000"
                     android:textStyle="bold" />
@@ -102,7 +92,7 @@
                     android:layout_toEndOf="@id/ccp"
                     android:textCursorDrawable="@drawable/cursor_blue"
                     android:background="@drawable/edit_text_login"
-                    android:fontFamily="@font/open_sans"
+                    android:fontFamily="@font/ubuntu_medium"
                     android:hint="@string/phone_number"
                     android:inputType="phone"
                     android:singleLine="true"
@@ -118,7 +108,7 @@
                 android:layout_below="@id/mobileNo"
                 android:layout_marginTop="10dp"
                 android:background="@color/colorMessageBackground"
-                android:fontFamily="@font/open_sans"
+                android:fontFamily="@font/ubuntu_medium"
                 android:text="@string/continue_"
                 android:textColor="#FFFFFF"
                 android:textCursorDrawable="@drawable/cursor_blue"
