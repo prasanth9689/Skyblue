@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    card_view:cardCornerRadius="0dp"
+    card_view:cardElevation="10dp"
+    android:layout_height="wrap_content"
+    card_view:cardBackgroundColor="@color/white">
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+
+      <RelativeLayout
+          android:id="@+id/main"
+          android:layout_width="match_parent"
+          android:layout_height="200dp"
+          android:background="@color/shimmer_placeholder">
+
+         <ImageView
+             android:id="@+id/thumbnail"
+             android:layout_width="match_parent"
+             android:layout_height="200dp"
+             android:adjustViewBounds="true"
+             android:scaleType="centerCrop" />
+
+         <ImageView
+             android:id="@+id/id_play_icon"
+             android:layout_width="69dp"
+             android:layout_height="70dp"
+             android:layout_centerInParent="true"
+             android:background="@drawable/ic_play"
+             android:visibility="gone"/>
+
+
+            <TextView
+                android:id="@+id/duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="10sp"
+                android:padding="3dp"
+                android:textColor="@color/white"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="3dp"
+                android:background="@color/shimmer_placeholder"
+                />
+
+      </RelativeLayout>
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/profile_image"
+          android:layout_width="40dp"
+          android:layout_height="40dp"
+          android:layout_below="@id/main"
+          android:layout_marginStart="2dp"
+          android:layout_marginTop="2dp"
+          android:layout_marginBottom="5dp"
+          xmlns:app="http://schemas.android.com/apk/res-auto"
+          app:cardBackgroundColor="@color/shimmer_placeholder"
+         app:cardCornerRadius="50dp"
+          android:elevation="0dp"
+         />
+
+      <TextView
+          android:id="@+id/video_name"
+          android:layout_width="90dp"
+          android:layout_height="20dp"
+          android:layout_below="@id/main"
+          android:background="@color/shimmer_placeholder"
+          android:layout_marginStart="50dp"
+          android:layout_marginBottom="-10dp"
+          android:layout_marginTop="5dp"
+          android:fontFamily="@font/poppins_semibold"
+          android:padding="5dp"
+          android:textAppearance="?android:attr/textAppearanceSmall"
+          android:textColor="#000000"
+          android:textColorHint="#000000"
+          android:textSize="16sp"
+          android:textStyle="bold" />
+
+      <TextView
+          android:id="@+id/user_name"
+          android:layout_width="70dp"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/video_name"
+          android:layout_marginStart="50dp"
+          android:background="@color/shimmer_placeholder"
+          android:layout_marginTop="13dp"
+          android:fontFamily="@font/poppins_semibold"
+          android:padding="0dp"
+          android:textAppearance="?android:attr/textAppearanceSmall"
+          android:textColor="#8C8C8C"
+          android:textSize="10sp"
+          android:textStyle="bold" />
+
+   </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

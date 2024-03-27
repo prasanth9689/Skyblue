@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activity.UploadActivity">
+
+    <RelativeLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:elevation="20dp"
+        android:background="#FFFFFF">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back_btn"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:contentDescription="@string/todo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/upload"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_semibold"
+                android:layout_toEndOf="@+id/back"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="5dp"/>
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/main_media_frame"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+
+        android:background="#000000">
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/exoplayer"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            />
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/root_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/main_media_frame"
+        android:layout_alignParentBottom="false"
+        android:orientation="horizontal"
+        >
+
+        <RelativeLayout
+            android:id="@+id/rel_text_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+
+            <ImageView
+                android:id="@+id/emoji"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="3dp"
+                app:srcCompat="@drawable/ic_post_mood"
+                android:contentDescription="@string/todo"
+                app:tint="@color/grey" />
+
+            <ImageView
+                android:id="@+id/emoji_keyboard"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="3dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_post_keyboard"
+                tools:visibility="invisible"
+                android:contentDescription="@string/todo" />
+
+            <TextView
+                android:id="@+id/video_name_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name"
+                android:layout_toEndOf="@id/emoji_keyboard"
+                android:layout_marginStart="3dp"
+                android:textColor="@color/grey"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="18sp"/>
+
+            <com.vanniktech.emoji.EmojiEditText
+                android:id="@+id/video_name"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:textCursorDrawable="@drawable/cursor_blue"
+                android:layout_below="@id/video_name_text"
+                android:layout_marginTop="10dp"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:background="@drawable/bg_upload_video_edit"
+                android:ems="10"
+                android:gravity="top"
+                android:hint="@string/write_a_something"
+                android:imeOptions="actionSend"
+                android:inputType="textCapSentences|textMultiLine"
+                android:paddingHorizontal="10dp"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/description_name_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/video_name"
+                android:text="@string/description"
+                android:layout_marginStart="3dp"
+                android:textColor="@color/grey"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="18sp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"/>
+
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:inputType="textMultiLine"
+                android:paddingStart="10dp"
+                android:gravity="start"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/description_name_text"
+                android:textCursorDrawable="@drawable/cursor_blue"
+                android:hint="@string/write_a_something"
+                android:textColor="@color/black"
+                android:background="@drawable/bg_upload_video_edit"
+                android:fontFamily="@font/poppins_light"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/upload_primary_channel_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/description"
+                android:text="@string/upload_primary_channel"
+                android:layout_marginStart="3dp"
+                android:textColor="@color/grey"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="18sp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/primary_channel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:paddingStart="10dp"
+                android:gravity="start"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/upload_primary_channel_text"
+                android:textCursorDrawable="@drawable/cursor_blue"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:background="@drawable/bg_upload_video_edit"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/upload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/upload"
+        android:background="@color/colorPrimaryBlue"
+        android:textColor="#DFDFDF"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        />
+
+</RelativeLayout>
