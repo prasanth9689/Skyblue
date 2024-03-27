@@ -32,92 +32,8 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:vmSafeMode="true"
         tools:targetApi="n">
-        <activity
-            android:name=".ChooseLanguageActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.skyblue.skybluea.helper.custom_media_picker.MediaPickerActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.CommonAccountDashboard"
-            android:exported="false" />
-        <activity
-            android:name=".activity.report.ReportActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.channels.ManageChannelActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.SearchActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.HomeActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.channels.ChannelCreateActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.channels.ChannelsDashboard"
-            android:exported="false" />
-        <activity
-            android:name=".settings.TermsAndConActivity"
-            android:exported="false" />
-        <activity
-            android:name=".settings.SettingsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.account.MyProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.account.MyVideoListActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.account.AccountActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.PrivacyPolicyActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.registration.NameActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.registration.PasswordActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.registration.VerifyPhoneActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.registration.RegisterActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".activity.VideoViewActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".helper.custom_media_picker.ImageDisplay"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.GetStartedActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.UploadActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
 
-                <category android:name="android.intent.category.DEFAULT" />
 
-                <data android:mimeType="video/mp4" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".activity.LoginActivity"
-            android:exported="false"
-            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".activity.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -129,17 +45,8 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name=".service.MyFirebaseService"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-        <service
-            android:name=".service.UploadService"
-            android:exported="false" />
+
+
 
         <uses-library
             android:name="org.apache.http.legacy"
