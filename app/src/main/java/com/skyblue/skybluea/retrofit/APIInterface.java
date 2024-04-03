@@ -114,4 +114,8 @@ public interface APIInterface {
     @POST("/skyblue/subscription_new.php")
     Call<ResponseBody> subscriptionNew(@Part("logged_user_id") RequestBody logged_user_id,
                                        @Part("channel_id") RequestBody channel_id);
+
+    // ---------------------------
+    @POST("/skyblue/login2.php")
+    Call<List<Login>> login2(@Body RequestBody params);
 }

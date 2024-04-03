@@ -11,8 +11,8 @@ android {
         minSdk 23
         //noinspection OldTargetApi
         targetSdk 33
-        versionCode 2301315
-        versionName "2301315"
+        versionCode 2301316
+        versionName "2301316"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -93,4 +93,5 @@ dependencies {
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
     implementation 'androidx.browser:browser:1.6.0-alpha02'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
+    implementation("com.google.android.gms:play-services-auth:20.5.0")
 }

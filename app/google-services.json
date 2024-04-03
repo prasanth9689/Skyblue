@@ -1,34 +1,41 @@
 {
   "project_info": {
-    "project_number": "852456076552",
-    "firebase_url": "https://ccpfirebaseproject.firebaseio.com",
-    "project_id": "ccpfirebaseproject",
-    "storage_bucket": "ccpfirebaseproject.appspot.com"
+    "project_number": "1067068556875",
+    "project_id": "skyblue-419106",
+    "storage_bucket": "skyblue-419106.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:852456076552:android:3fcb7a49a8acdaf114e8bd",
+        "mobilesdk_app_id": "1:1067068556875:android:b24f530967871e203cefce",
         "android_client_info": {
           "package_name": "com.skyblue.skybluea"
         }
       },
       "oauth_client": [
         {
-          "client_id": "852456076552-deh2nqk6k3sro9k2qb32qqdahanrhf97.apps.googleusercontent.com",
+          "client_id": "1067068556875-ojt9u704ob1s3eau6i5833iinkcd8hgj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skyblue.skybluea",
+            "certificate_hash": "102c2cb84c2e879cfd39e236f80f8f37f2b06a8f"
+          }
+        },
+        {
+          "client_id": "1067068556875-jsui4v6s5efg2ll9vajhvohe4hif85j7.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBjuQHu4N98PnuUyAVc4UFCtZIVIuFD3mA"
+          "current_key": "AIzaSyCt5o5qfvY_lwzlO83lK-WPqjdEhvb56nQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "852456076552-deh2nqk6k3sro9k2qb32qqdahanrhf97.apps.googleusercontent.com",
+              "client_id": "1067068556875-jsui4v6s5efg2ll9vajhvohe4hif85j7.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

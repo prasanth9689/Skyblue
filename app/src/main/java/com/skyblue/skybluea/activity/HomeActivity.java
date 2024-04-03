@@ -31,6 +31,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.skyblue.skybluea.R;
 import com.skyblue.skybluea.activity.account.AccountActivity;
 import com.skyblue.skybluea.activity.channels.ChannelsDashboard;
+import com.skyblue.skybluea.activity.registration2.LoginActivity2;
 import com.skyblue.skybluea.adapters.ChannelsPrimarySelectAdapater;
 import com.skyblue.skybluea.adapters.PostAdapter;
 import com.skyblue.skybluea.database.DatabaseManager;
@@ -363,7 +364,7 @@ public class HomeActivity extends AppCompatActivity{
     }
 
     private void login() {
-        Intent i = new Intent(context, LoginActivity.class);
+        Intent i = new Intent(context, LoginActivity2.class);
         startActivity(i);
     }
 
