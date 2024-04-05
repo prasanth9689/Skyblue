@@ -9,20 +9,15 @@
     <color name="red">#FF1100</color>
     <color name="colorPrimaryBlueT">#3861D1</color>
     <color name="shadow_1">#d4d4d4</color>
-
     <color name="white">#FFFFFF</color>
     <color name="dark_blue">#070E39</color>
     <color name="company_search_light_dark">#2D4860</color>
-
-
     <color name="green">#2BBD18</color>
     <color name="layout_background">#EEF2F6</color>
     <color name="light">#B5B5B5</color>
     <color name="light2">#8F8F8F</color>
     <color name="colorTopMenu">#DDF0FA</color>
-
     <color name="colorMessageBackground">#1976D2</color>
-
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -30,17 +25,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="black_light">#FF535353</color>
-
     <color name="grey">#848282</color>
     <color name="lightgrey">#a6FFFFFF</color>
-
     <color name="orange">#FFA500</color>
     <color name="lightorange">#A6FFA500</color>
-
     <color name="skyblue">#4BB4E9</color>
-
     <color name="image_placeholder_bg">#E6E6E6</color>
-
     <color name="post_text_color_1">#3F51B5</color>
     <color name="post_text_color_2">#9C27B0</color>
     <color name="post_text_color_3">#298800</color>
@@ -52,14 +42,11 @@
     <color name="post_text_color_9">#6A1B9A</color>
     <color name="post_text_color_10">#AD1457</color>
     <color name="post_text_color_11">#0277BD</color>
-
     <color name="windowBackground">#FFFFFF</color>
     <color name="titleTextColor">#FFFFFF</color>
     <color name="titleTabColor">#000000</color>
     <color name="titleSelectedTabColor">#3F51B5</color>
-
     <color name="tab_selected_1">#008EFF</color>
     <color name="tab_selected_2">#008EFF</color>
-
     <color name="black_overlay">#66000000</color>
 </resources>

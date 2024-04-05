@@ -56,11 +56,10 @@ public class VerifyPhoneActivity2 extends AppCompatActivity {
     private ProgressDialog pDialog;
     private Dialog sendingOtpDialog;
     String getotp , firebase_token;
-    String mobileNo;
+    String mMobileNoFull, mMobileNo, mPhoneCode, mCountryName;
     private Dialog progressbar;
     APIInterface apiInterface;
     private SessionHandler session;
-    int time=60;
 
     PhoneAuthProvider.OnVerificationStateChangedCallbacks
             mCallBack = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -72,6 +71,7 @@ public class VerifyPhoneActivity2 extends AppCompatActivity {
                 Log.e("otp_", "success");
                 sendingOtpDialog.dismiss();
                 verificationId = s;
+                settimer();
             }
         }
 
@@ -96,6 +96,22 @@ public class VerifyPhoneActivity2 extends AppCompatActivity {
         }
     };
 
+    public void settimer() {
+        binding.reSend.setVisibility(View.GONE);
+        binding.textTimer.setVisibility(View.VISIBLE);
+        new CountDownTimer(30000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                long remainedSecs = millisUntilFinished / 1000;
+                binding.textTimer.setText("" + (remainedSecs / 60) + ":" + (remainedSecs % 60));
+            }
+            public void onFinish() {
+
+                binding.reSend.setVisibility(View.VISIBLE);
+                binding.textTimer.setVisibility(View.GONE);
+            }
+        }.start();
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,24 +124,15 @@ public class VerifyPhoneActivity2 extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        new CountDownTimer(60000, 1000) {
+        mMobileNoFull = getIntent().getStringExtra("mobile_full");
+        mMobileNo = getIntent().getStringExtra("mobile");
+        mPhoneCode = getIntent().getStringExtra("phone_code");
+        mCountryName = getIntent().getStringExtra("country_name");
 
-            public void onTick(long millisUntilFinished) {
-                binding.textTimer.setText("0:"+checkDigit(time));
-                time--;
-            }
+        binding.mobile.setText(mMobileNoFull);
 
-            public void onFinish() {
-           //    binding.textTimer.setText("try again");
-                binding.textTimer.setVisibility(View.GONE);
-                binding.reSend.setVisibility(View.VISIBLE);
-            }
-
-        }.start();
-
-        mobileNo = getIntent().getStringExtra("mobile");
         getotp = getIntent().getStringExtra("s");
-        sendVerificationCode( mobileNo);
+        sendVerificationCode( mMobileNoFull);
         setOnClickListener();
         initSendingOtpDialog();
         sendingOtpDialog.show();
@@ -194,7 +201,7 @@ public class VerifyPhoneActivity2 extends AppCompatActivity {
         //newUser();
         apiInterface = APIClient.getClient().create(APIInterface.class);
 
-        Call<String> call = apiInterface.check_user(mobileNo);
+        Call<String> call = apiInterface.check_user(mMobileNoFull);
 
         call.enqueue(new Callback<String>() {
             @Override
@@ -224,7 +231,7 @@ public class VerifyPhoneActivity2 extends AppCompatActivity {
             loginProgressBar();
             RequestBody requestBody = new MultipartBody.Builder()
                     .setType(MultipartBody.FORM)
-                    .addFormDataPart("mobile", mobileNo)
+                    .addFormDataPart("mobile", mMobileNoFull)
                     .addFormDataPart("token", String.valueOf(firebase_token))
                     .build();
 
@@ -252,7 +259,7 @@ public class VerifyPhoneActivity2 extends AppCompatActivity {
 
                                 case 4:
                                     showMessageInSnackbar(context, getString(R.string.success));
-                                    session.loginUser(mobileNo,
+                                    session.loginUser(mMobileNoFull,
                                             login.getUser_name(),
                                             login.getUser_id(),
                                             login.getProfile_image(),
@@ -309,8 +316,12 @@ public class VerifyPhoneActivity2 extends AppCompatActivity {
 
     private void newUser() {
         Intent intent = new Intent(context, NameActivity2.class);
-        intent.putExtra("mobile", mobileNo);
+        intent.putExtra("mobile", mMobileNo);
+        intent.putExtra("mobile_full", mMobileNoFull);
+        intent.putExtra("phone_code", mPhoneCode);
+        intent.putExtra("country_name", mCountryName);
         startActivity(intent);
+        finish();
     }
 
     private void setOnClickListener() {
@@ -325,6 +336,16 @@ public class VerifyPhoneActivity2 extends AppCompatActivity {
 
         });
         binding.backBtn.setOnClickListener(view -> finish());
+
+        binding.reSend.setOnClickListener(v -> {
+            sendVerificationCode( mMobileNoFull);
+            sendingOtpDialog.show();
+            binding.reSend.setVisibility(View.GONE);
+            binding.textTimer.setVisibility(View.VISIBLE);
+            settimer();
+        });
+
+        binding.edit.setOnClickListener(v -> finish());
     }
 
     private void displayLoader() {

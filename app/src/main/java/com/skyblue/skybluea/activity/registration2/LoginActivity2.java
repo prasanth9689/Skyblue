@@ -30,7 +30,7 @@ public class LoginActivity2 extends AppCompatActivity {
     CardView cvGoogleSignIn;
     private GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 1;
-    private String mobileNo , countryCodeWithPlus , countryName , mobileFullNo;
+    private String mPhoneCode, mCountryName , mobileFullNo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,11 +58,15 @@ public class LoginActivity2 extends AppCompatActivity {
                     binding.mobile.requestFocus();
                     return;
                 }
-                countryCodeWithPlus = binding.ccp.getSelectedCountryCodeWithPlus();
-                mobileFullNo =countryCodeWithPlus + mMobile;
+                mPhoneCode = binding.ccp.getSelectedCountryCodeWithPlus();
+                mCountryName = binding.ccp.getSelectedCountryName();
+                mobileFullNo =mPhoneCode + mMobile;
 
                 Intent intent = new Intent(context, VerifyPhoneActivity2.class);
-                intent.putExtra("mobile", mobileFullNo);
+                intent.putExtra("mobile", mMobile);
+                intent.putExtra("mobile_full", mobileFullNo);
+                intent.putExtra("phone_code", mPhoneCode);
+                intent.putExtra("country_name", mCountryName);
                 startActivity(intent);
             }
         });

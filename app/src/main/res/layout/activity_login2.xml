@@ -83,9 +83,9 @@
 
             <EditText
                 android:id="@+id/mobile"
-                style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:paddingStart="10dp"
                 android:layout_centerHorizontal="false"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="5dp"
@@ -96,7 +96,6 @@
                 android:hint="@string/phone_number"
                 android:inputType="phone"
                 android:singleLine="true"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textStyle="bold" />
 
         </RelativeLayout>
