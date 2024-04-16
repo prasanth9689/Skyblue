@@ -125,4 +125,7 @@ public interface APIInterface {
 
     @POST("/skyblue/register2.php")
     Call<List<Register>> registerEmailSign(@Body RequestBody params);
+
+    @POST("/skyblue/get_email_sign_in_details.php")
+    Call<List<Login>> getEmailSignInDetails(@Body RequestBody params);
 }

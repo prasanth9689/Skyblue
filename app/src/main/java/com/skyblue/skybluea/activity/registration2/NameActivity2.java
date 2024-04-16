@@ -44,11 +44,6 @@ public class NameActivity2 extends AppCompatActivity {
     private ActivityName2Binding binding;
     private final Context context = this;
     private SessionHandler session;
-    private static final String SHARED_PREFE_ID = "mypref";
-    private static final String PREFE_REG_MOBILE = "mobile";
-    private static final String PREFE_REG_MOBILE_WITH_C_CODE = "mobile_cc";
-    private static final String PREFE_REG_C_NAME = "country";
-    private static final String PREFE_C_CODE = "country_code";
     private String firebaseToken;
     private ProgressDialog progressDialog;
 
@@ -165,7 +160,7 @@ public class NameActivity2 extends AppCompatActivity {
                             String userId = register.user_id;
 
                             if (userId != null && !userId.isEmpty()) {
-                                session.loginUser(mMobileNoFull,userName,userId,"","",genderName,dateDob,firebaseToken);
+                                session.loginUser(mMobileNoFull, "null", "null",userName,userId,"","",genderName,dateDob,firebaseToken);
                                 Intent intent = new Intent(context, HomeActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);

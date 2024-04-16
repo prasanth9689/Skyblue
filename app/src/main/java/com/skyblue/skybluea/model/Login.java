@@ -1,6 +1,10 @@
 package com.skyblue.skybluea.model;
 
 public class Login {
+    String mobile;
+    String mobile_no_full;
+    String email;
+    String email_person_id;
     String message;
     String user_name;
     String user_id;
@@ -9,6 +13,38 @@ public class Login {
     String gender;
     String dob;
     String firebase_token;
+
+    public void setMobile_no_full(String mobile_no_full) {
+        this.mobile_no_full = mobile_no_full;
+    }
+
+    public String getMobile_no_full() {
+        return mobile_no_full;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getEmail_person_id() {
+        return email_person_id;
+    }
+
+    public void setEmail_person_id(String email_person_id) {
+        this.email_person_id = email_person_id;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
 
     public String getMessage() {
         return message;

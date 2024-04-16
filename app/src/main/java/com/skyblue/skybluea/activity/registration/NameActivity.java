@@ -170,7 +170,7 @@ public class NameActivity extends AppCompatActivity {
                             String userId = register.user_id;
 
                             if (userId != null && !userId.isEmpty()) {
-                                session.loginUser(mobile,userName,userId,"","",genderName,dateDob,firebaseToken);
+                                session.loginUser(mobile, "null", "null",userName,userId,"","",genderName,dateDob,firebaseToken);
                                 Intent intent = new Intent(context, HomeActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);

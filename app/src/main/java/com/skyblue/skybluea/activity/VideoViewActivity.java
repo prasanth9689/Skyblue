@@ -599,7 +599,28 @@ public class VideoViewActivity extends AppCompatActivity implements AdsMediaSour
                 }
             });
         });
-         }
+
+        binding.likeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.likeCheckbox.performClick();
+            }
+        });
+
+        binding.likeTextview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.likeCheckbox.performClick();
+            }
+        });
+
+        binding.commentCheckbox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.commentRoundBox.performClick();
+            }
+        });
+    }
 
     private void openPostCommentDialog() {
         EditText edText = bottomSheetDialog.findViewById(R.id.edit_text);

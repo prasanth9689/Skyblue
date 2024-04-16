@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.account.add_mobile.AddMobileNumberActivity">
+
+        <RelativeLayout
+            android:id="@+id/top"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="35dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/arrow_back"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="5dp"
+                app:tint="@color/black"
+                android:contentDescription="@string/back" />
+
+            <TextView
+                android:id="@+id/event_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@id/back"
+                android:fontFamily="@font/ubuntu_medium"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="100dp">
+
+            <LinearLayout
+                android:id="@+id/enter_phone_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ubuntu_medium"
+                    android:text="Enter mobile number to get OTP"
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/ubuntu_medium"
+                    android:text="@string/mobile_no"
+                    android:textColor="@color/black" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp">
+
+                    <com.hbb20.CountryCodePicker
+                        android:id="@+id/ccp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/edit_text_login"
+                        android:fontFamily="@font/open_sans"
+                        app:ccpDialog_keyboardAutoPopup="false"
+                        app:ccp_autoDetectCountry="true"
+                        app:ccp_showFlag="false" />
+
+                    <EditText
+                        android:id="@+id/mobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_centerHorizontal="false"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_toEndOf="@id/ccp"
+                        android:background="@drawable/edit_text_login"
+                        android:fontFamily="@font/ubuntu_medium"
+                        android:hint="@string/phone_number"
+                        android:inputType="phone"
+                        android:paddingStart="10dp"
+                        android:singleLine="true"
+                        android:textCursorDrawable="@drawable/cursor_blue"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+                <Button
+                    android:id="@+id/get_otp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/btn_follow"
+                    android:fontFamily="@font/ubuntu_medium"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:text="Get OTP"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/otp_verify_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ubuntu_medium"
+                    android:text="@string/enter_verification_code"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                    android:textColor="@color/dark_blue"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Entered mobile no is :"
+                        android:textColor="@color/black_light"/>
+
+                    <TextView
+                        android:id="@+id/mobile2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:textColor="@color/black"/>
+
+                    <TextView
+                        android:id="@+id/edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Edit?"
+                        android:layout_marginStart="4dp"
+                        android:textColor="@color/colorPrimaryBlue"/>
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/editTextCode"
+                    style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edit_text_login"
+                    android:textCursorDrawable="@drawable/cursor_blue"
+                    android:digits="0123456789"
+                    android:fontFamily="@font/ubuntu"
+                    android:gravity="center"
+                    android:hint="@string/enter_code"
+                    android:inputType="phone"
+                    android:maxLength="6"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/verify"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/colorMessageBackground"
+                    android:fontFamily="@font/ubuntu"
+                    android:text="@string/verify"
+                    android:textAllCaps="false"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/open_sans"
+                        android:textColor="@color/grey"
+                        android:textStyle="bold"
+                        android:text="OTP Not received?"/>
+
+                    <TextView
+                        android:id="@+id/text_timer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/open_sans"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:text=""/>
+
+                    <TextView
+                        android:id="@+id/re_send"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/open_sans"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:text="Re-send OTP"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

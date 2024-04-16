@@ -199,7 +199,7 @@ public class VerifyPhoneActivity2 extends AppCompatActivity {
         progressbar.show();
 
         //newUser();
-        apiInterface = APIClient.getClient().create(APIInterface.class);
+        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
 
         Call<String> call = apiInterface.check_user(mMobileNoFull);
 
@@ -260,6 +260,8 @@ public class VerifyPhoneActivity2 extends AppCompatActivity {
                                 case 4:
                                     showMessageInSnackbar(context, getString(R.string.success));
                                     session.loginUser(mMobileNoFull,
+                                            "null",
+                                            "null",
                                             login.getUser_name(),
                                             login.getUser_id(),
                                             login.getProfile_image(),

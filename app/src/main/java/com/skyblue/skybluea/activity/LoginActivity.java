@@ -127,6 +127,8 @@ public class LoginActivity extends AppCompatActivity {
                             case 4:
                                 showMessageInSnackbar(getString(R.string.success));
                                 session.loginUser(mobile,
+                                        "null",
+                                        "null",
                                         login.getUser_name(),
                                         login.getUser_id(),
                                         login.getProfile_image(),
@@ -154,7 +156,6 @@ public class LoginActivity extends AppCompatActivity {
                     pDialog.dismiss();
                     Utils.showMessageInSnackbar(context, getString(R.string.failed));
                 }
-
             }
 
             @Override

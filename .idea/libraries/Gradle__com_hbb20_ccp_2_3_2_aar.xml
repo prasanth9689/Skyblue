@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.hbb20:ccp:2.3.2@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b2bc9f902cb56ea1a122d8fd2d5df814/transformed/jetified-ccp-2.3.2/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/b2bc9f902cb56ea1a122d8fd2d5df814/transformed/jetified-ccp-2.3.2/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b2bc9f902cb56ea1a122d8fd2d5df814/transformed/jetified-ccp-2.3.2/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/e615281b7a66045987b276f934c3de34/transformed/jetified-ccp-2.3.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e615281b7a66045987b276f934c3de34/transformed/jetified-ccp-2.3.2/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e615281b7a66045987b276f934c3de34/transformed/jetified-ccp-2.3.2/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.hbb20/ccp/2.3.2/a181fb216950654f59d2c698a5704f658983998b/ccp-2.3.2-javadoc.jar!/" />

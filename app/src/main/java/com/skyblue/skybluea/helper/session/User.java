@@ -4,8 +4,24 @@ import java.util.Date;
 
 public class User {
     String mobile , name , user_id , user_profile , user_cover , user_gender , user_dob , firebase_token;
-    String channel_primary_id, channel_primary_name;
+    String channel_primary_id, channel_primary_name, email, email_person_id;
     Date sessionExpiryDate;
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setEmail_person_id(String email_person_id) {
+        this.email_person_id = email_person_id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getEmail_person_id() {
+        return email_person_id;
+    }
 
     public void setMobile(String mobile) {
         this.mobile = mobile;

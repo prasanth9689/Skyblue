@@ -37,11 +37,6 @@ public class RegisterActivity extends AppCompatActivity {
     private ActivityRegisterBinding binding;
     private Context context = this;
     private Dialog progressbar;
-    private static final String SHARED_PREFE_ID = "mypref";
-    private static final String PREFE_REG_MOBILE = "mobile";
-    private static final String PREFE_REG_MOBILE_WITH_C_CODE = "mobile_cc";
-    private static final String PREFE_REG_C_NAME = "country";
-    private static final String PREFE_C_CODE = "country_code";
     APIInterface apiInterface;
     private String mobileNo , countryCodeWithPlus , countryName , mobileFullNo;
 
@@ -122,20 +117,9 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void newUser() {
-        setSharedPreference();
         Intent intent = new Intent(context, VerifyPhoneActivity.class);
         intent.putExtra("mobile", mobileFullNo);
         startActivity(intent);
-    }
-
-    private void setSharedPreference() {
-        SharedPreferences sp = getSharedPreferences(SHARED_PREFE_ID, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putString(PREFE_REG_MOBILE, mobileNo);
-        editor.putString(PREFE_REG_MOBILE_WITH_C_CODE, mobileFullNo);
-        editor.putString(PREFE_REG_C_NAME, countryName);
-        editor.putString(PREFE_C_CODE, countryCodeWithPlus);
-        editor.apply();
     }
 
     private void initProgressBar() {

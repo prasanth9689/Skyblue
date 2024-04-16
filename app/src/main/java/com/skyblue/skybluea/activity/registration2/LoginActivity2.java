@@ -5,16 +5,27 @@ import static com.skyblue.skybluea.helper.Utils.showMessageInSnackbar;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.location.Address;
+import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -25,15 +36,23 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.skyblue.skybluea.R;
 import com.skyblue.skybluea.activity.HomeActivity;
+import com.skyblue.skybluea.activity.LoginActivity;
 import com.skyblue.skybluea.databinding.ActivityLogin2Binding;
+import com.skyblue.skybluea.helper.Utils;
 import com.skyblue.skybluea.helper.session.SessionHandler;
+import com.skyblue.skybluea.model.Login;
 import com.skyblue.skybluea.model.Register;
 import com.skyblue.skybluea.retrofit.APIClient;
 import com.skyblue.skybluea.retrofit.APIInterface;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -50,9 +69,10 @@ public class LoginActivity2 extends AppCompatActivity {
     CardView cvGoogleSignIn;
     private GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 1;
-    private String mPhoneCode, mCountryName , mobileFullNo;
+    private String mPhoneCode, mCountryName, mobileFullNo;
     private Dialog progressbar;
     private String personId, personName, personGivenName, personFamilyName, personEmail, personToken, personPhoto;
+    private APIInterface apiInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,14 +97,14 @@ public class LoginActivity2 extends AppCompatActivity {
             public void onClick(View v) {
                 String mMobile = binding.mobile.getText().toString().trim();
 
-                if ("".equals(mMobile) || mMobile.isEmpty()){
+                if ("".equals(mMobile) || mMobile.isEmpty()) {
                     binding.mobile.setError("Enter valid mobile no");
                     binding.mobile.requestFocus();
                     return;
                 }
                 mPhoneCode = binding.ccp.getSelectedCountryCodeWithPlus();
                 mCountryName = binding.ccp.getSelectedCountryName();
-                mobileFullNo =mPhoneCode + mMobile;
+                mobileFullNo = mPhoneCode + mMobile;
 
                 Intent intent = new Intent(context, VerifyPhoneActivity2.class);
                 intent.putExtra("mobile", mMobile);
@@ -94,6 +114,12 @@ public class LoginActivity2 extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        getCountry();
+    }
+
+    private void  getCountry() {
+
     }
 
     private void signIn() {
@@ -149,7 +175,7 @@ public class LoginActivity2 extends AppCompatActivity {
         progressbar.setCancelable(false);
         progressbar.show();
 
-        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+        apiInterface = APIClient.getClient().create(APIInterface.class);
 
         Call<String> call = apiInterface.check_user_email(personId);
 
@@ -163,8 +189,7 @@ public class LoginActivity2 extends AppCompatActivity {
                            New save user details to server
                            and then local user session
                          */
-                        Toast.makeText(context, "New user", Toast.LENGTH_SHORT).show();
-                        Log.e("login_", "New user");
+                        Log.e("Login_", "New user");
                           registerNewUser();
                     }else {
 
@@ -172,7 +197,8 @@ public class LoginActivity2 extends AppCompatActivity {
                           Already_registered user
                           Save local user session
                          */
-                        Toast.makeText(context, "Already registered user", Toast.LENGTH_SHORT).show();
+                        getUserDetails();
+                        Log.e("Login_", "Already registered user");
                     }
                 } else {
                     showMessageInSnackbar(context, getResources().getString(R.string.server_error));
@@ -187,13 +213,90 @@ public class LoginActivity2 extends AppCompatActivity {
         });
     }
 
-    private void registerNewUser() {
+    private void getUserDetails() {
+        ProgressDialog pDialog = new ProgressDialog(context, R.style.AppCompatAlertDialogStyle);
+        pDialog.setMessage("Sign in success. Intialize please wait.");
+        pDialog.setIndeterminate(false);
+        pDialog.setCancelable(false);
+        pDialog.show();
+
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("email_person_id", personId)
                 .build();
 
-        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+        Call<List<Login>> call= apiInterface.getEmailSignInDetails(requestBody);
+
+        call.enqueue(new Callback<>() {
+            @Override
+            public void onResponse(@NonNull Call<List<Login>> call, @NonNull Response<List<Login>> response) {
+                if (response.code() == 200) {
+                    assert response.body() != null;
+                    for(Login login: response.body()) {
+                        pDialog.dismiss();
+
+                        showMessageInSnackbar(context, getString(R.string.success));
+                        session.loginUser(login.getMobile_no_full(),
+                                login.getEmail(),
+                                login.getEmail_person_id(),
+                                login.getUser_name(),
+                                login.getUser_id(),
+                                login.getProfile_image(),
+                                login.getCover_image(),
+                                login.getGender(),
+                                login.getDob(),
+                                login.getFirebase_token());
+                        loadHome();
+                    }
+                } else {
+                    pDialog.dismiss();
+                    Utils.showMessageInSnackbar(context, getString(R.string.failed));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<Login>> call, @NonNull Throwable t) {
+                pDialog.dismiss();
+                Toast.makeText(context, t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+    }
+
+    private void loadHome() {
+        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
+    }
+
+    private void registerNewUser() {
+        // get today date
+        String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+        String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+        String currentTimeZone = new SimpleDateFormat("z", Locale.getDefault()).format(new Date());
+
+        // get timezone
+        String timeZone = currentDate +" "+ currentTime +" "+ currentTimeZone;
+
+        String countryName = binding.ccp.getSelectedCountryName();
+        String countryPhoneCode = binding.ccp.getSelectedCountryCodeWithPlus();
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("email_person_id", personId)
+                .addFormDataPart("person_name", personName)
+                .addFormDataPart("country_name", countryName)
+                .addFormDataPart("phone_code", countryPhoneCode)
+                .addFormDataPart("email", personEmail)
+                .addFormDataPart("date", currentDate)
+                .addFormDataPart("time", currentTime)
+                .addFormDataPart("time_zone", currentTimeZone)
+                .addFormDataPart("date_time_zone", timeZone)
+                .addFormDataPart("firebase_token", "test")
+                .build();
+
+        apiInterface = APIClient.getClient().create(APIInterface.class);
         Call<List<Register>> call = apiInterface.registerEmailSign(requestBody);
 
         call.enqueue(new Callback<>() {
@@ -205,7 +308,7 @@ public class LoginActivity2 extends AppCompatActivity {
                             String userId = register.user_id;
 
                             if (userId != null && !userId.isEmpty()) {
-                                session.loginUser("Email signed",personName,userId,"Email signed","Email signed","Email signed","","Email signed");
+                                session.loginUser("null", personEmail, personId, personName,userId,personPhoto,"null","null","","null");
                                 Intent intent = new Intent(context, HomeActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);

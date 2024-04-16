@@ -8,6 +8,8 @@ import java.util.Date;
 public class SessionHandler {
     private static final String PREF_NAME = "UserSession";
     private static final String KEY_MOBILE = "mobile";
+    private static final String KEY_EMAIL = "email";
+    private static final String KEY_EMAIL_PERSON_ID = "email_person_id";
     private static final String KEY_EXPIRES = "expires";
     private static final String KEY_NAME = "name";
     private static final String KEY_EMPTY = "";
@@ -35,8 +37,10 @@ public class SessionHandler {
      * @param mobile
      * @param name
      */
-    public void loginUser(String mobile, String name , String user_id , String user_profile , String user_cover, String user_gender, String user_dob , String firebase_token) {
+    public void loginUser(String mobile, String email, String emailPersonId, String name , String user_id , String user_profile , String user_cover, String user_gender, String user_dob , String firebase_token) {
         mEditor.putString(KEY_MOBILE, mobile);
+        mEditor.putString(KEY_EMAIL, email);
+        mEditor.putString(KEY_EMAIL_PERSON_ID, emailPersonId);
         mEditor.putString(KEY_NAME, name);
         mEditor.putString(KEY_USER_ID, user_id);
         mEditor.putString(KEY_USER_PROFILE, user_profile);
@@ -124,6 +128,8 @@ public class SessionHandler {
         user.setFirebase_token(mPreferences.getString(KEY_FIREBASE_TOKEN, KEY_EMPTY));
         user.setChannel_primary_id(mPreferences.getString(KEY_PRIMARY_CHANNEL_ID, KEY_EMPTY));
         user.setChannel_primary_name(mPreferences.getString(KEY_PRIMARY_CHANNEL_NAME, KEY_EMPTY));
+        user.setEmail(mPreferences.getString(KEY_EMAIL, KEY_EMPTY));
+        user.setEmail_person_id(mPreferences.getString(KEY_EMAIL_PERSON_ID, KEY_EMPTY));
 
         return user;
     }
