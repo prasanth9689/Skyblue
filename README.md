@@ -1,61 +1,4 @@
-Important priority
-
-Test
-
-### Registration
-1, Get number
--> mobile no and country code
-2, OTP verification
-3, Set password
--> password
--> confirm password
-4, Complete registration
-
-### Login
-1, Login
-
-### Home
-1, List videos
-
-### SessionHandler
-1, signup
--> store mobile no, username, firbase token, gender, dob
-### Login
--> store mobile no, username, firbase token, gender, dob
-
-### Video view activity
-- 1, play video
-- 2, custom play controls
-- 3, video name
-- 4, likes button
-- 5, likes count
-- 6, comments button
-- -> comments view -> write comment
-- -> edit comment -> delete comment
-- -> report comment
-- 7, subscribe button
-- -> unsubscribe button
-- 8, post user
-- 9, channel name, channel thumbnail
-
-### Account
-1, Edit my profile
-- Edit name , dob, gender
-  2, Show upload videos
-- manage -> delete
-  -> edit -> rename video -> change thumbnail
-  3, Logout
-  -> redirect to home
-
-
-   1, Video view activity (Full screen landscapse)
-   2, Checking upload parameter server side
-   3, Custom thumbnail 
-   4, Chennal managemant
-   5, search
-
-2, Adapter context issue
-   java.lang.NullPointerException: You cannot start a load on a not yet attached View or a Fragment where getActivity() returns null (which usually occurs when getActivity()
+Important priority and Jenkins configurations
 
 3, Exo player old
    https://github.com/quicklearner4991/Exoplayer-VideoPlayer-in-Recyclerview
@@ -71,7 +14,6 @@ Test
 
 6, Retrofit multipart (camera and galery) (current) added 26/04/2023
    https://github.com/khaliqdadmohmand/upload_file_php_android
-
 
  ### Previous version
     private static final String APP_VERSION = "1907104";
@@ -90,3 +32,28 @@ Test
     private static final String APP_VERSION = "2103161";
     private static final String APP_VERSION = "2201308";
     private static final String APP_VERSION = "2201311";
+
+ ### Jenkins 
+
+ ## Jenkins errors solutions
+
+1, jenkins android Execution failed for task ':app:connectedDebugAndroidTest'.
+   solution :  Add this dependency to get this class:
+   debugImplementation "androidx.test:monitor:1.6.1"
+   url : https://stackoverflow.com/questions/74608921/android-studio-instrumented-test-stuck-at-task-appconnecteddebugandroidtest
+
+   2, INSTALL_FAILED_UPDATE_INCOMPATIBLE
+   solution :  remove the old one and try again.
+   url : https://stackoverflow.com/questions/11891848/install-failed-update-incompatible-when-i-try-to-install-compiled-apk-on-device
+
+   3, Tests on Infinix X689 - 11 failed: Instrumentation run failed due to 'Process crashed.'
+   solution :  android update to AndroidX, therefor I needed also to update my build.gradle
+
+   testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+   to
+   testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+   url : https://stackoverflow.com/questions/52605267/instrumentation-run-failed-due-to-process-crashed
+
+   4, doesn’t match anything: even ‘C:’ doesn’t exist (Files to archive)
+   solution : **/*.apk
+   url : https://k21academy.com/devops-foundation/ci-cd-pipeline-using-jenkins/
