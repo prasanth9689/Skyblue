@@ -36,6 +36,7 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/8cd31baa2eca3000f50927bcf082a021/transformed/jetified-kotlinx-coroutines-core-jvm-1.6.4.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/f3b235e813e7321fe0c21879491bc4fc/transformed/jetified-kotlinx-coroutines-android-1.6.4.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/de4c3c1127f09d5cf67f1fd983c566cc/transformed/jetified-kotlin-stdlib-jdk8-1.8.0.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/8a38b6e8ac2a970ac39342e507ea570e/transformed/monitor-1.6.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/76d58a69fdcdead40ae4de2d02341066/transformed/material-1.6.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/bb176711f4a980e3e9f90c4b0eddce1b/transformed/jetified-zoomage-1.3.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/76bae13a5631b750b7fb84cf11badea7/transformed/jetified-android-image-cropper-2.8.0-api.jar</arg>
@@ -94,6 +95,7 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/baf183d733c0c2b8fbea8375ab52a516/transformed/lifecycle-runtime-2.3.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/ec7216d0a003f21524e7e19bc1e5f385/transformed/jetified-gifdecoder-4.11.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/5d51f8377534dc595f6d4a9a7281247c/transformed/exifinterface-1.0.0-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/b835601e7fb0055f928695b988bd4e66/transformed/jetified-annotation-1.0.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/59c72433bcf018f2f191a8df2182ff10/transformed/cursoradapter-1.0.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/05f39b13ced0922dac881fe38e766209/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/44d862b5b282d6e6644a0e8ff098c0d9/transformed/jetified-savedstate-1.1.0-api.jar</arg>
@@ -123,7 +125,8 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/0f3ee748692eec5b82a5e121d67a69ab/transformed/jetified-kotlin-stdlib-1.8.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/a44d226df7ee79644cf41fbd397d788c/transformed/jetified-kotlin-stdlib-common-1.8.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/ceb981cb6f9d5bb4634923f72971f6b7/transformed/jetified-annotations-13.0.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/5746e64d80425ccec0620b73c5c9c9d1/transformed/jetified-annotation-experimental-1.0.0-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/23b30acd8c1d50a3f9e1c51d23a20b18/transformed/jetified-tracing-1.0.0-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/418df0988a164c8f414d6126ca174c84/transformed/jetified-annotation-experimental-1.1.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/be6e76db31769fa528eafa4ce19b447e/transformed/constraintlayout-2.1.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/9f18429d1218f7b4b104641e54b7c8cd/transformed/jetified-firebase-annotations-16.2.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/0f3aaaedba839f478c5152b6846f272f/transformed/jetified-javax.inject-1.jar</arg>
@@ -216,6 +219,7 @@
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-auth-interop:20.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-common-ktx:20.4.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-common:20.4.2@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.test:monitor:1.6.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.material:material:1.6.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.jsibbold:zoomage:1.3.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.theartofdev.edmodo:android-image-cropper:2.8.0@aar" level="project" />
@@ -274,6 +278,7 @@
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-runtime:2.3.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.bumptech.glide:gifdecoder:4.11.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.exifinterface:exifinterface:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.test:annotation:1.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.cursoradapter:cursoradapter:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.savedstate:savedstate:1.1.0@aar" level="project" />
@@ -292,7 +297,8 @@
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-viewmodel:2.3.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.documentfile:documentfile:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.print:print:1.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.annotation:annotation-experimental:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.tracing:tracing:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.annotation:annotation-experimental:1.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.constraintlayout:constraintlayout:2.1.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.hbb20:ccp:2.3.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer:2.10.4@aar" level="project" />

@@ -15,7 +15,8 @@ android {
         versionCode 2301316
         versionName "2301316"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+       // testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
