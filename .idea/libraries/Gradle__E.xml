@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="Gradle: E">
+  <library name="Gradle: E" external-system-id="GRADLE">
     <CLASSES>
       <root url="jar://E:/ANDROID/Sdk/platforms/android-33/optional/org.apache.http.legacy.jar!/" />
     </CLASSES>

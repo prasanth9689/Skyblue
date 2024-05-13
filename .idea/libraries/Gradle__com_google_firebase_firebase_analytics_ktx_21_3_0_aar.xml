@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="Gradle: com.google.firebase:firebase-analytics-ktx:21.3.0@aar">
+  <library name="Gradle: com.google.firebase:firebase-analytics-ktx:21.3.0@aar" external-system-id="GRADLE">
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/be4de42a3e52d012fe5ab076f5960c86/transformed/jetified-firebase-analytics-ktx-21.3.0/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/be4de42a3e52d012fe5ab076f5960c86/transformed/jetified-firebase-analytics-ktx-21.3.0/jars/classes.jar!/" />

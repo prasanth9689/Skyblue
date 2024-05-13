@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="Gradle: com.google.firebase:firebase-auth:22.2.0@aar">
+  <library name="Gradle: com.google.firebase:firebase-auth:22.2.0@aar" external-system-id="GRADLE">
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/421d325c0151af17c0d7ad164e9554e2/transformed/jetified-firebase-auth-22.2.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/421d325c0151af17c0d7ad164e9554e2/transformed/jetified-firebase-auth-22.2.0/AndroidManifest.xml" />

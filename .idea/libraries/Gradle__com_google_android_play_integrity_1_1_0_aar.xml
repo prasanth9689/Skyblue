@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="Gradle: com.google.android.play:integrity:1.1.0@aar">
+  <library name="Gradle: com.google.android.play:integrity:1.1.0@aar" external-system-id="GRADLE">
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/21d7f38c4ac9afe09c77ac140a9a241a/transformed/jetified-integrity-1.1.0/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/21d7f38c4ac9afe09c77ac140a9a241a/transformed/jetified-integrity-1.1.0/jars/classes.jar!/" />

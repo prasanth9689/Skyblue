@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="Gradle: com.hbb20:ccp:2.3.2@aar">
+  <library name="Gradle: com.hbb20:ccp:2.3.2@aar" external-system-id="GRADLE">
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/e615281b7a66045987b276f934c3de34/transformed/jetified-ccp-2.3.2/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e615281b7a66045987b276f934c3de34/transformed/jetified-ccp-2.3.2/res" />

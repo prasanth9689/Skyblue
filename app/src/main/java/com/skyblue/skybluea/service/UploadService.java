@@ -112,6 +112,7 @@ public class UploadService extends Service {
 
         // thumbnail
         File file_thumbnail = new File(thumnailUrlIntent, "thumbnail" + ".jpg");
+
         RequestBody requestBody2 = RequestBody.create(MediaType.parse("multipart/form-data"),file_thumbnail);
         MultipartBody.Part thumbnailPart = MultipartBody.Part.createFormData("thumbnail",file_thumbnail.getName(),requestBody2);
 

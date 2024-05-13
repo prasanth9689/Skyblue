@@ -15,14 +15,18 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.google.android.gms.tasks.Task
+import com.google.firebase.Firebase
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthMissingActivityForRecaptchaException
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.auth.auth
 import com.skyblue.skybluea.R
 import com.skyblue.skybluea.databinding.ActivityAddMobileNumberBinding
 import com.skyblue.skybluea.helper.Utils
@@ -38,63 +42,22 @@ class AddMobileNumberActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddMobileNumberBinding
     private var context: Context = this@AddMobileNumberActivity
     private val TAG = "otp_"
+    private var eventName: String? = null
+    private lateinit var auth: FirebaseAuth
+    private var storedVerificationId: String? = ""
+    private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
+    private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     private var mPhoneCode: String? = null
     private var mCountryName: String? = null
     private var mobileFullNo: String? = null
-    private var eventName: String? = null
-    private var pDialog: ProgressDialog? = null
-    private var progressbar: Dialog? = null
-    private var verificationId: String? = null
-    private var mAuth: FirebaseAuth? = null
-    private var sendingOtpDialog: Dialog? = null
-    var apiInterface: APIInterface? = null
 
-    val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-        override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-            // Auto-retrieval or instant verification has succeeded
-            sendingOtpDialog!!.dismiss()
-            val code: String? = credential.getSmsCode()
-            if (code != null) {
-                binding.editTextCode.setText(code)
-                verifyCode(code)
-            }
-        }
-
-        override fun onVerificationFailed(e: FirebaseException) {
-            sendingOtpDialog!!.dismiss()
-            Toast.makeText(context, "onVerificationFailed $e", Toast.LENGTH_SHORT).show()
-            if (e is FirebaseAuthInvalidCredentialsException) {
-                Toast.makeText(context, "Invalid Request $e", Toast.LENGTH_SHORT).show()
-            } else if (e is FirebaseTooManyRequestsException) {
-                Toast.makeText(
-                    context,
-                    "The SMS quota for the project has been exceeded $e",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
-
-        override fun onCodeSent(
-            s: String,
-            token: PhoneAuthProvider.ForceResendingToken
-        ) {
-            // The SMS verification code has been sent. Save the verification ID and the token to use later
-            sendingOtpDialog!!.dismiss()
-            binding.enterPhoneLayout.setVisibility(View.GONE)
-            binding.otpVerifyLayout.setVisibility(View.VISIBLE)
-            if (verificationId != null){
-                Log.e(TAG, "success")
-                verificationId = s
-                settimer()
-            }
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_mobile_number)
+
+
         eventName = intent.getStringExtra("event_name")
-        mAuth = FirebaseAuth.getInstance()
 
         if (eventName != null) {
             if (eventName.equals("")  || eventName!!.isEmpty()) {
@@ -103,6 +66,62 @@ class AddMobileNumberActivity : AppCompatActivity() {
 
             binding.enterPhoneLayout.setVisibility(View.VISIBLE)
             binding.eventName.text = eventName
+        }
+
+        auth = Firebase.auth
+
+        callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+            override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+                // This callback will be invoked in two situations:
+                // 1 - Instant verification. In some cases the phone number can be instantly
+                //     verified without needing to send or enter a verification code.
+                // 2 - Auto-retrieval. On some devices Google Play services can automatically
+                //     detect the incoming verification SMS and perform verification without
+                //     user action.
+                Log.d(TAG, "onVerificationCompleted:$credential")
+                signInWithPhoneAuthCredential(credential)
+
+                val code: String? = credential.getSmsCode()
+
+                if (code  != null){
+                    binding.editTextCode.setText(code)
+                    verifyPhoneNumberWithCode(storedVerificationId, code)
+                }
+            }
+
+            override fun onVerificationFailed(e: FirebaseException) {
+                // This callback is invoked in an invalid request for verification is made,
+                // for instance if the the phone number format is not valid.
+                Log.w(TAG, "onVerificationFailed", e)
+
+                if (e is FirebaseAuthInvalidCredentialsException) {
+                    // Invalid request
+                } else if (e is FirebaseTooManyRequestsException) {
+                    // The SMS quota for the project has been exceeded
+                } else if (e is FirebaseAuthMissingActivityForRecaptchaException) {
+                    // reCAPTCHA verification attempted with null Activity
+                }
+
+                // Show a message and update the UI
+            }
+
+            override fun onCodeSent(
+                verificationId: String,
+                token: PhoneAuthProvider.ForceResendingToken,
+            ) {
+                // The SMS verification code has been sent to the provided phone number, we
+                // now need to ask the user to enter the code and then construct a credential
+                // by combining the code with a verification ID.
+                Log.d(TAG, "onCodeSent:$verificationId")
+
+                // Save verification ID and resending token so we can use them later
+                storedVerificationId = verificationId
+                resendToken = token
+
+                binding.enterPhoneLayout.setVisibility(View.GONE)
+                binding.otpVerifyLayout.setVisibility(View.VISIBLE)
+            }
         }
         onClick()
     }
@@ -121,7 +140,8 @@ class AddMobileNumberActivity : AppCompatActivity() {
            mCountryName = binding.ccp.selectedCountryName
            mobileFullNo = mPhoneCode + mMobile
 
-           startOTPVerification(mobileFullNo!!)
+           binding.mobile2.text = mobileFullNo
+           startPhoneNumberVerification(mobileFullNo!!)
        }
 
         binding.back.setOnClickListener{
@@ -145,125 +165,52 @@ class AddMobileNumberActivity : AppCompatActivity() {
                 binding.editTextCode.requestFocus()
                 return@setOnClickListener
             }
-            verifyCode(code)
+         //   verifyCode(code)
+            verifyPhoneNumberWithCode(storedVerificationId, code)
         }
     }
 
-    private fun startOTPVerification(mobileFullNo: String) {
-        binding.eventName.text = "Verify OTP"
-        binding.mobile2.text = mobileFullNo
-        sendVerificationCode(mobileFullNo)
-        initSendingOtpDialog()
-        sendingOtpDialog!!.show()
-        initProgressBar()
+    private fun verifyPhoneNumberWithCode(verificationId: String?, code: String) {
+        // [START verify_with_code]
+        val credential = PhoneAuthProvider.getCredential(verificationId!!, code)
+        // [END verify_with_code]
     }
 
-    private fun initProgressBar() {
-        progressbar = Dialog(context)
-        progressbar!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        progressbar!!.setContentView(R.layout.m_loading_pls_wait)
-        progressbar!!.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        progressbar!!.setCancelable(false)
-    }
-
-    private fun sendVerificationCode(mobileFullNo: String) {
-        val options = PhoneAuthOptions.newBuilder(mAuth!!)
-            .setPhoneNumber(mobileFullNo)
-            .setTimeout(60L, TimeUnit.SECONDS)
-            .setActivity(this)
-            .setCallbacks(callbacks)
+    private fun startPhoneNumberVerification(phoneNumber: String) {
+        val options = PhoneAuthOptions.newBuilder(auth)
+            .setPhoneNumber(phoneNumber) // Phone number to verify
+            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+            .setActivity(this) // Activity (for callback binding)
+            .setCallbacks(callbacks) // OnVerificationStateChangedCallbacks
             .build()
         PhoneAuthProvider.verifyPhoneNumber(options)
     }
 
-    private fun verifyCode(code: String) {
-        displayLoader()
-        val credential = PhoneAuthProvider.getCredential(verificationId!!, code)
-        signInWithCredential(credential)
-    }
-
-    private fun signInWithCredential(credential: PhoneAuthCredential) {
-        mAuth!!.signInWithCredential(credential)
-            .addOnCompleteListener { task: Task<AuthResult?> ->
+    private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    pDialog!!.dismiss()
-                    Toast.makeText(context, "otp verification success", Toast.LENGTH_LONG).show()
-                    checkUser()
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "signInWithCredential:success")
+
+                    val user = task.result?.user
                 } else {
-                    pDialog!!.dismiss()
-                    Toast.makeText(
-                        context,
-                        task.exception.toString(),
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-            }
-    }
-
-    private fun checkUser() {
-        progressbar!!.show()
-
-        val apiInterface = APIClient.getClient().create(APIInterface::class.java)
-        val call = apiInterface.check_user(mobileFullNo)
-
-        call.enqueue(object : Callback<String> {
-            override fun onResponse(call: Call<String>, response: Response<String>) {
-                progressbar!!.dismiss()
-                if (response.isSuccessful) {
-                    if ("1" == response.body()) {
-                        saveNumber()
-                       Toast.makeText(context, "New user", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(context, "Already registered this number try a new number", Toast.LENGTH_SHORT).show()
+                    // Sign in failed, display a message and update the UI
+                    Log.w(TAG, "signInWithCredential:failure", task.exception)
+                    if (task.exception is FirebaseAuthInvalidCredentialsException) {
+                        // The verification code entered was invalid
                     }
-                } else {
-                    Utils.showMessageInSnackbar(context, resources.getString(R.string.server_error))
+                    // Update UI
                 }
             }
+    }
+    // [END sign_in_with_phone]
 
-            override fun onFailure(call: Call<String>, t: Throwable) {
-                Log.e(TAG, t.toString())
-                progressbar!!.dismiss()
-            }
-        })
+    private fun updateUI(user: FirebaseUser? = auth.currentUser) {
     }
 
-    private fun saveNumber() {
-
+    companion object {
+        private const val TAG = "PhoneAuthActivity"
     }
 
-    private fun displayLoader() {
-        pDialog = ProgressDialog(context, R.style.AppCompatAlertDialogStyle)
-        pDialog!!.setMessage(resources.getString(R.string.checking_otp_please_wait))
-        pDialog!!.setIndeterminate(false)
-        pDialog!!.setCancelable(false)
-        pDialog!!.show()
-    }
-
-    private fun initSendingOtpDialog() {
-        sendingOtpDialog = Dialog(context)
-        sendingOtpDialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        sendingOtpDialog!!.setContentView(R.layout.m_send_otp_wait)
-        Objects.requireNonNull(sendingOtpDialog!!.getWindow())
-            ?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        sendingOtpDialog!!.setCancelable(false)
-    }
-
-    private fun settimer() {
-        binding.reSend.setVisibility(View.GONE)
-        binding.textTimer.setVisibility(View.VISIBLE)
-
-        object : CountDownTimer(30000, 1000) {
-            @SuppressLint("SetTextI18n")
-            override fun onTick(millisUntilFinished: Long) {
-                val remainedSecs = millisUntilFinished / 1000
-                binding.textTimer.text = "" + remainedSecs / 60 + ":" + remainedSecs % 60
-            }
-
-            override fun onFinish() {
-                binding.reSend.setVisibility(View.VISIBLE)
-                binding.textTimer.setVisibility(View.GONE)
-            }
-        }.start()
-    }
 }
