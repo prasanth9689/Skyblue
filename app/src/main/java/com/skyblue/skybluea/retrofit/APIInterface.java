@@ -121,7 +121,7 @@ public interface APIInterface {
 
     @FormUrlEncoded
     @POST("/skyblue/check_user2.php")
-    Call<String> check_user_email(@Field("email_person_id") String email_person_id);
+    Call<String> checkUserEmail(@Field("email") String email_person_id);
 
     @POST("/skyblue/register2.php")
     Call<List<Register>> registerEmailSign(@Body RequestBody params);

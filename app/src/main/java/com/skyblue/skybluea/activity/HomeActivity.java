@@ -83,7 +83,7 @@ public class HomeActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
 
-        apiInterface = APIClient.getClient().create(APIInterface.class);
+        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
 
         databaseManager = new DatabaseManager(getApplicationContext());
         databaseManager.open();
@@ -215,6 +215,8 @@ public class HomeActivity extends AppCompatActivity{
     private void getChannelsFromServer() {
         String userId = user.getUser_id();
         String access = AppConstants.ACCESS_CHANNEL_GET;
+
+        Log.e("home_", userId + "Access :" + access);
 
         RequestBody mUserId = RequestBody.create(MediaType.parse("multipart/form-data"), userId);
         RequestBody mAccess = RequestBody.create(MediaType.parse("multipart/form-data"), access);

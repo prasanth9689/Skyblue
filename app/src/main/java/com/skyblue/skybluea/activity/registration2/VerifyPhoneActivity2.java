@@ -117,6 +117,7 @@ public class VerifyPhoneActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityVerifyPhone2Binding.inflate(getLayoutInflater());
+        binding = ActivityVerifyPhone2Binding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 

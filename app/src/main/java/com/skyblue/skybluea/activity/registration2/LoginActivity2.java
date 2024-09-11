@@ -160,24 +160,56 @@ public class LoginActivity2 extends AppCompatActivity {
             String googleData =  " personId : " + personId  +"\n\n"+ " personName : " + personName  +"\n\n"+ " personGivenName : " + personGivenName  +"\n\n"+ " personFamilyName : " + personFamilyName  +"\n\n"+ " personEmail : " + personEmail  +"\n\n"+ " personToken : " + personToken  +"\n\n"+ " personPhoto : " + personPhoto;
             Log.e(TAG, "updateUI : data : account : " + googleData);
 
-            checkAlreadyExists();
+           // checkAlreadyExists();
+            checkEmailExists(personEmail);
 
         } else {
             Log.e(TAG, "Login failed!");
         }
     }
 
-    private void checkAlreadyExists() {
+    private void checkEmailExists(String personEmail) {
+        showProgressBar();
+        apiInterface = APIClient.getClient().create(APIInterface.class);
+        Call<String> call = apiInterface.checkUserEmail(personEmail);
+
+        call.enqueue(new Callback<>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                progressbar.dismiss();
+                if (response.isSuccessful()){
+                    if ("1".equals(response.body())){
+                        registerNewUser(); // New user
+                    }else {
+                        getUserDetails(); // Existing user
+                    }
+                } else {
+                    showMessageInSnackbar(context, getResources().getString(R.string.server_error));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                progressbar.dismiss();
+                showMessageInSnackbar(context, getResources().getString(R.string.server_error));
+            }
+        });
+    }
+
+    private void showProgressBar() {
         progressbar = new Dialog(context);
         progressbar.requestWindowFeature(Window.FEATURE_NO_TITLE);
         progressbar.setContentView(R.layout.m_loading_pls_wait);
         progressbar.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         progressbar.setCancelable(false);
         progressbar.show();
+    }
 
+    private void checkAlreadyExists() {
+       showProgressBar();
         apiInterface = APIClient.getClient().create(APIInterface.class);
 
-        Call<String> call = apiInterface.check_user_email(personId);
+        Call<String> call = apiInterface.checkUserEmail(personId);
 
         call.enqueue(new Callback<>() {
             @Override
@@ -246,7 +278,7 @@ public class LoginActivity2 extends AppCompatActivity {
                                 login.getGender(),
                                 login.getDob(),
                                 login.getFirebase_token());
-                        loadHome();
+        //                loadHome();
                     }
                 } else {
                     pDialog.dismiss();

@@ -235,7 +235,7 @@
     <string name="creating_channel_please_wait">Creating channel please wait</string>
     <string name="channel_created_success">Channel created success.</string>
     <string name="check_mobile_no">Check mobile no</string>
-    <string name="server_error">Error!</string>
+    <string name="server_error">Error! try again.</string>
     <string name="please_enter_video_name">Please enter video name.</string>
     <string name="video_uploading_started">Video uploading started</string>
     <string name="the_folder">The folder</string>
