@@ -181,7 +181,7 @@ public class LoginActivity2 extends AppCompatActivity {
                     if ("1".equals(response.body())){
                         registerNewUser(); // New user
                     }else {
-                        getUserDetails(); // Existing user
+                        getUserDetails(personEmail); // Existing user
                     }
                 } else {
                     showMessageInSnackbar(context, getResources().getString(R.string.server_error));
@@ -192,6 +192,51 @@ public class LoginActivity2 extends AppCompatActivity {
             public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
                 progressbar.dismiss();
                 showMessageInSnackbar(context, getResources().getString(R.string.server_error));
+            }
+        });
+    }
+
+    private void getUserDetails(String personEmail) {
+        showProgressBar();
+
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("email", personEmail)
+                .build();
+
+        Call<List<Login>> call= apiInterface.getEmailSignInDetails(requestBody);
+
+        call.enqueue(new Callback<>() {
+            @Override
+            public void onResponse(@NonNull Call<List<Login>> call, @NonNull Response<List<Login>> response) {
+                if (response.code() == 200) {
+                    assert response.body() != null;
+                    for(Login login: response.body()) {
+                        progressbar.dismiss();
+
+                        showMessageInSnackbar(context, getString(R.string.success));
+                        session.loginUser(login.getMobile_no_full(),
+                                login.getEmail(),
+                                login.getEmail_person_id(),
+                                login.getUser_name(),
+                                login.getUser_id(),
+                                login.getProfile_image(),
+                                login.getCover_image(),
+                                login.getGender(),
+                                login.getDob(),
+                                login.getFirebase_token());
+                                        loadHome();
+                    }
+                } else {
+                    progressbar.dismiss();
+                    Utils.showMessageInSnackbar(context, getString(R.string.failed));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<Login>> call, @NonNull Throwable t) {
+                progressbar.dismiss();
+                Toast.makeText(context, t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -254,7 +299,7 @@ public class LoginActivity2 extends AppCompatActivity {
 
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("email_person_id", personId)
+                .addFormDataPart("email", personEmail)
                 .build();
 
         Call<List<Login>> call= apiInterface.getEmailSignInDetails(requestBody);

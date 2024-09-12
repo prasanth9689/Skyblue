@@ -104,6 +104,7 @@ public class UploadActivity extends AppCompatActivity implements AdsMediaSource.
                    // Uri sendUri = Uri.fromFile(new File(String.valueOf(videoFile)));
                     assert videoFile != null;
                     video_uri = RealPathUtil.getRealPath(context, videoFile);
+                    video_uri = videoFile.getPath();
                 }
             }else {
                 video_uri = getIntent().getStringExtra("img");
@@ -149,7 +150,8 @@ public class UploadActivity extends AppCompatActivity implements AdsMediaSource.
     }
 
     @SuppressLint("DefaultLocale")
-    private String getVideoDuration() {
+    private String
+    getVideoDuration() {
         MediaPlayer mp = MediaPlayer.create(this, Uri.parse(video_uri));
         int duration = mp.getDuration();
         mp.release();

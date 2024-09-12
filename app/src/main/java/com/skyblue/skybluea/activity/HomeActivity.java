@@ -83,7 +83,7 @@ public class HomeActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
 
-        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+        apiInterface = APIClient.getClient().create(APIInterface.class);
 
         databaseManager = new DatabaseManager(getApplicationContext());
         databaseManager.open();
@@ -316,7 +316,11 @@ public class HomeActivity extends AppCompatActivity{
                     return true;
 
                 case R.id.item_media:
-                    startActivity(new Intent(context, ChannelsDashboard.class)); overridePendingTransition(0, 0);
+                    if (session.isLoggedIn()) {
+                        startActivity(new Intent(context, ChannelsDashboard.class)); overridePendingTransition(0, 0);
+                    }else {
+                        login();
+                    }
                     return true;
 
                 case R.id.item_add:
