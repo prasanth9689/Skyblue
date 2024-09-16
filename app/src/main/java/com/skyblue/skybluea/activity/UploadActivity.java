@@ -5,11 +5,14 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -98,28 +101,62 @@ public class UploadActivity extends AppCompatActivity implements AdsMediaSource.
         if (intent != null){
             String action = intent.getAction();
             String type = intent.getType();
+
             if (Intent.ACTION_SEND.equals(action) && type != null){
-                if (type.equalsIgnoreCase("video/*")){
-                    Uri videoFile = intent.getParcelableExtra(Intent.EXTRA_STREAM);
-                   // Uri sendUri = Uri.fromFile(new File(String.valueOf(videoFile)));
-                    assert videoFile != null;
-                    video_uri = RealPathUtil.getRealPath(context, videoFile);
-                    video_uri = videoFile.getPath();
+                Uri videoFile = intent.getParcelableExtra(Intent.EXTRA_STREAM);
+                if (type.equals("video/mp4")){
+                    video_uri = getRealPathFromURI(context, videoFile);
+                }
+                if (type.equals("video/*")){
+                    video_uri = String.valueOf(videoFile);
                 }
             }else {
                 video_uri = getIntent().getStringExtra("img");
             }
         }
 
+        if (video_uri == null){
+            Toast.makeText(context, "Media error!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         createFolder();
         video_duration_final = getVideoDuration();
-        createThumbnail(video_uri);
+        Log.e("upload_", video_duration_final);
+
+
+        new CountDownTimer(3000, 1000) {
+            public void onTick(long millisUntilFinished) {
+
+
+            }
+            public void onFinish() {
+                Toast.makeText(context, "Thumbnail creation started", Toast.LENGTH_SHORT).show();
+                createThumbnail(video_uri);
+            }
+        }.start();
+
         OnClickListener();
 
         String primaryChannelName = user.getChannel_primary_name();
 
         if (!primaryChannelName.equals("")){
             binding.primaryChannel.setText(primaryChannelName);
+        }
+    }
+
+    public String getRealPathFromURI(Context context, Uri contentUri) {
+        Cursor cursor = null;
+        try {
+            String[] proj = { MediaStore.Images.Media.DATA };
+            cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
     }
 
@@ -155,6 +192,8 @@ public class UploadActivity extends AppCompatActivity implements AdsMediaSource.
         MediaPlayer mp = MediaPlayer.create(this, Uri.parse(video_uri));
         int duration = mp.getDuration();
         mp.release();
+
+        Log.e("upload_", String.valueOf(duration));
 
         mp.release();
         /*convert millis to appropriate time*/
@@ -202,28 +241,48 @@ public class UploadActivity extends AppCompatActivity implements AdsMediaSource.
 
     private void createThumbnail(String video_uri) {
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
-        retriever.setDataSource(context, Uri.parse(video_uri));
+        int lastTime = 0;
+        long mVideoDuration = 9000;
+        mVideoDuration*=1000;
+        long frameCount = 10;
+        int frameTime= (int) Math.ceil((double) mVideoDuration /frameCount);
+        for(int i =0; i<=mVideoDuration; i+=frameTime){
+           // Bitmap thumbnail = retriever.getFrameAtTime(i);
 
-        int width = Integer.parseInt(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH));
-        int height = Integer.parseInt(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT));
+            retriever.setDataSource(context, Uri.parse(video_uri));
+            int width = Integer.parseInt(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH));
+            int height = Integer.parseInt(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT));
+            Log.e("upload_", "width * height" + "\t" + width + "*" + height);
+            Bitmap videoThumbnail = retriever.getFrameAtTime(i);
 
-        Log.e("upload_", "width * height" + "\t" + width + "*" + height);
+            String thumbanilName = "thumbnail_" + i;
+            saveThumbnail(videoThumbnail, thumbanilName);
+        }
+//        if (lastTime<mVideoDuration){
+//            retriever.getFrameAtTime(mVideoDuration);
+//        }
 
-        Bitmap videoThumbnail = retriever.getFrameAtTime();
-        saveThumbnail(videoThumbnail);
+
+
+//        for (int i = 0; i<5; i++){
+//            String thumbnailTakeTime = "2" + i + "00";
+//            MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+//            retriever.setDataSource(context, Uri.parse(video_uri));
+//            int width = Integer.parseInt(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH));
+//            int height = Integer.parseInt(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT));
+//            Log.e("upload_", "width * height" + "\t" + width + "*" + height);
+//            Bitmap videoThumbnail = retriever.getFrameAtTime(Integer.parseInt(thumbnailTakeTime));
+//
+//            String thumbanilName = "thumbnail_" + i;
+//            saveThumbnail(videoThumbnail, thumbanilName);
+//        }
     }
 
-    private void saveThumbnail(Bitmap videoThumbnail) {
+    private void saveThumbnail(Bitmap videoThumbnail, String thumbnailName) {
         File dir = getExternalFilesDir(APP_DATA);
         assert dir != null;
-        if(!dir.exists())
-        {
-            if (!dir.mkdir())
-            {
-                Toast.makeText(getApplicationContext(), getString(R.string.the_folder) + dir.getPath() + getString(R.string.was_not_created), Toast.LENGTH_SHORT).show();
-            }
-        }
-        File f = new File(dir, "thumbnail" + ".jpg");
+
+        File f = new File(dir, thumbnailName + ".jpg");
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         videoThumbnail.compress(Bitmap.CompressFormat.JPEG, 80, bos);
         byte[] bitmapdata = bos.toByteArray();
@@ -316,6 +375,12 @@ public class UploadActivity extends AppCompatActivity implements AdsMediaSource.
     @Override
     protected void onResume() {
         super.onResume();
+
+        if (video_uri == null){
+            Toast.makeText(context, "Media error!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         if (playerView == null) {
             playerView =  findViewById(R.id.exoplayer);
             initFullscreenDialog();
