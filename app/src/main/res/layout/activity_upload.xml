@@ -171,12 +171,15 @@
 
                         <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="80dp">
+                            android:layout_height="180dp">
 
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/recycler_view"
+                            <ImageView
+                                android:id="@+id/thumbnail"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
+                                android:layout_height="180dp"
+                                android:scaleType="fitXY"
+                                android:contentDescription="@string/thumbnail_image"
+                                android:adjustViewBounds="true"/>
 
                         </RelativeLayout>
 

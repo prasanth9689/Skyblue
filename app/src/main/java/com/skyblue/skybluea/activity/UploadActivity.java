@@ -73,6 +73,7 @@ public class UploadActivity extends AppCompatActivity implements AdsMediaSource.
     private int mResumeWindow;
     private long mResumePosition;
     private String unicodeEncodedVideoName = null;
+    private int CURRENT_THUMBNAIL_SECONDS = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,6 +144,14 @@ public class UploadActivity extends AppCompatActivity implements AdsMediaSource.
         if (!primaryChannelName.equals("")){
             binding.primaryChannel.setText(primaryChannelName);
         }
+
+        binding.thumbnail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("up_", "Clicked");
+                createThumbnail(video_uri);
+            }
+        });
     }
 
     public String getRealPathFromURI(Context context, Uri contentUri) {
@@ -241,28 +250,26 @@ public class UploadActivity extends AppCompatActivity implements AdsMediaSource.
 
     private void createThumbnail(String video_uri) {
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
-        int lastTime = 0;
-        long mVideoDuration = 9000;
-        mVideoDuration*=1000;
-        long frameCount = 10;
-        int frameTime= (int) Math.ceil((double) mVideoDuration /frameCount);
-        for(int i =0; i<=mVideoDuration; i+=frameTime){
-           // Bitmap thumbnail = retriever.getFrameAtTime(i);
 
+        try {
             retriever.setDataSource(context, Uri.parse(video_uri));
-            int width = Integer.parseInt(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH));
-            int height = Integer.parseInt(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT));
-            Log.e("upload_", "width * height" + "\t" + width + "*" + height);
-            Bitmap videoThumbnail = retriever.getFrameAtTime(i);
+            int timeInSeconds;
+            if (CURRENT_THUMBNAIL_SECONDS == 0){
+                timeInSeconds = 10;
+                CURRENT_THUMBNAIL_SECONDS = timeInSeconds;
+            }else {
+                timeInSeconds = CURRENT_THUMBNAIL_SECONDS + 10;
+                CURRENT_THUMBNAIL_SECONDS = timeInSeconds;
+            }
+          //  CURRENT_THUMBNAIL_SECONDS = 30;
+            Bitmap bitmap = retriever.getFrameAtTime(timeInSeconds * 1000000,
+                    MediaMetadataRetriever.OPTION_CLOSEST_SYNC);
 
-            String thumbanilName = "thumbnail_" + i;
-            saveThumbnail(videoThumbnail, thumbanilName);
+            binding.thumbnail.setImageBitmap(bitmap);
+            saveThumbnail(bitmap, "Thumbnail");
+        }catch (Exception e){
+            Toast.makeText(context, "Error! creatin thumbnail " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-//        if (lastTime<mVideoDuration){
-//            retriever.getFrameAtTime(mVideoDuration);
-//        }
-
-
 
 //        for (int i = 0; i<5; i++){
 //            String thumbnailTakeTime = "2" + i + "00";
