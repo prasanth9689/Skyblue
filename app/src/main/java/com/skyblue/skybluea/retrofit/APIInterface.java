@@ -106,9 +106,9 @@ public interface APIInterface {
     Call<Comments> getComments(@Part("post_id") RequestBody post_id,
                                @Part("user_id") RequestBody user_id);
 
-    @Multipart
+
     @POST("/skyblue/views_insert.php")
-    Call<ResponseBody> sendViews(@Part("post_id") RequestBody post_id);
+    Call<ResponseBody> sendViews(@Body RequestBody params);
 
     @Multipart
     @POST("/skyblue/subscription_new.php")

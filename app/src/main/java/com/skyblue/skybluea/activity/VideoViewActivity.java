@@ -64,8 +64,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -483,13 +485,33 @@ public class VideoViewActivity extends AppCompatActivity implements AdsMediaSour
     }
 
     private void viewsInit() {
-        RequestBody mPostId = RequestBody.create(MediaType.parse("multipart/form-data"), postId);
-        Call<ResponseBody> call = apiInterface.sendViews(mPostId);
 
-        call.enqueue(new Callback<ResponseBody>() {
+        String mDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+        String mTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+        String mTimeDate  = mDate +" "+mTime;
+
+        String userId;
+        if (session.isLoggedIn()){
+            userId = user.getUser_id();
+        }else {
+            userId = "1";
+        }
+
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("post_id", postId)
+                .addFormDataPart("user_id", userId)
+                .addFormDataPart("date", mDate)
+                .addFormDataPart("time", mTime)
+                .addFormDataPart("time_date", mTimeDate)
+                .build();
+
+        Call<ResponseBody> call = apiInterface.sendViews(requestBody);
+
+        call.enqueue(new Callback<>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     assert response.body() != null;
                     String res;
                     try {
@@ -497,7 +519,7 @@ public class VideoViewActivity extends AppCompatActivity implements AdsMediaSour
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                   Log.e("views count: ", res);
+                    Log.e("views count: ", res);
                 }
             }
 
