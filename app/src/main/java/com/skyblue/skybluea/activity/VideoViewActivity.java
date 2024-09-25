@@ -95,7 +95,7 @@ public class VideoViewActivity extends AppCompatActivity implements AdsMediaSour
     private BottomSheetDialog bottomSheetDialog;
     private String loggedUserId, loggedUserName, postId, postUserId, channelId;
     private RecyclerViewAdapter recyclerViewAdapter;
-    private List<Post> rowsArrayList;
+    private final List<Post> rowsArrayList = new ArrayList<>();
     boolean isLoading = false;
 
     @Override
@@ -111,16 +111,8 @@ public class VideoViewActivity extends AppCompatActivity implements AdsMediaSour
         user = session.getUserDetails();
 
         postId = getIntent().getStringExtra("post_id");
-        postUserId = getIntent().getStringExtra("post_user_id");
-        videoUrl = getIntent().getStringExtra("url");
-        binding.videoName.setText(getIntent().getStringExtra("video_name"));
-        binding.userName.setText(getIntent().getStringExtra("channel_name"));
-        channelId = getIntent().getStringExtra("channel_id");
-        String totalLikes = getIntent().getStringExtra("likes");
-        String likeStatus = getIntent().getStringExtra("like_status");
-        String totalComments = getIntent().getStringExtra("comments");
-        String totalViews = getIntent().getStringExtra("total_views");
-        String uploadTime = getIntent().getStringExtra("time_date");
+
+        loadVideo(postId);
 
         dataSourceFactory =
                 new DefaultDataSourceFactory(
@@ -132,24 +124,35 @@ public class VideoViewActivity extends AppCompatActivity implements AdsMediaSour
             mExoPlayerFullscreen = savedInstanceState.getBoolean(STATE_PLAYER_FULLSCREEN);
         }
 
-        loadLikeFunction(likeStatus, totalLikes);
-        loadComments(totalComments);
-        loadUploadTime(uploadTime);
-        assert totalViews != null;
-        loadTotalViews(totalViews);
-
-       // loadVideos();
-        viewsInit();
         initBottomSheet();
         onClick();
-
-        rowsArrayList = new ArrayList<>();
 
        new Thread(() -> {
            initRecyclerView();
            loadList();
            initScrollListener();
        }).start();
+    }
+
+    private void loadVideo(String postId) {
+        postUserId = getIntent().getStringExtra("post_user_id");
+        videoUrl = getIntent().getStringExtra("url");
+        binding.videoName.setText(getIntent().getStringExtra("video_name"));
+        binding.userName.setText(getIntent().getStringExtra("channel_name"));
+        channelId = getIntent().getStringExtra("channel_id");
+        String totalLikes = getIntent().getStringExtra("likes");
+        String likeStatus = getIntent().getStringExtra("like_status");
+        String totalComments = getIntent().getStringExtra("comments");
+        String totalViews = getIntent().getStringExtra("total_views");
+        String uploadTime = getIntent().getStringExtra("time_date");
+
+        loadLikeFunction(likeStatus, totalLikes);
+        loadComments(totalComments);
+        loadUploadTime(uploadTime);
+        assert totalViews != null;
+        loadTotalViews(totalViews);
+
+        viewsInit();
     }
 
     private void initScrollListener() {
@@ -501,6 +504,7 @@ public class VideoViewActivity extends AppCompatActivity implements AdsMediaSour
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("post_id", postId)
                 .addFormDataPart("user_id", userId)
+                .addFormDataPart("device", "Android")
                 .addFormDataPart("date", mDate)
                 .addFormDataPart("time", mTime)
                 .addFormDataPart("time_date", mTimeDate)
