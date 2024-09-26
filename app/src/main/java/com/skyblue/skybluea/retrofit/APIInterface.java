@@ -128,4 +128,7 @@ public interface APIInterface {
 
     @POST("/skyblue/get_email_sign_in_details.php")
     Call<List<Login>> getEmailSignInDetails(@Body RequestBody params);
+
+    @POST("/skyblue/skyblue_main.php")
+    Call<ResponseBody> getVideoDetails(@Body RequestBody params);
 }

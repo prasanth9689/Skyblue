@@ -9,6 +9,7 @@ public class AppConstants {
 
     private static final String BASE_URL = "http://sh002.hostgator.tempwebhost.net/";
 
+    public static final String GET_VIDEO_DETAILS = "get_video_details";
     public static final String LOGIN = BASE_URL + "login.php";
     public static final String CHECK_USER_ALREADY_EXISTS = BASE_URL + "check_user.php";
     public static final String REGISTER = BASE_URL + "register.php";

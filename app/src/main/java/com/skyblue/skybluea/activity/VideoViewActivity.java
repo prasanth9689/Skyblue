@@ -1,5 +1,7 @@
 package com.skyblue.skybluea.activity;
 
+import static com.skyblue.skybluea.helper.AppConstants.GET_VIDEO_DETAILS;
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
@@ -75,6 +77,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class VideoViewActivity extends AppCompatActivity implements AdsMediaSource.MediaSourceFactory  {
+    private static final String TAG = "VideoViewActivity_";
     private ActivityVideoViewBinding binding;
     private SessionHandler session;
     private final Context context = this;
@@ -135,63 +138,112 @@ public class VideoViewActivity extends AppCompatActivity implements AdsMediaSour
     }
 
     private void loadVideo(String postId) {
-        postUserId = getIntent().getStringExtra("post_user_id");
-        videoUrl = getIntent().getStringExtra("url");
-        binding.videoName.setText(getIntent().getStringExtra("video_name"));
-        binding.userName.setText(getIntent().getStringExtra("channel_name"));
-        channelId = getIntent().getStringExtra("channel_id");
-        String totalLikes = getIntent().getStringExtra("likes");
-        String likeStatus = getIntent().getStringExtra("like_status");
-        String totalComments = getIntent().getStringExtra("comments");
-        String totalViews = getIntent().getStringExtra("total_views");
-        String uploadTime = getIntent().getStringExtra("time_date");
 
-        loadLikeFunction(likeStatus, totalLikes);
-        loadComments(totalComments);
-        loadUploadTime(uploadTime);
-        assert totalViews != null;
-        loadTotalViews(totalViews);
+        String userId;
+        if (session.isLoggedIn()){
+            userId = user.getUser_id();
+        }else {
+            userId = "1";
+        }
 
-        viewsInit();
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("acc", GET_VIDEO_DETAILS)
+                .addFormDataPart("post_id", postId)
+                .addFormDataPart("user_id", userId)
+                .build();
+
+        Call<ResponseBody> call = apiInterface.getVideoDetails(requestBody);
+
+        call.enqueue(new Callback<>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        String res;
+                        try {
+                            res = response.body().string();
+                            JSONArray jsonArray = new JSONArray(res);
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                                postUserId = jsonObject.getString("user_id");
+                                videoUrl = jsonObject.getString("video_url");
+                                String videoName = jsonObject.getString("video_name");
+                                String channelName = jsonObject.getString("channel_name");
+                                String channelId = jsonObject.getString("channel_id");
+                                String totalLikes = jsonObject.getString("likes");
+                                String likeStatus = jsonObject.getString("like_status");
+                                String totalComments = jsonObject.getString("comments");
+                                String totalViews = jsonObject.getString("total_views");
+                                String uploadTime = jsonObject.getString("time_date");
+
+                                loadLikeFunction(likeStatus, totalLikes);
+                                loadComments(totalComments);
+                                loadUploadTime(uploadTime);
+                                loadTotalViews(totalViews);
+
+                                String mVideoName = "";
+                                byte[] data = Base64.decode(videoName, Base64.DEFAULT);
+                                mVideoName = new String(data, StandardCharsets.UTF_8);
+
+                                binding.videoName.setText(mVideoName);
+                                binding.userName.setText(channelName);
+                                initExoPlayer();
+                                viewsInit();
+                            }
+
+                        } catch (IOException | JSONException e) {
+                            Log.e(TAG, "Load video error!" + e.getMessage());
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                Log.e(TAG, "Load video error!" + t.getMessage());
+            }
+        });
     }
 
     private void initScrollListener() {
-
         binding.loadMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loadMore();
             }
         });
-//        binding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-//            @Override
-//            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-//                super.onScrollStateChanged(recyclerView, newState);
-//            }
-//
-//            @Override
-//            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-//                super.onScrolled(recyclerView, dx, dy);
-//                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-//
-//                if (!isLoading) {
-//                    if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == rowsArrayList.size() - 1) {
-//                        //bottom of list!
-//                        loadMore();
-//                        Log.e("ll_", "isLoading = true");
-//                        isLoading = true;
-//                    }
-//                }
-//            }
-//        });
+
+        /*
+        binding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+
+                if (!isLoading) {
+                    if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == rowsArrayList.size() - 1) {
+                        //bottom of list!
+                        loadMore();
+                        Log.e("ll_", "isLoading = true");
+                        isLoading = true;
+                    }
+                }
+            }
+        });
+         */
     }
 
     private void loadMore() {
         // add more progressbar
         rowsArrayList.add(null);
         recyclerViewAdapter.notifyItemInserted(rowsArrayList.size() - 1);
-
-        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
         Call<ResponseBody> call=apiInterface.getCommonPosts2("1");
 
         call.enqueue(new Callback<ResponseBody>() {
@@ -231,35 +283,31 @@ public class VideoViewActivity extends AppCompatActivity implements AdsMediaSour
                             post.setChannel_name(object.getString("channel_name"));
                             rowsArrayList.add(post);
                         }
-
                         int arrayListSize = rowsArrayList.size();
-                        Log.e("vv_", "Load more : arrayListSize " + arrayListSize);
-
+                        Log.i(TAG, "Load more : arrayListSize " + arrayListSize);
                         recyclerViewAdapter.notifyDataSetChanged();
                         isLoading = false;
                     } catch (JSONException | IOException e) {
-                        // throw new RuntimeException(e);
-                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "Load more video list error!" + e.getMessage());
                     }
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "Load more video list error!" + t.getMessage());
             }
         });
     }
 
     private void loadList() {
-        APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
         Call<ResponseBody> call=apiInterface.getCommonPosts2("1");
 
-        call.enqueue(new Callback<ResponseBody>() {
+        call.enqueue(new Callback<>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     String postList = "";
                     binding.shimmerLayout.setVisibility(View.GONE);
                     try {
@@ -267,7 +315,7 @@ public class VideoViewActivity extends AppCompatActivity implements AdsMediaSour
                         postList = response.body().string();
                         JSONArray jsonArray = new JSONArray(postList);
 
-                        for (int i = 0; i<jsonArray.length(); i++) {
+                        for (int i = 0; i < jsonArray.length(); i++) {
                             Post post = new Post();
                             JSONObject object = jsonArray.getJSONObject(i);
                             post.setUser_name(object.getString("user_name"));
@@ -287,18 +335,16 @@ public class VideoViewActivity extends AppCompatActivity implements AdsMediaSour
                             post.setChannel_name(object.getString("channel_name"));
                             rowsArrayList.add(post);
                         }
-
                         recyclerViewAdapter.notifyDataSetChanged();
                     } catch (JSONException | IOException e) {
-                        // throw new RuntimeException(e);
-                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "Load video list error!" + e.getMessage());
                     }
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "Load video list error!" + t.getMessage());
             }
         });
     }
@@ -341,14 +387,6 @@ public class VideoViewActivity extends AppCompatActivity implements AdsMediaSour
                 PostViewHolder holder1 = (PostViewHolder) holder;
 
                 Post post = postList.get(position);
-
-                /*
-                Glide
-                        .with(VideoViewActivity.this)
-                        .load(postList.get(position).getThumbnail_url())
-                        .placeholder(R.color.image_placeholder_bg)
-                        .into(holder1.imgThumbnail);
-                */
 
                 Glide
                         .with(context.getApplicationContext())
@@ -393,23 +431,13 @@ public class VideoViewActivity extends AppCompatActivity implements AdsMediaSour
                         holder1.txtUploadDate.setText(day);
                     }
                 } catch (ParseException e) {
-                    e.printStackTrace();
+                    Log.e(TAG, "Date parse error!" + e.getMessage());
                 }
 
-                String finalNewStringEmojidecooded = newStringEmojidecooded;
                 holder1.imgThumbnail.setOnClickListener(view -> {
                     postId = postList.get(position).getPost_id();
-                    postUserId = postList.get(position).getUser_id();
-                    videoUrl = postList.get(position).getVideo_url();
-                    binding.videoName.setText(finalNewStringEmojidecooded);
-                    binding.userName.setText(postList.get(position).getChannel_name());
-                    loadUploadTime(postList.get(position).getTime_date());
-                    binding.likeCheckbox.setChecked(false);
-                    loadLikeFunction(postList.get(position).getLike_status(), postList.get(position).getLikes());
-                    loadComments(postList.get(position).getComments());
-                    loadTotalViews(postList.get(position).getTotal_views());
                     player.stop();
-                    initExoPlayer();
+                    loadVideo(postId);
                 });
 
             }else if (holder instanceof LoadingViewHolder) {
@@ -445,7 +473,6 @@ public class VideoViewActivity extends AppCompatActivity implements AdsMediaSour
 
         public class LoadingViewHolder extends RecyclerView.ViewHolder {
             public ProgressBar progressBar;
-
             public LoadingViewHolder(View itemView) {
                 super(itemView);
                 progressBar = itemView.findViewById(R.id.progressBarloading);
@@ -454,7 +481,7 @@ public class VideoViewActivity extends AppCompatActivity implements AdsMediaSour
     }
 
     private void loadTotalViews(String totalViews) {
-        if (!totalViews.equals("")) {
+        if (!totalViews.isEmpty()) {
             binding.totalViews.setText(totalViews);
         }else {
             binding.totalComments.setText("0");
@@ -488,7 +515,6 @@ public class VideoViewActivity extends AppCompatActivity implements AdsMediaSour
     }
 
     private void viewsInit() {
-
         String mDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
         String mTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
         String mTimeDate  = mDate +" "+mTime;
@@ -517,19 +543,17 @@ public class VideoViewActivity extends AppCompatActivity implements AdsMediaSour
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
                     assert response.body() != null;
-                    String res;
                     try {
-                        res = response.body().string();
+                        response.body().string();
                     } catch (IOException e) {
-                        throw new RuntimeException(e);
+                        Log.e(TAG, "Views init error!" + e.getMessage());
                     }
-                    Log.e("views count: ", res);
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "Views init error!" + t.getMessage());
             }
         });
     }
@@ -613,39 +637,23 @@ public class VideoViewActivity extends AppCompatActivity implements AdsMediaSour
                         try {
                             res = response.body().string();
                         } catch (IOException e) {
-                            throw new RuntimeException(e);
+                            Log.e(TAG, "Subscription error!" + e.getMessage());
                         }
-                         Log.e("subscription", res);
                     }
                 }
 
                 @Override
                 public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-                    Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Subscription error!" + t.getMessage());
                 }
             });
         });
 
-        binding.likeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                binding.likeCheckbox.performClick();
-            }
-        });
+        binding.likeLayout.setOnClickListener(v -> binding.likeCheckbox.performClick());
 
-        binding.likeTextview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                binding.likeCheckbox.performClick();
-            }
-        });
+        binding.likeTextview.setOnClickListener(v -> binding.likeCheckbox.performClick());
 
-        binding.commentCheckbox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                binding.commentRoundBox.performClick();
-            }
-        });
+        binding.commentCheckbox.setOnClickListener(v -> binding.commentRoundBox.performClick());
     }
 
     private void openPostCommentDialog() {
@@ -660,7 +668,6 @@ public class VideoViewActivity extends AppCompatActivity implements AdsMediaSour
         if (btSubmit != null) {
             btSubmit.setOnClickListener(v1 -> {
                 String commentText = edText.getText().toString().trim();
-
                 if (commentText.isEmpty()){
                     edText.requestFocus();
                     Toast.makeText(context, getString(R.string.please_write_something), Toast.LENGTH_SHORT).show();
@@ -686,24 +693,23 @@ public class VideoViewActivity extends AppCompatActivity implements AdsMediaSour
         RequestBody mPostUserId = RequestBody.create(MediaType.parse("multipart/form-data"), postUserId);
         Call<ResponseBody> call = apiInterface.saveComment(mLoggedUserId, mLoggedUserName, mCommentText, mPostId, mPostUserId);
 
-        call.enqueue(new Callback<ResponseBody>() {
+        call.enqueue(new Callback<>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     assert response.body() != null;
                     String res;
                     try {
                         res = response.body().string();
                     } catch (IOException e) {
-                        throw new RuntimeException(e);
+                        Log.e(TAG, "Save comment error!" + e.getMessage());
                     }
-                    Toast.makeText(context, res, Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "Save comment error!" + t.getMessage());
             }
         });
     }
@@ -721,46 +727,45 @@ public class VideoViewActivity extends AppCompatActivity implements AdsMediaSour
                     assert response.body() != null;
                     LikeVideo likeVideo = response.body();
                     if (likeVideo.status.equals("true")){
-                        Log.e("unlike_", "un liked success and removed in database");
+                        Log.i(TAG, "Un liked success and removed in database");
                     }else {
-                        Log.e("unlike_", "failed");
+                        Log.i(TAG, "Un like failed!");
                     }
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<LikeVideo> call, @NonNull Throwable t) {
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "Unlike failed!");
             }
         });
     }
 
     private void insertLike() {
-
         RequestBody mUserid = RequestBody.create(MediaType.parse("multipart/form-data"), loggedUserId);
         assert postId != null;
         RequestBody mPostId = RequestBody.create(MediaType.parse("multipart/form-data"), postId);
 
         Call<LikeVideo> call = apiInterface.insertLike(mUserid, mPostId);
 
-        call.enqueue(new Callback<LikeVideo>() {
+        call.enqueue(new Callback<>() {
             @Override
             public void onResponse(@NonNull Call<LikeVideo> call, @NonNull Response<LikeVideo> response) {
                 if (response.isSuccessful()) {
                     assert response.body() != null;
                     LikeVideo likeVideo = response.body();
 
-                    if (likeVideo.status.equals("true")){
-                        Log.e("like_", "liked success");
-                    }else {
-                        Log.e("like_", "already exists");
+                    if (likeVideo.status.equals("true")) {
+                        Log.i(TAG, "Liked success");
+                    } else {
+                        Log.i(TAG, "Already exists");
                     }
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<LikeVideo> call, @NonNull Throwable t) {
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "Insert like failed!");
             }
         });
 
@@ -789,7 +794,7 @@ public class VideoViewActivity extends AppCompatActivity implements AdsMediaSour
                 binding.uploadDate.setText(days + getString(R.string.days_ago));
             }
         } catch (ParseException e) {
-            e.printStackTrace();
+           Log.i(TAG, "Upload time parse error!");
         }
     }
 
@@ -848,11 +853,11 @@ public class VideoViewActivity extends AppCompatActivity implements AdsMediaSour
         playerView.setPlayer(player);
         boolean haveResumePosition = mResumeWindow != C.INDEX_UNSET;
         if (haveResumePosition) {
-            Log.i("DEBUG"," haveResumePosition ");
+            Log.i(TAG," haveResumePosition ");
             player.seekTo(mResumeWindow, mResumePosition);
         }
         MediaSource mVideoSource = buildMediaSource(Uri.parse(videoUrl));
-        Log.i("DEBUG"," mVideoSource "+ mVideoSource);
+        Log.i(TAG," mVideoSource "+ mVideoSource);
         player.prepare(mVideoSource);
         player.setPlayWhenReady(true);
     }
@@ -865,7 +870,7 @@ public class VideoViewActivity extends AppCompatActivity implements AdsMediaSour
             initFullscreenDialog();
             initFullscreenButton();
         }
-        initExoPlayer();
+     //   initExoPlayer();
         if (mExoPlayerFullscreen) {
             ((ViewGroup) playerView.getParent()).removeView(playerView);
             mFullScreenDialog.addContentView(playerView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -887,6 +892,7 @@ public class VideoViewActivity extends AppCompatActivity implements AdsMediaSour
                 return new ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(uri);
             default:
                 throw new IllegalStateException(getString(R.string.unsupporte_type) + type);
+              //  Log.e(TAG, "Unsupported media type");
         }
     }
 
